@@ -1,0 +1,4 @@
+go_install:
+  - github.com/tomnomnom/gron@latest
+  - github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+  # - github.com/junegunn/fzf@latest # not supported

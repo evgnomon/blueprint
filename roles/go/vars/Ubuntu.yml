@@ -1,0 +1,5 @@
+go_os_type: linux
+go_os_arch: amd64
+go_cache: "{{ blueprint_home }}/go"
+go_home: "{{ ansible_env.HOME }}/opt/go-{{ go_version }}"
+go_bundle: "{{ go_cache }}/go{{ go_version }}.{{ go_os_type }}-{{ go_os_arch }}.tar.gz"

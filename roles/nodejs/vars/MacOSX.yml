@@ -1,0 +1,3 @@
+nodejs_os_type: darwin
+nodejs_os_arch: x64
+blueprint_home: "{{ ansible_env.HOME }}/Library/Caches/blueprint"

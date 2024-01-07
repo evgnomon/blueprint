@@ -1,0 +1,17 @@
+- name: Gather OS specific Vars
+  hosts: localhost
+  gather_facts: true
+  tasks:
+    - include_tasks: "tasks/setup_vars.yaml"
+
+- name: pkg role
+  hosts: localhost
+  tasks:
+    - name: Include pkg role
+      with_items: "{{ pkg.charts }}"
+      include_role:
+        name: pkg
+      loop_control:
+        loop_var: package
+  environment:
+    PATH: "{{ custom_path }}"

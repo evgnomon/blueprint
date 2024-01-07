@@ -1,0 +1,14 @@
+- name: Set OS specific Vars
+  hosts: localhost
+  gather_facts: true
+  tasks:
+    - include_tasks: "tasks/setup_vars.yaml"
+
+- name: Update nodejs
+  hosts: localhost
+  roles:
+   - role: nodejs
+     vars:
+       nodejs_version: v20.9.0
+  environment:
+    PATH: "{{ custom_path }}"

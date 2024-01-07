@@ -1,0 +1,13 @@
+blueprint_home: "{{ ansible_env.HOME }}/Library/Caches/blueprint"
+macports_home: "{{ ansible_env.HOME }}/.macports"
+path_components:
+  - "{{ ansible_env.HOME }}/.cargo/bin"
+  - "{{ ansible_env.HOME }}/go/bin"
+  - "{{ ansible_env.HOME }}/.local/bin"
+  - "{{ macports_home }}/bin"
+  - "{{ macports_home }}/sbin"
+  - "/usr/local/bin"
+  - "/usr/bin"
+  - "/usr/sbin"
+  - "/bin"
+custom_path: "{{ path_components | join(':') }}:$PATH"

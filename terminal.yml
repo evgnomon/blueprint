@@ -1,0 +1,12 @@
+- name: Gather OS specific Vars
+  hosts: localhost
+  gather_facts: true
+  tasks:
+    - include_tasks: "tasks/setup_vars.yaml"
+
+- name: Terminal role
+  hosts: localhost
+  roles:
+    - role: terminal
+  environment:
+    PATH: "{{ custom_path }}"

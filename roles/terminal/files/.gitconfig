@@ -1,0 +1,60 @@
+[user]
+	name = Hamed Ghasemzadeh
+
+[core]
+	autocrlf = input
+	excludesfile = ~/.gitignore_global
+  pager = delta
+
+[diff]
+  tool = vimdiff
+  colorMoved = default
+
+[merge]
+	tool = vimdiff
+  conflictstyle = diff3
+
+[http]
+	cookiefile = ~/.gitcookies
+
+[color "diff-highlight"]
+  oldNormal = red
+  oldHighlight = red 52
+  newNormal = green
+  newHighlight = green 22
+
+[interactive]
+  diffFilter = delta --color-only --features=interactive
+
+[delta]
+  features = decorations
+  line-numbers = true
+  navigate = true
+  light = false
+
+[delta "interactive"]
+  keep-plus-minus-markers = false
+
+[delta "decorations"]
+  commit-decoration-style = blue ol
+  commit-style = raw
+  file-style = omit
+  hunk-header-decoration-style = blue box
+  hunk-header-file-style = red
+  hunk-header-line-number-style = "#067a00"
+  hunk-header-style = file line-number syntax
+
+[alias]
+	co = checkout
+	st = status
+  br = branch
+  stat = !git diff --stat 
+  reflog = reflog --date=relative
+  gone = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D"
+  sync = ! "git switch main && git pull && git switch - && git merge main"
+
+[pull]
+    rebase = false
+
+[init]
+	defaultBranch = main

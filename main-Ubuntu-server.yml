@@ -1,0 +1,22 @@
+- name: localhost roles for Ubuntu in server
+  hosts: localhost
+  tasks:
+    - name: Include pkg role
+      with_items: "{{ pkg.charts }}"
+      include_role:
+        name: pkg
+      loop_control:
+        loop_var: package
+  roles:
+    - terminal
+    - role: nodejs
+      vars: 
+        nodejs_version: v20.9.0
+    - vim
+    - role: go
+      vars:
+        go_version: 1.21.4
+    - azure_cli
+  environment:
+    PATH: "{{ custom_path }}"
+

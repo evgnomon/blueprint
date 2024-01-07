@@ -1,0 +1,20 @@
+user_fonts_dir: ~/Library/Fonts/ 
+fish_bin_prefix: "{{ ansible_env.HOME }}/.macports/bin"
+cargo_cmd: "{{ ansible_env.HOME }}/.cargo/bin/cargo"
+
+cargo_packages:
+  - fd-find
+  - ripgrep
+  - git-delta
+  - bat
+  - yj
+
+macports_packages:
+ - fish
+ - nnn
+ - alacritty
+ - rsync
+ - ctags
+ - hugo
+ - gnupg2
+ - pinentry-mac # this requires XCode

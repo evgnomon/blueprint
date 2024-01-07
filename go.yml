@@ -1,0 +1,15 @@
+- name: Gather OS specific Vars
+  hosts: localhost
+  gather_facts: true
+  tasks:
+    - include_tasks: "tasks/setup_vars.yaml"
+    - debug:
+        msg: "{{ go_version }}"
+- name: Go role
+  hosts: localhost
+  roles:
+    - role: go
+      # vars:
+      #   go_version: "{{ go_version }}"
+  environment:
+    PATH: "{{ custom_path }}"

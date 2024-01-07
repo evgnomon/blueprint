@@ -1,0 +1,44 @@
+- name: Gather OS specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}.yml"
+    - "{{ ansible_distribution }}.yml"
+    - "{{ ansible_os_family}}.yml"
+
+- name: Ensure /etc/apt/keyrings directory exists
+  file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+
+- name: Add Docker's official GPG key
+  become: true
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    keyring: /etc/apt/keyrings/docker.gpg
+    state: present
+
+- name: Set file permissions for Docker GPG key
+  become: true
+  file:
+    path: /etc/apt/keyrings/docker.gpg
+    mode: '0644'
+
+- name: Add Docker repository
+  become: true
+  apt_repository:
+    repo: deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable
+    state: present
+
+- name: Install docker packages using Apt
+  become: true
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600
+    name: "{{ docker_apt_packages }}"
+    state: present
+
+- name: Create docker group
+  group:
+    name: docker
+    state: present

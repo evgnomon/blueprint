@@ -1,0 +1,3 @@
+nodejs_os_type: linux
+nodejs_os_arch: x64
+blueprint_home: "{{ ansible_env.HOME }}/.cache/blueprint"

@@ -1,0 +1,51 @@
+user_fonts_dir: "{{ ansible_env.HOME }}/.fonts"
+fish_bin_prefix: "{{ ansible_env.HOME }}/.local/bin"
+
+apt_packages:
+  - build-essential
+  - libssl-dev 
+  - libffi-dev 
+  - libncurses5-dev 
+  - zlib1g 
+  - zlib1g-dev 
+  - libreadline-dev 
+  - libbz2-dev 
+  - libsqlite3-dev 
+  - make 
+  - gcc 
+  - tk-dev 
+  - liblzma-dev
+  - nnn
+  - rsync
+  - cmake
+  - libedit-dev
+  - gettext
+  - libclang-dev
+  - ncurses-dev
+  - libpcre2-dev
+  - libx11-dev
+  - libxtst-dev
+  - libxt-dev
+  - libsm-dev
+  - libxpm-dev
+  - jq
+  - ca-certificates
+  - curl
+  - gnupg2
+  - exuberant-ctags
+  - unzip
+  - apt-transport-https
+  - lsb-release
+  - mc
+  - libcanberra-gtk-module
+  - software-properties-common
+  - libpam-yubico
+  - hugo
+
+cargo_packages:
+  - alacritty
+  - fd-find
+  - ripgrep
+  - git-delta
+  - bat
+  - yj
