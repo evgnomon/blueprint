@@ -1,13 +1,16 @@
-pkg_archs:
+pkg_templates:
   node:
-    os: &pkg_archs_node_os "{{ {'Darwin': 'darwin', 'Debian': 'linux', 'Windows': 'win'}[ansible_os_family] | default('') }}"
-    arch: &pkg_archs_node_arch "{{ {'x86_64': 'x64', 'aarch64': 'arm64', 'i386': 'x86' }[ansible_architecture] | default('') }}"
+    os: &pkg_templates_node_os "{{ {'Darwin': 'darwin', 'Debian': 'linux', 'Windows': 'win'}[ansible_os_family] | default('') }}"
+    arch: &pkg_templates_node_arch "{{ {'x86_64': 'x64', 'aarch64': 'arm64', 'i386': 'x86' }[ansible_architecture] | default('') }}"
   go:
-    os: &pkg_archs_go_os "{{ {'Darwin': 'darwin', 'Debian': 'linux', 'Windows': 'windows'}[ansible_os_family] | default('') }}" 
-    arch: &pkg_archs_go_arch "{{ {'x86_64': 'amd64', 'aarch64': 'arm64', 'i386': '386'}[ansible_architecture] | default('') }}"
+    os: &pkg_templates_go_os "{{ {'Darwin': 'darwin', 'Debian': 'linux', 'Windows': 'windows'}[ansible_os_family] | default('') }}" 
+    arch: &pkg_templates_go_arch "{{ {'x86_64': 'amd64', 'aarch64': 'arm64', 'i386': '386'}[ansible_architecture] | default('') }}"
   rustup:
-    os: &pkg_archs_rustup_os "{{ {'Darwin': 'apple-darwin', 'Debian': 'unknown-linux-gnu', 'Windows': 'pc-windows-msvc'}[ansible_os_family] | default('') }}" 
-    arch: &pkg_archs_rustup_arch "{{ {'x86_64': 'x86_64', 'aarch64': 'aarch64'}[ansible_architecture] | default('') }}"
+    os: &pkg_templates_rustup_os "{{ {'Darwin': 'apple-darwin', 'Debian': 'unknown-linux-gnu', 'Windows': 'pc-windows-msvc'}[ansible_os_family] | default('') }}" 
+    arch: &pkg_templates_rustup_arch "{{ {'x86_64': 'x86_64', 'aarch64': 'aarch64'}[ansible_architecture] | default('') }}"
+  fzf:
+    ext: "{{ {'Debian': 'tar.gz'}[ansible_os_family] | default('zip') }}"
+    inflate: "{{ {'Debian': 'tar -C %(dest)s -xzvf %(src)s'}[ansible_os_family] | default('unzip -o -d %(dest)s %(src)s') }}"
 
 
 pkg:
@@ -30,9 +33,9 @@ pkg:
           os_family: Windows
       version: 20.10.0
       template:
-        os: *pkg_archs_node_os
-        arch: *pkg_archs_node_arch
-        url: https://nodejs.org/dist/v%(version)s/node-v%(version)s-{{ pkg_archs.node.os }}-{{ pkg_archs.node.arch }}.tar.gz
+        os: *pkg_templates_node_os
+        arch: *pkg_templates_node_arch
+        url: https://nodejs.org/dist/v%(version)s/node-v%(version)s-{{ pkg_templates.node.os }}-{{ pkg_templates.node.arch }}.tar.gz
         ext: &ext_targz tar.gz
         inflate: &inflate_targz tar -C %(dest)s -xzvf %(src)s
         creates: "*/bin/node"
@@ -41,9 +44,9 @@ pkg:
       archs: *archs-node
       version: 1.21.5
       template:
-        os: *pkg_archs_go_os
-        arch: *pkg_archs_go_arch
-        url: https://go.dev/dl/go%(version)s.{{ pkg_archs.go.os }}-{{ pkg_archs.go.arch }}.tar.gz
+        os: *pkg_templates_go_os
+        arch: *pkg_templates_go_arch
+        url: https://go.dev/dl/go%(version)s.{{ pkg_templates.go.os }}-{{ pkg_templates.go.arch }}.tar.gz
         ext: *ext_targz 
         inflate: *inflate_targz
         creates: go/bin/go
@@ -51,11 +54,11 @@ pkg:
     - name: fzf
       version: 0.44.0
       template: &template_fzf
-        os: *pkg_archs_go_os
-        arch: *pkg_archs_go_arch
-        url: https://github.com/junegunn/%(name)s/releases/download/%(version)s/%(name)s-%(version)s-{{ pkg_archs.go.os }}_{{ pkg_archs.go.arch }}.zip
-        inflate: &inflate_unzip unzip -o -d %(dest)s %(src)s
-        ext: &ext_zip zip
+        os: *pkg_templates_go_os
+        arch: *pkg_templates_go_arch
+        url: https://github.com/junegunn/%(name)s/releases/download/%(version)s/%(name)s-%(version)s-{{ pkg_templates.go.os }}_{{ pkg_templates.go.arch }}.{{ pkg_templates.fzf.ext }}
+        inflate: "{{ pkg_templates.fzf.inflate }}"
+        ext: "{{ pkg_templates.fzf.ext }}"
         creates: fzf
 
       state: absent
@@ -70,16 +73,16 @@ pkg:
         os: all
         arch: share
         url: https://github.com/ryanoasis/nerd-fonts/releases/download/v%(version)s/JetBrainsMono.zip
-        inflate: *inflate_unzip
-        ext: *ext_zip
+        inflate: &inflate_unzip unzip -o -d %(dest)s %(src)s
+        ext: &ext_zip zip
         creates: JetBrainsMonoNerdFontMono-*.ttf
 
     - name: rustup-init
       version: latest
       template: 
-        os: *pkg_archs_rustup_os
-        arch: *pkg_archs_rustup_arch
-        url:  https://static.rust-lang.org/rustup/dist/{{ pkg_archs.rustup.arch }}-{{ pkg_archs.rustup.os }}/rustup-init
+        os: *pkg_templates_rustup_os
+        arch: *pkg_templates_rustup_arch
+        url:  https://static.rust-lang.org/rustup/dist/{{ pkg_templates.rustup.arch }}-{{ pkg_templates.rustup.os }}/rustup-init
         inflate: |
           chmod u+x '%(src)s'
           RUSTUP_INIT_SKIP_PATH_CHECK=yes %(src)s -y

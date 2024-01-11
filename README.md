@@ -10,6 +10,9 @@ sudo ls # to let ansible become root when needed
 ansible-playbook -i inventory main.yaml
 ```
 
+Caution: Don't run ansible process in root!
+And don't forget to close your session if `sudo` is not needed anymore.
+
 # Coc Plugins
 
 Run this after installation in vim to setup vim plugins:

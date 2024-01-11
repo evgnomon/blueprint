@@ -45,8 +45,8 @@
 
 - name: Create Alacritty configs
   ansible.builtin.template:
-    src: .config/alacritty/alacritty.yml.j2
-    dest: "{{ ansible_env.HOME }}/.config/alacritty/alacritty.yml"
+    src: .config/alacritty/alacritty.toml.j2
+    dest: "{{ ansible_env.HOME }}/.config/alacritty/alacritty.toml"
 
 - name: Create Alacritty Dekstop file
   ansible.builtin.template:
