@@ -12,7 +12,6 @@ pkg_templates:
     ext: "{{ {'Debian': 'tar.gz'}[ansible_os_family] | default('zip') }}"
     inflate: "{{ {'Debian': 'tar -C %(dest)s -xzvf %(src)s'}[ansible_os_family] | default('unzip -o -d %(dest)s %(src)s') }}"
 
-
 pkg:
   charts:
     - name: node
@@ -31,25 +30,64 @@ pkg:
           os_family: Windows
         - architecture: i386
           os_family: Windows
-      version: 20.10.0
-      template:
+      version: 14.1.0
+      template: &node_tempalte
         os: *pkg_templates_node_os
         arch: *pkg_templates_node_arch
         url: https://nodejs.org/dist/v%(version)s/node-v%(version)s-{{ pkg_templates.node.os }}-{{ pkg_templates.node.arch }}.tar.gz
         ext: &ext_targz tar.gz
         inflate: &inflate_targz tar -C %(dest)s -xzvf %(src)s
         creates: "*/bin/node"
+      bins:
+        - name: node14
+          target: node
+          src:  &bin_src_bin "%(name)s-v%(version)s-{{ pkg_templates.node.os }}-{{ pkg_templates.node.arch }}/bin/%(target)s"
+        - name: corepack14
+          target: npm
+          src:  *bin_src_bin
+        - name: npx
+          target: npx
+          src:  *bin_src_bin
+
+    - name: node
+      archs: *archs-node
+      version: 20.10.0
+      template: *node_tempalte
+      bins:
+        - name: node
+          src:  *bin_src_bin
+        - name: corepack
+          src:  *bin_src_bin
+        - name: npx
+          src:  *bin_src_bin
+        - name: npm
+          src:  *bin_src_bin
 
     - name: go
       archs: *archs-node
-      version: 1.21.5
-      template:
+      version: 1.20.13
+      template: &template_go
         os: *pkg_templates_go_os
         arch: *pkg_templates_go_arch
         url: https://go.dev/dl/go%(version)s.{{ pkg_templates.go.os }}-{{ pkg_templates.go.arch }}.tar.gz
         ext: *ext_targz 
         inflate: *inflate_targz
         creates: go/bin/go
+      bins:
+        - name: go20
+          src: &bins_go_src go/bin/go
+        - name: gofmt20
+          src: &bins_go_fmt go/bin/gofmt
+
+    - name: go
+      archs: *archs-node
+      version: 1.21.6
+      template: *template_go
+      bins:
+        - name: go
+          src: *bins_go_src
+        - name: gofmt
+          src: *bins_go_fmt
 
     - name: fzf
       version: 0.44.0
@@ -60,12 +98,16 @@ pkg:
         inflate: "{{ pkg_templates.fzf.inflate }}"
         ext: "{{ pkg_templates.fzf.ext }}"
         creates: fzf
-
-      state: absent
+      bins:
+        - name: fzf44
+          src: fzf
 
     - name: fzf
       version: 0.45.0
       template: *template_fzf
+      bins:
+        - name: fzf
+          src: fzf
 
     - name: jetbrains-mono
       version: 3.0.2
