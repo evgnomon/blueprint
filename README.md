@@ -1,3 +1,7 @@
+<p align="center">
+<img src="docs/assets/blueprint.png" width="256" height="256">
+</p>
+
 Blueprint prints your workstations on top of Linux, macOS and Windows using Ansible. This enables smooth transition for the user to a new machine or between existing machines.
 
 # Getting Started
