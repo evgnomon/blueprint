@@ -9,3 +9,11 @@ dotfiles:
   - .gitconfig
   - .ctags
   - .cargo
+
+common_cargo_packages:
+  - fd-find
+  - ripgrep
+  - git-delta
+  - bat
+  - yj
+  - zellij

@@ -42,10 +42,3 @@ apt_packages:
   - libpam-yubico
   - hugo
 
-cargo_packages:
-  - alacritty
-  - fd-find
-  - ripgrep
-  - git-delta
-  - bat
-  - yj

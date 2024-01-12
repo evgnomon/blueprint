@@ -19,10 +19,15 @@
     file: fish-build.yml
   when: ansible_os_family == "Debian"
 
-- name: Install packages using Cargo
+- name: Install common Cargo packages
   ansible.builtin.command:
     cmd: "{{ cargo_cmd }} install {{ item }}"
-  loop: "{{ cargo_packages }}"
+  loop: "{{ common_cargo_packages }}"
+
+- name: Install OS specific Cargo packages
+  ansible.builtin.command:
+    cmd: "{{ cargo_cmd }} install {{ item }}"
+  loop: "{{ cargo_packages | default ([]) }}"
 
 - name: Install using Mac Ports
   command: port -N install "{{ item }}"
