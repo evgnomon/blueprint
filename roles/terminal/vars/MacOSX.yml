@@ -11,6 +11,7 @@ macports_packages:
  - hugo
  - gnupg2
  - pinentry-mac # this requires XCode
+ - tree
 
 cargo_packages:
   - alacritty
