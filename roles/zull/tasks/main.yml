@@ -1,9 +1,3 @@
-- name: Install zull dependencies
-  shell: pip install {{ item }}
-  loop:
-    - git-review
-    - setuptools
-
 - file:
     path: "{{ ansible_env.HOME }}/src/github.com/evgnomon"
     state: directory

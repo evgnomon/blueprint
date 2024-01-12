@@ -17,3 +17,9 @@ common_cargo_packages:
   - bat
   - yj
   - zellij
+
+common_pip_packages:
+  - pip
+  - docker
+  - setuptools
+  - git-review # needed by Zuul
