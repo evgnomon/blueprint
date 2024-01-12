@@ -10,9 +10,6 @@
   roles:
     - macports
     - terminal
-    - role: nodejs
-      vars: 
-        nodejs_version: v20.9.0
     - vim
     - role: go
     - azure_cli

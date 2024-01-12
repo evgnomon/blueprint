@@ -9,9 +9,6 @@
         loop_var: package
   roles:
     - terminal
-    - role: nodejs
-      vars: 
-        nodejs_version: v20.9.0
     - vim
     - role: go
       vars:
@@ -19,4 +16,3 @@
     - azure_cli
   environment:
     PATH: "{{ custom_path }}"
-

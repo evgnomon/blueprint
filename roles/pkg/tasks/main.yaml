@@ -7,7 +7,6 @@
   loop_control:
     loop_var: path
 
-
 - name: Create source directory for package
   file:
     path: "{{ path | dirname }}"

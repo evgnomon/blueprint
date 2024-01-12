@@ -79,7 +79,10 @@
       state: directory
   when: not font.stat.exists
 
-
 - name: Install pip packages for current user
   shell: pip install --upgrade {{ item }}
   with_items: "{{ common_pip_packages }}"
+
+- name: Install common node packages
+  command: npm install -g {{ item }}
+  with_items: "{{ common_node_packages }}"

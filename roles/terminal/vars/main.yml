@@ -23,3 +23,7 @@ common_pip_packages:
   - docker
   - setuptools
   - git-review # needed by Zuul
+
+common_node_packages:
+  - serve
+  - npm
