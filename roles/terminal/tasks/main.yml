@@ -4,6 +4,8 @@
     - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}.yml"
     - "{{ ansible_distribution }}.yml"
     - "{{ ansible_os_family}}.yml"
+  tags:
+    - always
 
 - name: Inflate template configs
   include_tasks: j2_inflate.yaml
@@ -59,3 +61,29 @@
 - name: Install common Node packages
   command: npm install -g {{ item }}
   with_items: "{{ common_node_packages }}"
+
+- name: Clone Git repos
+  shell: | 
+    mkdir -p {{ repo_dest_dir }}
+    git clone {{ item.url }} {{ repo_dest }}
+  args:
+    creates: "{{ repo_dest }}/.git"
+  vars: &git_repos_vars
+    repo_hostname: "{{ item.url | urlsplit('hostname') }}"
+    repo_path: "{{ item.url | urlsplit('path') | split('/') }}"
+    repo_name: "{{ repo_path | last | regex_replace('\\.git$', '') }}"
+    repo_parent: "{{ repo_path[1] }}"
+    repo_prefix: "{{ item.prefix | default(ansible_env.HOME + '/src') }}"
+    repo_dest: "{{ repo_prefix }}/{{ repo_hostname }}/{{ repo_parent }}/{{ repo_name }}"
+    repo_dest_dir: "{{ repo_dest | dirname }}"
+  with_items: "{{ common_git_repos }}"
+  tags:
+    - clone_git_repos
+
+- name: Fetch Git repos
+  shell: | 
+    git fetch --all
+  vars: *git_repos_vars
+  with_items: "{{ common_git_repos }}"
+  tags:
+    - fetch_git_repos

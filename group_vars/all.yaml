@@ -2,4 +2,32 @@ go_latest_version: 1.21.6
 local_bin_path: "{{ ansible_env.HOME }}/.local/bin"
 blueprint_config_file: "{{ ansible_env.HOME }}/.config/blueprint/config.yaml"
 
+common_cargo_packages:
+  - fd-find
+  - ripgrep
+  - git-delta
+  - bat
+  - zellij
 
+common_pip_packages:
+  - pip
+  - docker
+  - setuptools
+  - git-review # needed by Zuul
+
+common_node_packages:
+  - serve
+  - npm
+
+common_go_packages:
+  - github.com/tomnomnom/gron@latest
+  - github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+  # - github.com/junegunn/fzf@latest # Not supported
+  - github.com/sclevine/yj@latest
+  - github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+
+common_git_repos:
+  - url: ssh://git@github.com/alacritty/alacritty.git
+    prefix: &prefix_home_src "{{ ansible_env.HOME }}/src"
+  - url: ssh://git@github.com/evgnomon/blueprint.git
+    prefix: *prefix_home_src

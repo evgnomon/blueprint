@@ -2,7 +2,7 @@
 Type=Application
 TryExec={{ ansible_env.HOME }}/.cargo/bin/alacritty
 Exec={{ ansible_env.HOME }}/.cargo/bin/alacritty
-Icon={{ ansible_env.HOME }}/.config/blueprint/alacritty/alacritty-term.svg
+Icon={{ ansible_env.HOME }}/src/github.com/alacritty/alacritty/extra/logo/compat/alacritty-term+scanlines.svg
 Terminal=false
 Categories=System;TerminalEmulator;
 
@@ -17,4 +17,3 @@ X-Desktop-File-Install-Version=0.26
 [Desktop Action New]
 Name=New Terminal
 Exec={{ ansible_env.HOME }}/.cargo/bin/alacritty
-
