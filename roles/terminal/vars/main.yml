@@ -5,7 +5,6 @@ cargo_cmd: "{{ ansible_env.HOME }}/.cargo/bin/cargo"
 
 dotfiles:
   - .config
-  - .ssh
   - .gitignore_global
   - .gitconfig
   - .ctags
