@@ -5,7 +5,12 @@
     - "{{ ansible_distribution }}.yml"
     - "{{ ansible_os_family}}.yml"
 
-- name: Install packages using apt
+- name: Inflate template configs
+  include_tasks: j2_inflate.yaml
+  when: item.state == 'file'
+  with_filetree: ../templates
+
+- name: Install packages using Apt
   become: true
   ansible.builtin.apt:
     update_cache: yes
@@ -29,57 +34,21 @@
     cmd: "{{ cargo_cmd }} install {{ item }}"
   loop: "{{ cargo_packages | default ([]) }}"
 
-- name: Install using Mac Ports
+- name: Install using MacPorts
   command: port -N install "{{ item }}"
   when: ansible_distribution == "MacOSX"
   with_items: "{{ macports_packages }}"
 
-- name: Copy configurations
+- name: Copy configs
   synchronize:
     src: "{{ item }}"
     dest: "{{ ansible_env.HOME }}"
   loop: "{{ dotfiles }}"
 
-- file:
-    state: directory
-    path: "{{ ansible_env.HOME }}/.config/fish/conf.d"
+- name: Install fonts
+  include_tasks: fonts_install.yaml
 
-- file:
-    state: directory
-    path: "{{ ansible_env.HOME }}/.config/alacritty"
-
-- name: Create Alacritty configs
-  ansible.builtin.template:
-    src: .config/alacritty/alacritty.toml.j2
-    dest: "{{ ansible_env.HOME }}/.config/alacritty/alacritty.toml"
-
-- name: Create Alacritty Dekstop file
-  ansible.builtin.template:
-    src: .local/share/applications/alacritty.desktop.j2
-    dest: "{{ ansible_env.HOME }}/.local/share/applications/alacritty.desktop"
-  when: ansible_os_family == "Debian"
-
-- stat:
-    path: "{{ ansible_env.HOME }}/Library/Fonts/JetBrainsMonoNerdFontMono-Regular.ttf"
-  register: font
-
-- file:
-    state: directory
-    path: "{{ user_fonts_dir }}"
-
-- name: Install JetBrainsMono
-  block:
-  - get_url:
-      url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.zip
-      dest: "/tmp/JetBrainsMono.zip"
-  - shell:
-      cmd: unzip -o /tmp/JetBrainsMono.zip -d "{{ user_fonts_dir }}"
-  - file:
-      dest: /tmp/JetBrainsMono
-      state: directory
-  when: not font.stat.exists
-
-- name: Install pip packages for current user
+- name: Install Pip packages for current user
   shell: pip install --upgrade {{ item }}
   with_items: "{{ common_pip_packages }}"
 
@@ -87,6 +56,6 @@
   command: go install {{ item }}
   with_items: "{{ common_go_packages }}"
 
-- name: Install common node packages
+- name: Install common Node packages
   command: npm install -g {{ item }}
   with_items: "{{ common_node_packages }}"

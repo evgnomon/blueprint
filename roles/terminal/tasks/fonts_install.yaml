@@ -1,0 +1,19 @@
+- stat:
+    path: "{{ ansible_env.HOME }}/Library/Fonts/JetBrainsMonoNerdFontMono-Regular.ttf"
+  register: font
+
+- file:
+    state: directory
+    path: "{{ user_fonts_dir }}"
+
+- name: Install JetBrainsMono
+  block:
+  - get_url:
+      url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.zip
+      dest: "/tmp/JetBrainsMono.zip"
+  - shell:
+      cmd: unzip -o /tmp/JetBrainsMono.zip -d "{{ user_fonts_dir }}"
+  - file:
+      dest: /tmp/JetBrainsMono
+      state: directory
+  when: not font.stat.exists

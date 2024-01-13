@@ -26,4 +26,3 @@
     ansible.builtin.command:
       chdir: "{{ fish_build_dir }}"
       cmd: make install
-

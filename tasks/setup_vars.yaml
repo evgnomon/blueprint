@@ -1,3 +1,8 @@
+- name: Read Blueprint config file
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ blueprint_config_file }}"
+
 - name: Check running in the server
   set_fact:
     server_runner: "{{ ansible_kernel | split('-') | last == 'WSL2' }}"
