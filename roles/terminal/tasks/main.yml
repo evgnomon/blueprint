@@ -73,8 +73,8 @@
 
 - name: Clone Git repos
   shell: |
-    mkdir -p {{ repo_dest_dir }}
-    git clone {{ item.url }} {{ repo_dest }}
+    mkdir -p '{{ repo_dest_dir }}'
+    git clone {{ item.url }} '{{ repo_dest }}'
   args:
     creates: "{{ repo_dest }}/.git"
   vars: &git_repos_vars
@@ -85,14 +85,27 @@
     repo_prefix: "{{ item.prefix | default(ansible_env.HOME + '/src') }}"
     repo_dest: "{{ repo_prefix }}/{{ repo_hostname }}/{{ repo_parent }}/{{ repo_name }}"
     repo_dest_dir: "{{ repo_dest | dirname }}"
+    user_profile_key: "{{ item.profile | default('main') }}"
+    user_profile: "{{ profiles[user_profile_key] }}"
   with_items: "{{ common_git_repos }}"
   tags:
     - clone_git_repos
 
 - name: Fetch Git repos
   shell: |
-    git fetch --all
+    git -C '{{ repo_dest }}' fetch --all
   vars: *git_repos_vars
   with_items: "{{ common_git_repos }}"
   tags:
     - fetch_git_repos
+
+- name: Config git profiles
+  shell: |
+    git -C '{{ repo_dest }}' config user.email '{{ user_profile.useremail }}'
+    git -C '{{ repo_dest }}' config user.name '{{ user_profile.fullname | default(user_profile.username) }}'
+    git -C '{{ repo_dest }}' config user.signingKey '{{ profiles.main.gpg_key }}'
+    git -C '{{ repo_dest }}' config commit.gpgsign true
+  vars: *git_repos_vars
+  with_items: "{{ common_git_repos }}"
+  tags:
+    - config_git_repos
