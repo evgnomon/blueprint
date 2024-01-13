@@ -1,8 +1,12 @@
-- name: Set OS specific Vars
+---
+- name: Set variables
   hosts: localhost
   gather_facts: true
   tasks:
-    - include_tasks: "tasks/setup_vars.yaml"
+    - name: Include setup variables
+      include_tasks: "tasks/setup_vars.yaml"
+  tags:
+    - always
 
 - name: Zygote role
   hosts: localhost

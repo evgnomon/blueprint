@@ -1,3 +1,4 @@
+---
 - file:
     state: directory
     path: "/tmp/mk/{{ item.path | replace('.j2', '') | dirname }}"

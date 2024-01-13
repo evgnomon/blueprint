@@ -1,3 +1,4 @@
+---
 blueprint_home: "{{ ansible_env.HOME }}/.cache/blueprint"
 path_components:
   - "{{ ansible_env.HOME }}/go/bin"

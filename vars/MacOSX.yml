@@ -1,3 +1,4 @@
+---
 blueprint_home: "{{ ansible_env.HOME }}/Library/Caches/blueprint"
 macports_home: "{{ ansible_env.HOME }}/.macports"
 path_components:

@@ -1,10 +1,14 @@
-- name: Gather OS specific Vars
+---
+- name: Set variables
   hosts: localhost
   gather_facts: true
   tasks:
-    - include_tasks: "tasks/setup_vars.yaml"
+    - name: Include setup variables
+      include_tasks: "tasks/setup_vars.yaml"
+  tags:
+    - always
 
-- name: azure_cli role for Ubuntu
+- name: Azure Cli role for Ubuntu
   hosts: localhost
   roles:
     - role: azure_cli

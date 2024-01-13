@@ -1,17 +1,19 @@
-user_fonts_dir: ~/Library/Fonts/ 
+---
+user_fonts_dir: ~/Library/Fonts/
 fish_bin_prefix: "{{ ansible_env.HOME }}/.macports/bin"
 cargo_cmd: "{{ ansible_env.HOME }}/.cargo/bin/cargo"
 
 macports_packages:
- - fish
- - nnn
- - alacritty
- - rsync
- - ctags
- - hugo
- - gnupg2
- - pinentry-mac # this requires XCode
- - tree
+  - fish
+  - nnn
+  - alacritty
+  - rsync
+  - ctags
+  - hugo
+  - gnupg2
+  # This requires XCode
+  - pinentry-mac
+  - tree
 
 cargo_packages:
   - alacritty

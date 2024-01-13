@@ -1,3 +1,4 @@
+---
 - name: Checkout vim repo
   git:
     dest: "{{ ansible_env.HOME }}/src/github.com/vim/vim"
@@ -15,7 +16,7 @@
   args:
     creates: "{{ ansible_env.HOME }}/.vim/autoload/plug.vim"
 
-- name: Copy .vimrc 
+- name: Copy .vimrc
   synchronize:
     src: "{{ item }}"
     dest: "{{ ansible_env.HOME }}"

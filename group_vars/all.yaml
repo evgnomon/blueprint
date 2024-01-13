@@ -1,3 +1,4 @@
+---
 go_latest_version: 1.21.6
 local_bin_path: "{{ ansible_env.HOME }}/.local/bin"
 blueprint_config_file: "{{ ansible_env.HOME }}/.config/blueprint/config.yaml"
@@ -13,7 +14,11 @@ common_pip_packages:
   - pip
   - docker
   - setuptools
-  - git-review # needed by Zuul
+  - git-review  # needed by Zuul
+  - ansible-lint  # check Ansible changes before commit
+  - yamllint  # Yaml issues exposed in Coc vim
+  - pre-commit
+  - pylint
 
 common_node_packages:
   - serve

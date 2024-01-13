@@ -1,3 +1,4 @@
+---
 - stat:
     path: "{{ ansible_env.HOME }}/Library/Fonts/JetBrainsMonoNerdFontMono-Regular.ttf"
   register: font

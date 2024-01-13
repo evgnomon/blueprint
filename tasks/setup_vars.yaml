@@ -1,3 +1,4 @@
+---
 - name: Read Blueprint config file
   include_vars: "{{ item }}"
   with_first_found:

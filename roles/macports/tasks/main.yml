@@ -1,24 +1,25 @@
-#- name: Create directory
-#  file:
-#    path: "/Users/evgnomon/cellar/github.com/macports/macports-base/v2.8.1/macports"
-#    state: directory
-#    mode: '0755'
-#- name: Download MacPorts tarball
-#  get_url:
-#    url: https://github.com/macports/macports-base/releases/download/v2.8.1/MacPorts-2.8.1.tar.gz
-#    dest: "/tmp/MacPorts-2.8.1.tar.gz"
-#    mode: '0644'
+---
+- name: Create directory
+  file:
+    path: "{{ ansible_env.HOME }}/cellar/github.com/macports/macports-base/v2.8.1/macports"
+    state: directory
+    mode: '0755'
+- name: Download MacPorts tarball
+  get_url:
+    url: https://github.com/macports/macports-base/releases/download/v2.8.1/MacPorts-2.8.1.tar.gz
+    dest: "/tmp/MacPorts-2.8.1.tar.gz"
+    mode: '0644'
 
-#- name: Extract MacPorts archive
-#  shell: tar -xzvf /tmp/MacPorts-2.8.1.tar.gz -C ~/cellar/github.com/macports/macports-base/v2.8.1/macports
+- name: Extract MacPorts archive
+  shell: tar -xzvf /tmp/MacPorts-2.8.1.tar.gz -C ~/cellar/github.com/macports/macports-base/v2.8.1/macports
 
-# - name: Extract MacPorts archive
-#  shell: |
-#            ./configure --enable-readline --prefix=$HOME/.macports --with-no-root-privileges
-#	    make
-#	    make install
-#  args:
-#    chdir: "{{ ansible_env.HOME }}/cellar/github.com/macports/macports-base/v2.8.1/macports/MacPorts-2.8.1"
+- name: Extract MacPorts archive
+  shell: |
+    ./configure --enable-readline --prefix=$HOME/.macports --with-no-root-privileges
+    make
+    make install
+  args:
+    chdir: "{{ ansible_env.HOME }}/cellar/github.com/macports/macports-base/v2.8.1/macports/MacPorts-2.8.1"
 
 
 - name: Update MacPorts itself

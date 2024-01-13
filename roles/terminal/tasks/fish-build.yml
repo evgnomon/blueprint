@@ -1,3 +1,4 @@
+---
 - name: register status of /tmp/toolbox.tar.gz
   stat:
     path: "{{ ansible_env.HOME }}/.local/bin/fish"
@@ -13,7 +14,7 @@
 
   - name: Create build directory
     ansible.builtin.file:
-      path:  "{{ fish_build_dir }}"
+      path: "{{ fish_build_dir }}"
       state: directory
       mode: '0755'
 

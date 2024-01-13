@@ -1,19 +1,20 @@
+---
 user_fonts_dir: "{{ ansible_env.HOME }}/.fonts"
 fish_bin_prefix: "{{ ansible_env.HOME }}/.local/bin"
 
 apt_packages:
   - build-essential
-  - libssl-dev 
-  - libffi-dev 
-  - libncurses5-dev 
-  - zlib1g 
-  - zlib1g-dev 
-  - libreadline-dev 
-  - libbz2-dev 
-  - libsqlite3-dev 
-  - make 
-  - gcc 
-  - tk-dev 
+  - libssl-dev
+  - libffi-dev
+  - libncurses5-dev
+  - zlib1g
+  - zlib1g-dev
+  - libreadline-dev
+  - libbz2-dev
+  - libsqlite3-dev
+  - make
+  - gcc
+  - tk-dev
   - liblzma-dev
   - nnn
   - rsync

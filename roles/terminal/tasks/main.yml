@@ -1,3 +1,4 @@
+---
 - name: Gather OS specific variables
   include_vars: "{{ item }}"
   with_first_found:
@@ -15,7 +16,7 @@
 - name: Install packages using Apt
   become: true
   ansible.builtin.apt:
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 3600
     name: "{{ apt_packages }}"
     state: present
@@ -50,9 +51,11 @@
 - name: Install fonts
   include_tasks: fonts_install.yaml
 
-- name: Install Pip packages for current user
+- name: Update Pip packages for current user
   shell: pip install --upgrade {{ item }}
   with_items: "{{ common_pip_packages }}"
+  tags:
+    - pip
 
 - name: Install common Go packages
   command: go install {{ item }}
@@ -63,7 +66,7 @@
   with_items: "{{ common_node_packages }}"
 
 - name: Clone Git repos
-  shell: | 
+  shell: |
     mkdir -p {{ repo_dest_dir }}
     git clone {{ item.url }} {{ repo_dest }}
   args:
@@ -81,7 +84,7 @@
     - clone_git_repos
 
 - name: Fetch Git repos
-  shell: | 
+  shell: |
     git fetch --all
   vars: *git_repos_vars
   with_items: "{{ common_git_repos }}"
