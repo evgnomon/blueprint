@@ -14,6 +14,7 @@ macports_packages:
   # This requires XCode
   - pinentry-mac
   - tree
+  - the_silver_searcher
 
 cargo_packages:
   - alacritty

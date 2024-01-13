@@ -13,6 +13,12 @@
   when: item.state == 'file'
   with_filetree: ../templates
 
+- name: Set Gnome avatar
+  shell: cp {{ ansible_env.HOME }}/.ssh/.face {{ ansible_env.HOME }}/.face
+  args:
+    creates: "{{ ansible_env.HOME }}/.face"
+  when: ansible_os_family == "Debian"
+
 - name: Install packages using Apt
   become: true
   ansible.builtin.apt:

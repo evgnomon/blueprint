@@ -43,3 +43,4 @@ apt_packages:
   - libpam-yubico
   - hugo
   - tree
+  - silversearcher-ag
