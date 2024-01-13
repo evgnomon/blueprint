@@ -81,7 +81,7 @@ pkg:
 
     - name: go
       archs: *archs-node
-      version: 1.21.6
+      version: "{{ go_latest_version }}"
       template: *template_go
       bins:
         - name: go

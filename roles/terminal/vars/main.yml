@@ -15,7 +15,6 @@ common_cargo_packages:
   - ripgrep
   - git-delta
   - bat
-  - yj
   - zellij
 
 common_pip_packages:
@@ -27,3 +26,10 @@ common_pip_packages:
 common_node_packages:
   - serve
   - npm
+
+common_go_packages:
+  - github.com/tomnomnom/gron@latest
+  - github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+  # - github.com/junegunn/fzf@latest # Not supported
+  - github.com/sclevine/yj@latest
+  - github.com/golangci/golangci-lint/cmd/golangci-lint@latest

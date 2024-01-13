@@ -10,7 +10,6 @@
   roles:
     - terminal
     - vim
-    - role: go
     - docker
     - azure_cli
   environment:

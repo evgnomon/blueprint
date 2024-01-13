@@ -10,9 +10,6 @@
   roles:
     - terminal
     - vim
-    - role: go
-      vars:
-        go_version: 1.21.4
     - azure_cli
   environment:
     PATH: "{{ custom_path }}"
