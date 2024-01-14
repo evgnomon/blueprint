@@ -16,6 +16,7 @@
     - terminal
     - vim
     - azure_cli
+    - docker
   environment:
     PATH: "{{ custom_path }}"
     MACPORTS_HOME: "{{ macports_home }}"

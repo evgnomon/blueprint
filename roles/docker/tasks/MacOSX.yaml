@@ -1,0 +1,22 @@
+- name: Download Docker DMG file for MacOSX
+  shell: |
+    mkdir -p {{ dest_dir }}
+    curl --proto "=https" --tlsv1.2 -sSLf "https://desktop.docker.com/mac/main/{{ docker_arch }}/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=docs-driven-download-mac-{{ docker_arch }}" -o {{ dest_file }}
+  args:
+    creates: "{{ blueprint_home }}/docker/darwin_{{ docker_arch }}/docker.dmg"
+  vars:
+    dest_file: &dmg_file "{{ blueprint_home }}/docker/darwin_{{ docker_arch }}/docker.dmg"
+    dest_dir: "{{ dest_file | dirname }}"
+  tags:
+    - docker
+
+- name: Install Docker using DMG file
+  become: true
+  shell: |
+    /usr/bin/hdiutil attach {{ dmg_file }}
+  vars:
+    dmg_file: *dmg_file
+  args:
+    creates: /usr/local/bin/docker
+  tags:
+    - docker

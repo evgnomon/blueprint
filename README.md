@@ -25,6 +25,8 @@ Run this after installation in vim to setup vim plugins:
 # MacOS
 Install XCode 15 or higher from App Store. Then open XCode and install macOS SDK.
 
+Docker has to be manually copied from attached disk image. This is to keep Alacritty unauthorized to access user `Applications`.
+
 # License
 HGL, verified:
 ```
