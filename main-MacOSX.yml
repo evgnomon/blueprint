@@ -1,5 +1,5 @@
 ---
-- name: localhost roles for MacOSX
+- name: Install packages for MacOSX
   hosts: localhost
   tasks:
     - name: Include pkg role
@@ -8,6 +8,9 @@
         name: pkg
       loop_control:
         loop_var: package
+
+- name: localhost roles for MacOSX
+  hosts: localhost
   roles:
     - macports
     - terminal

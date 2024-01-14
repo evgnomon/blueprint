@@ -5,6 +5,7 @@ path_components:
   - "{{ ansible_env.HOME }}/.cargo/bin"
   - "{{ ansible_env.HOME }}/go/bin"
   - "{{ ansible_env.HOME }}/.local/bin"
+  - "{{ ansible_env.HOME }}/.pyenv/shims"
   - "{{ macports_home }}/bin"
   - "{{ macports_home }}/sbin"
   - "/usr/local/bin"
