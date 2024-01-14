@@ -24,13 +24,15 @@
     repo: deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable
     state: present
 
-- name: Install docker packages using Apt
+- name: Install Docker packages using Apt
   become: true
   ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
     name: "{{ docker_apt_packages }}"
     state: present
+  tags:
+    - docker
 
 - name: Create docker group
   group:
