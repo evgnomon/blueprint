@@ -4,6 +4,7 @@
     path: "{{ ansible_env.HOME }}/cellar/github.com/macports/macports-base/v2.8.1/macports"
     state: directory
     mode: '0755'
+
 - name: Download MacPorts tarball
   get_url:
     url: https://github.com/macports/macports-base/releases/download/v2.8.1/MacPorts-2.8.1.tar.gz
@@ -20,4 +21,3 @@
     make install
   args:
     chdir: "{{ ansible_env.HOME }}/cellar/github.com/macports/macports-base/v2.8.1/macports/MacPorts-2.8.1"
-
