@@ -89,7 +89,7 @@
     user_profile: "{{ profiles[user_profile_key] }}"
   with_items: "{{ common_git_repos }}"
   tags:
-    - clone_git_repos
+    - git
 
 - name: Fetch Git repos
   shell: |
@@ -97,7 +97,7 @@
   vars: *git_repos_vars
   with_items: "{{ common_git_repos }}"
   tags:
-    - fetch_git_repos
+    - git
 
 - name: Config git profiles
   shell: |
@@ -108,4 +108,4 @@
   vars: *git_repos_vars
   with_items: "{{ common_git_repos }}"
   tags:
-    - config_git_repos
+    - git
