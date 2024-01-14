@@ -47,6 +47,8 @@
   command: port -N install "{{ item }}"
   when: ansible_distribution == "MacOSX"
   with_items: "{{ macports_packages }}"
+  tags:
+    - macports
 
 - name: Copy configs
   synchronize:

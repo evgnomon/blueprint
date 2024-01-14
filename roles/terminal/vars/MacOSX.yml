@@ -15,6 +15,7 @@ macports_packages:
   - pinentry-mac
   - tree
   - the_silver_searcher
+  - podman
 
 cargo_packages:
   - alacritty
