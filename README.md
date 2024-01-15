@@ -7,6 +7,8 @@ Blueprint prints your workstations on top of Linux, macOS and Windows using Ansi
 # Getting Started
 ```
 sudo ls # to let ansible become root when needed
+# Checkout your `.blueprint` settings.
+git clone git@github.com:evgnomon/.blueprint.git ~/.blueprint
 ansible-playbook -i inventory main.yaml
 ```
 

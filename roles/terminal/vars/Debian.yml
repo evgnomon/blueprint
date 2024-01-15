@@ -44,3 +44,5 @@ apt_packages:
   - hugo
   - tree
   - silversearcher-ag
+  - podman
+  - qemu-system-x86

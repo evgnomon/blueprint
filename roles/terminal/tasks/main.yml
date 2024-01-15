@@ -13,11 +13,18 @@
   when: item.state == 'file'
   with_filetree: ../templates
 
+- name: Check profile picture exists
+  stat:
+    path: "{{ ansible_env.HOME }}/.ssh/.face"
+  register: face_file_stat
+
 - name: Set Gnome avatar
   shell: cp {{ ansible_env.HOME }}/.ssh/.face {{ ansible_env.HOME }}/.face
   args:
     creates: "{{ ansible_env.HOME }}/.face"
-  when: ansible_os_family == "Debian"
+  when:
+    - ansible_os_family == "Debian"
+    - face_file_stat.stat.exists
 
 - name: Install packages using Apt
   become: true
@@ -27,6 +34,8 @@
     name: "{{ apt_packages }}"
     state: present
   when: ansible_os_family == "Debian"
+  tags:
+    - apt
 
 - name: Build fish shell
   include_tasks:
