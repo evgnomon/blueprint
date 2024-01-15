@@ -1,5 +1,5 @@
 ---
-- name: localhost roles for Ubuntu in server
+- name: Install packages for Ubuntu in server
   hosts: localhost
   tasks:
     - name: Include pkg role
@@ -8,6 +8,9 @@
         name: pkg
       loop_control:
         loop_var: package
+
+- name: localhost roles for Ubuntu in server
+  hosts: localhost
   roles:
     - terminal
     - vim
