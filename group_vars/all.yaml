@@ -33,9 +33,9 @@ common_go_packages:
   - github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 
 common_git_repos:
-  - url: ssh://git@github.com/alacritty/alacritty.git
+  - url: https://github.com/alacritty/alacritty.git
     prefix: &prefix_home_src "{{ ansible_env.HOME }}/src"
-  - url: ssh://git@github.com/evgnomon/blueprint.git
+  - url: https://github.com/evgnomon/blueprint.git
     prefix: *prefix_home_src
-  - url: ssh://git@github.com/evgnomon/zygote.git
+  - url: https://github.com/evgnomon/zygote.git
     prefix: *prefix_home_src
