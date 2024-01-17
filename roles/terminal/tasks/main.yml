@@ -98,7 +98,7 @@
     repo_dest_dir: "{{ repo_dest | dirname }}"
     user_profile_key: "{{ item.profile | default('main') }}"
     user_profile: "{{ profiles[user_profile_key] }}"
-  with_items: "{{ common_git_repos }}"
+  with_items: "{{ git_repos + common_git_repos }}"
   tags:
     - git
 
@@ -106,7 +106,7 @@
   shell: |
     git -C '{{ repo_dest }}' fetch --all
   vars: *git_repos_vars
-  with_items: "{{ common_git_repos }}"
+  with_items: "{{ git_repos + common_git_repos }}"
   tags:
     - git
 
@@ -117,6 +117,6 @@
     git -C '{{ repo_dest }}' config user.signingKey '{{ profiles.main.gpg_key }}'
     git -C '{{ repo_dest }}' config commit.gpgsign true
   vars: *git_repos_vars
-  with_items: "{{ common_git_repos }}"
+  with_items: "{{ git_repos + common_git_repos }}"
   tags:
     - git
