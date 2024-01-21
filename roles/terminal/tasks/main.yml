@@ -99,6 +99,7 @@
     user_profile_key: "{{ item.profile | default('main') }}"
     user_profile: "{{ profiles[user_profile_key] }}"
   with_items: "{{ git_repos + common_git_repos }}"
+  ignore_errors: true
   tags:
     - git
 
@@ -118,5 +119,6 @@
     git -C '{{ repo_dest }}' config commit.gpgsign true
   vars: *git_repos_vars
   with_items: "{{ git_repos + common_git_repos }}"
+  ignore_errors: true
   tags:
     - git
