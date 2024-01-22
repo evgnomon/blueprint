@@ -24,6 +24,7 @@ common_pip_packages:
 common_node_packages:
   - serve
   - npm
+  - prettier
 
 common_go_packages:
   - github.com/tomnomnom/gron@latest
