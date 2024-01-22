@@ -19,8 +19,10 @@ if status is-interactive
 
     set     CDPATH
     set -x  CDPATH
-    set -ax CDPATH      "$HOME/src/github.com/"
-    set -ax CDPATH      "$HOME/src/bitbucket.org/"
+
+    for f in (ls -d ~/src/*)
+      set -ax CDPATH "$f"
+    end
 
     set -px PATH        $HOME/.cargo/bin
     set -px PATH        $HOME/bin
@@ -35,8 +37,6 @@ if status is-interactive
 
     set -x  FZF_DEFAULT_COMMAND "fd --type f --strip-cwd-prefix --hidden --exclude .git"
     set -x  FZF_CTRL_T_COMMAND  "$FZF_DEFAULT_COMMAND"
-
-    set -xa PATH            "$OPT_PATH/google-cloud-sdk/bin"
 
     set -x SSH_AUTH_SOCK $HOME/.gnupg/S.gpg-agent.ssh
 
