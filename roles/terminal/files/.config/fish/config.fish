@@ -25,6 +25,7 @@ if status is-interactive
     end
 
     set -px PATH        $HOME/.cargo/bin
+    set -px PATH        $HOME/go/bin
     set -px PATH        $HOME/bin
     set -xa PATH        $HOME/.yarn/bin
     set -xa PATH        $HOME/src/github.com/evgnomon/mybag/bin

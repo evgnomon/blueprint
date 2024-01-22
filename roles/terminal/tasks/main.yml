@@ -64,6 +64,8 @@
     src: "{{ item }}"
     dest: "{{ ansible_env.HOME }}"
   loop: "{{ dotfiles }}"
+  tags:
+    - dotfiles
 
 - name: Install fonts
   include_tasks: fonts_install.yaml
@@ -94,7 +96,8 @@
     repo_name: "{{ repo_path | last | regex_replace('\\.git$', '') }}"
     repo_parent: "{{ repo_path[1] }}"
     repo_prefix: "{{ item.prefix | default(ansible_env.HOME + '/src') }}"
-    repo_dest: "{{ repo_prefix }}/{{ repo_hostname }}/{{ repo_parent }}/{{ repo_name }}"
+    repo_rel_dest: "{{ repo_parent }}/{{ repo_name }}"
+    repo_dest: "{{ repo_prefix }}/{{ repo_hostname }}/{{ item.rewrite | default( repo_rel_dest ) }}"
     repo_dest_dir: "{{ repo_dest | dirname }}"
     user_profile_key: "{{ item.profile | default('main') }}"
     user_profile: "{{ profiles[user_profile_key] }}"
