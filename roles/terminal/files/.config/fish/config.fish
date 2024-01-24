@@ -58,5 +58,6 @@ if status is-interactive
     abbr gpu 'git push --set-upstream origin (git branch --show-current)'
     abbr npl 'npm ls -g --depth=0 --link=true'
 
+
     set -x INTERACTIVE_INIT true
 end
