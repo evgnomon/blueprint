@@ -1,6 +1,7 @@
 ---
 user_fonts_dir: "{{ ansible_env.HOME }}/.fonts"
 fish_bin_prefix: "{{ ansible_env.HOME }}/.local/bin"
+pinentry_bin: /usr/bin/pinentry-tty
 
 apt_packages:
   - build-essential
@@ -46,3 +47,4 @@ apt_packages:
   - silversearcher-ag
   - podman
   - qemu-system-x86
+  - pinentry-tty

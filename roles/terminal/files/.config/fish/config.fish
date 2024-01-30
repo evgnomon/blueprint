@@ -55,6 +55,12 @@ if status is-interactive
             eval (ssh-agent -c) > /dev/null
     end
 
+    if string match -q "*WSL2*" -- (uname -r)
+      # Windows WSL2
+      set -x GPG_TTY $(tty)
+      set -x GPG_AGENT_INFO $HOME/.gnupg/S.gpg-agent:0:1V
+    end
+
     abbr gpu 'git push --set-upstream origin (git branch --show-current)'
     abbr npl 'npm ls -g --depth=0 --link=true'
 

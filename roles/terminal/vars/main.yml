@@ -9,3 +9,4 @@ dotfiles:
   - .gitconfig
   - .ctags
   - .cargo
+  - .gnupg
