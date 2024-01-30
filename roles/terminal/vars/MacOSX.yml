@@ -2,6 +2,7 @@
 user_fonts_dir: ~/Library/Fonts/
 fish_bin_prefix: "{{ ansible_env.HOME }}/.macports/bin"
 cargo_cmd: "{{ ansible_env.HOME }}/.cargo/bin/cargo"
+pinentry_bin: "{{ macports_home }}/bin/pinentry-tty"
 
 macports_packages:
   - fish

@@ -4,9 +4,11 @@
     path: "{{ path }}"
     state: directory
     owner: "{{ profiles.main.username }}"
-    group: "{{ profiles.main.username }}"
+    group: "{{ group_name }}"
   with_items:
     - "{{ package_dest }}"
+  vars:
+    group_name: "{{ ( ansible_distribution == 'Debian' ) | ternary( profiles.main.username, 'staff' ) }}" 
   loop_control:
     loop_var: path
 
@@ -15,7 +17,9 @@
     path: "{{ path | dirname }}"
     state: directory
     owner: "{{ profiles.main.username }}"
-    group: "{{ profiles.main.username }}"
+    group: "{{ group_name }}"
+  vars:
+    group_name: "{{ ( ansible_distribution == 'Debian' ) | ternary( profiles.main.username, 'staff' ) }}" 
   with_items:
     - "{{ package_src }}"
   loop_control:
