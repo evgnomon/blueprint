@@ -39,6 +39,7 @@ if status is-interactive
     set -x  FZF_DEFAULT_COMMAND "fd --type f --strip-cwd-prefix --hidden --exclude .git"
     set -x  FZF_CTRL_T_COMMAND  "$FZF_DEFAULT_COMMAND"
 
+    set -x GPG_TTY $(tty)
     set -x SSH_AUTH_SOCK $HOME/.gnupg/S.gpg-agent.ssh
 
     set -x EDITOR vim
@@ -57,7 +58,6 @@ if status is-interactive
 
     if string match -q "*WSL2*" -- (uname -r)
       # Windows WSL2
-      set -x GPG_TTY $(tty)
       set -x GPG_AGENT_INFO $HOME/.gnupg/S.gpg-agent:0:1V
     end
 
