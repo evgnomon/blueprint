@@ -10,3 +10,4 @@ dotfiles:
   - .ctags
   - .cargo
   - .gnupg
+  - .local
