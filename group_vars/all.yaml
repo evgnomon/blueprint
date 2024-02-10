@@ -20,6 +20,7 @@ common_pip_packages:
   - pre-commit
   - pylint
   - podman-compose
+  - yubikey-manager
 
 common_node_packages:
   - serve

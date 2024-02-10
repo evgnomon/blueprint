@@ -48,3 +48,7 @@ apt_packages:
   - podman
   - qemu-system-x86
   - pinentry-tty
+  - libpcsclite-dev
+  - swig
+  - pcscd
+  - mysql-client
