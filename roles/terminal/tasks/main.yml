@@ -97,7 +97,8 @@
     repo_parent: "{{ repo_path[1] }}"
     repo_prefix: "{{ item.prefix | default(ansible_env.HOME + '/src') }}"
     repo_rel_dest: "{{ repo_parent }}/{{ repo_name }}"
-    repo_dest: "{{ repo_prefix }}/{{ repo_hostname }}/{{ item.rewrite | default( repo_rel_dest ) }}"
+    repo_dest_default: "{{ repo_prefix }}/{{ repo_hostname }}/{{ item.rewrite | default( repo_rel_dest ) }}"
+    repo_dest: "{{ item.dest | default ( repo_dest_default ) }}"
     repo_dest_dir: "{{ repo_dest | dirname }}"
     user_profile_key: "{{ item.profile | default('main') }}"
     user_profile: "{{ profiles[user_profile_key] }}"
@@ -125,3 +126,4 @@
   ignore_errors: true
   tags:
     - git
+    - git_config

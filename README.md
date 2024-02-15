@@ -34,3 +34,8 @@ HGL, verified:
 ```
 shasum -a 512 -c SHA512SUMS
 ```
+
+
+# YubiKey
+Share the YubiKey with WSL2 for Windows:
+https://learn.microsoft.com/en-us/windows/wsl/connect-usb
