@@ -52,3 +52,4 @@ apt_packages:
   - swig
   - pcscd
   - mysql-client
+  - ykcs11 
