@@ -1,0 +1,37 @@
+#!/bin/sh
+
+SECRETS_DIR="$HOME/.blueprint/secrets"
+EMAIL="hg@evgnomon.org"
+
+# Function for encryption
+encrypt_file() {
+     if [ -z "$1" ]; then
+         echo "Please provide a file to encrypt and the recipient's email."
+         exit 1
+     fi
+     if [ -n "$2" ]; then
+       EMAIL="$2"
+     fi
+     mkdir -p $SECRETS_DIR
+     cat - | gpg -e -r "$EMAIL" --armor > "$SECRETS_DIR/$1.asc"
+}
+
+ # Function for decryption
+decrypt_file() {
+    if [ -z "$1" ]; then
+        echo "Please provide a file to decrypt."
+        exit 1
+    fi
+    gpg --quiet -d "$SECRETS_DIR/${1%}.asc"
+}
+
+# Check arguments
+if [ "$1" = "-e" ]; then
+    encrypt_file "$2" "$3"
+elif [ "$1" = "-d" ]; then
+    decrypt_file "$2"
+else
+    echo "Usage: $0 [-e|-d] [file] [recipient's email for encryption]"
+    exit 1
+fi
+

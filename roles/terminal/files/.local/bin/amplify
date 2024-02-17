@@ -1,0 +1,4 @@
+#!/bin/bash
+
+umask 0077
+curl -H@<(vault -d amplify-token) "$@"
