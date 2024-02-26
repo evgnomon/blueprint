@@ -4,3 +4,4 @@ configs/c.kdbx
 tags
 /.vim
 /.ctags
+/.python-version
