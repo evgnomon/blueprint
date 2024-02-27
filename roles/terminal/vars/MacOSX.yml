@@ -17,6 +17,8 @@ macports_packages:
   - tree
   - the_silver_searcher
   - podman
+  - swig
+  - swig-python
 
 cargo_packages:
   - alacritty
