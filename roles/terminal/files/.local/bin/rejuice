@@ -1,0 +1,5 @@
+#!/bin/sh
+
+pushd $HOME/src/github.com/evgnomon/blueprint
+  ansible-playbook -i inventory --ask-become-pass main.yaml "$@"
+popd

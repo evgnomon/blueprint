@@ -1,0 +1,9 @@
+---
+dotfiles:
+  - .config
+  - .gitignore_global
+  - .gitconfig
+  - .ctags
+  - .cargo
+  - .gnupg
+  - .local

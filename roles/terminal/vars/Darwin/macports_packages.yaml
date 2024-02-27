@@ -1,0 +1,16 @@
+---
+macports_packages:
+  - fish
+  - nnn
+  - alacritty
+  - rsync
+  - ctags
+  - hugo
+  - gnupg2
+  # This requires XCode
+  - pinentry-mac
+  - tree
+  - the_silver_searcher
+  - podman
+  - swig
+  - swig-python

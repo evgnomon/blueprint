@@ -1,0 +1,4 @@
+---
+user_fonts_dir: "{{ ansible_env.HOME }}/.fonts"
+fish_bin_prefix: "{{ ansible_env.HOME }}/.local/bin"
+pinentry_bin: /usr/bin/pinentry-tty
