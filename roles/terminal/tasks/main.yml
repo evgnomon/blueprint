@@ -88,6 +88,8 @@
 - name: Install common Go packages
   command: go install {{ item }}
   with_items: "{{ common_go_packages }}"
+  tags:
+    - go
 
 - name: Install common Node packages
   command: npm install -g {{ item }}
