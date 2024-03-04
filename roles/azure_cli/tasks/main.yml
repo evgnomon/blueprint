@@ -1,8 +1,0 @@
----
-- name: Import Azure CLI tasks for Debian
-  include_tasks: main-Debian.yaml
-  when: ansible_os_family == "Ubuntu"
-
-- name: Import Azure CLI tasks for MacOSX
-  include_tasks: main-MacOSX.yaml
-  when: ansible_distribution == "MacOSX"

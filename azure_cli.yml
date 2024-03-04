@@ -8,7 +8,7 @@
   tags:
     - always
 
-- name: Azure Cli role for Ubuntu
+- name: Azure Cli role for Debian family
   hosts: localhost
   roles:
     - role: azure_cli

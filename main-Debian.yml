@@ -1,5 +1,5 @@
 ---
-- name: Install packages for Ubuntu
+- name: Install packages for Debian family
   hosts: localhost
   tasks:
     - name: Include pkg role
@@ -9,12 +9,12 @@
       loop_control:
         loop_var: package
 
-- name: localhost roles for Ubuntu
+- name: localhost roles for Debian family
   hosts: localhost
   roles:
     - terminal
     - vim
     - docker
-    - azure_cli
   environment:
     PATH: "{{ custom_path }}"
+    LD_LIBRARY_PATH: "{{ ansible_env.HOME }}/.pyenv/versions/3.12.0/lib/"

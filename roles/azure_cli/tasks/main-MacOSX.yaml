@@ -1,5 +1,0 @@
----
-- name: Download and add Microsoft GPG key
-  ansible.builtin.get_url:
-    url: https://packages.microsoft.com/keys/microsoft.asc
-    dest: /tmp/microsoft.asc
