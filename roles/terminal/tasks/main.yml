@@ -99,6 +99,13 @@
   tags:
     - dotfiles
 
+- name: Change file ownership, group and permissions for gnupg
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.gnupg"
+    mode: '0700'
+  tags:
+    - dotfiles
+
 - name: Install fonts
   include_tasks: fonts_install.yaml
 
