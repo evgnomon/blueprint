@@ -34,6 +34,7 @@ common_go_packages:
   - github.com/sclevine/yj@latest
   - github.com/golangci/golangci-lint/cmd/golangci-lint@latest
   - github.com/opentofu/opentofu/cmd/tofu@latest
+  - -tags extended github.com/gohugoio/hugo@latest
 
 common_git_repos:
   - url: https://github.com/alacritty/alacritty.git

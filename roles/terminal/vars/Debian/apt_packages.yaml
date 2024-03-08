@@ -39,7 +39,6 @@ apt_packages:
     - libcanberra-gtk-module
     - software-properties-common
     - libpam-yubico
-    - hugo
     - tree
     - silversearcher-ag
     - podman

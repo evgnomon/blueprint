@@ -117,6 +117,8 @@
 
 - name: Install common Go packages
   command: go install {{ item }}
+  environment:
+    CGO_ENABLED: 1
   with_items: "{{ common_go_packages }}"
   tags:
     - go

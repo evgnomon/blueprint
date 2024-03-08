@@ -5,7 +5,6 @@ macports_packages:
   - alacritty
   - rsync
   - ctags
-  - hugo
   - gnupg2
   # This requires XCode
   - pinentry-mac
