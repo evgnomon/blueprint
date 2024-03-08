@@ -1,7 +1,13 @@
 ---
 - file:
     state: directory
-    path: "{{ ansible_env.HOME }}/{{ item.path | replace('.j2', '') | dirname }}"
+    path: "{{ target }}/{{ item.path | replace('.j2', '') | dirname }}"
+  become: "{{ become | default(false) }}"
+  tags:
+    - always
 - template:
     src: "{{ item.src }}"
-    dest: "{{ ansible_env.HOME }}/{{ item.path | replace('.j2', '') }}"
+    dest: "{{ target }}/{{ item.path | replace('.j2', '') }}"
+  become: "{{ become | default(false) }}"
+  tags:
+    - always

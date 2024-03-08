@@ -11,10 +11,24 @@
   tags:
     - always
 
-- name: Inflate template configs
+- name: Inflate template configs in user home
   include_tasks: j2_inflate.yaml
+  vars:
+    target: "{{ ansible_env.HOME }}"
   when: item.state == 'file'
-  with_filetree: ../templates
+  with_filetree: ../templates/share/home
+  tags:
+    - dotfiles
+
+- name: Inflate template configs in etc
+  include_tasks: j2_inflate.yaml
+  vars:
+    target: /etc
+    become: true
+  when: item.state == 'file'
+  with_filetree: ../templates/{{ ansible_distribution }}/etc
+  tags:
+    - dotfiles
 
 - name: Check profile picture exists
   stat:
@@ -29,21 +43,27 @@
     - ansible_os_family == "Debian"
     - face_file_stat.stat.exists
 
-- name: Install Microsoft Repo
-  become: true
-  shell: |
-    curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/microsoft.gpg
-    echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-$(lsb_release -cs)-prod $(lsb_release -cs) main" > /etc/apt/sources.list.d/dotnetdev.list
+- name: Include Debian family tasks
+  include_tasks: main-{{ ansible_distribution }}.yaml
   when: ansible_os_family == "Debian"
   tags:
-    - apt
+    - always
 
 - name: Install packages using Apt
   become: true
   ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
-    name: "{{ apt_packages }}"
+    name: "{{ apt_packages.share }}"
+    state: present
+  when: ansible_os_family == "Debian"
+  tags:
+    - apt
+
+- name: Install packages using Apt for specific distribution
+  become: true
+  ansible.builtin.apt:
+    name: "{{ apt_packages[ansible_distribution | lower] }}"
     state: present
   when: ansible_os_family == "Debian"
   tags:

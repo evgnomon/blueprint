@@ -1,0 +1,8 @@
+- name: Install Microsoft Dev Repo
+  become: true
+  shell: |
+    curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/microsoft.gpg
+    echo "deb [arch=amd64] https://packages.microsoft.com/debian/{{ ansible_distribution_major_version }}/prod {{ ansible_distribution_release }} main" > /etc/apt/sources.list.d/dotnetdev.list
+    echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ ansible_distribution_release }} main" > /etc/apt/sources.list.d/azure.list
+  tags:
+    always

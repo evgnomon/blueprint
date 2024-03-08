@@ -65,4 +65,5 @@
     src: "{{ package_dest }}/{{ item.src  | format( version = package.version, name = package.name, target = item.target | default(item.name) ) }}"
     dest: "{{ local_bin_path }}/{{ item.name }}"
     state: link
+    force: true
   with_items: "{{ package.bins | default([])}}"
