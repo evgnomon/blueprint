@@ -1,8 +1,8 @@
 <p align="center">
-<img src="docs/assets/blueprint.png" width="256" height="256">
+<img src="docs/assets/evgnomon.svg" width="256" height="256">
 </p>
 
-Blueprint prints your workstations on top of Linux, macOS and Windows using Ansible. This enables smooth transition for the user to a new machine or between existing machines.
+HGL/Blueprint configures a dev workstation for Linux, macOS and Windows (WSL2) using Ansible. The project enables smooth transition for the user to a new machine or between existing machines which makes the machine and the operating system a plugable resource. Blueprint runs inside a container to provide a consistent virtual environment for the user in the cloud. This project is part of HGL/Zygote project to extend the concept of dev workstation to the cloud and to the edge. Using Blueprint, the user can easily switch between different cloud providers and edge devices without changing the development environment.
 
 # Getting Started
 ```
@@ -38,7 +38,7 @@ HGL, verified:
 shasum -a 512 -c SHA512SUMS
 ```
 
-# YubiKey
+# Security Pass
 Share the YubiKey with WSL2 for Windows:
 https://learn.microsoft.com/en-us/windows/wsl/connect-usb
 
