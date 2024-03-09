@@ -5,7 +5,7 @@
     repo: "https://github.com/vim/vim.git"
 
 - name: Install vim
-  script: install-{{ ansible_distribution }}.fish
+  script: install-{{ ansible_os_family }}.fish
   args:
     chdir: "{{ ansible_env.HOME }}/src/github.com/vim/vim"
     executable: "fish"
