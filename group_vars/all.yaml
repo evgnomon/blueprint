@@ -25,6 +25,7 @@ common_node_packages:
   - serve
   - npm
   - prettier
+  - nodemon
 
 common_go_packages:
   - github.com/tomnomnom/gron@latest

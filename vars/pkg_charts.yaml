@@ -94,16 +94,19 @@ pkg:
         - name: node14
           target: node
           src: &bin_src_bin "%(name)s-v%(version)s-{{ pkg_templates.node.os }}-{{ pkg_templates.node.arch }}/bin/%(target)s"
-        - name: corepack14
+        - name: npm14
           target: npm
           src: *bin_src_bin
-        - name: npx
+        - name: corepack14
+          target: corepack
+          src: *bin_src_bin
+        - name: npx14
           target: npx
           src: *bin_src_bin
 
     - name: node
       archs: *archs-node
-      version: 20.10.0
+      version: 20.11.1
       template: *node_tempalte
       bins:
         - name: node
@@ -117,6 +120,8 @@ pkg:
         - name: prettier
           src: *bin_src_bin
         - name: serve
+          src: *bin_src_bin
+        - name: nodemon
           src: *bin_src_bin
 
     - name: go
