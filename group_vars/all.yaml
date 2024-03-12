@@ -1,14 +1,13 @@
 ---
 go_latest_version: 1.21.6
 local_bin_path: "{{ ansible_env.HOME }}/.local/bin"
-blueprint_config_file: "{{ ansible_env.HOME }}/.blueprint/config.yaml"
+blueprint_config_file: "{{ lookup('env','HOME') }}/.blueprint/config.yaml"
 
 common_cargo_packages:
   - fd-find
   - ripgrep
   - git-delta
   - bat
-  - zellij
 
 common_pip_packages:
   - pip

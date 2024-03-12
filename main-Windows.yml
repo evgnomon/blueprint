@@ -1,0 +1,110 @@
+---
+- name: Set variables
+  hosts: win
+  gather_facts: true
+  tasks:
+    - name: Include setup variables
+      include_tasks: "tasks/setup_vars.yaml"
+  tags:
+    - always
+
+- name: Install WinGet packages
+  hosts: win
+  tasks:
+    - name: Install WinGet packages
+      ansible.windows.win_powershell:
+        script: |
+          winget install --accept-source-agreements --accept-package-agreements --disable-interactivity --uninstall-previous --silent -e --id {{ item }}
+      become: true
+      with_items: "{{ app_ids }}"
+      vars:
+        app_ids:
+          - 9NKSQGP7F2NH # WhatsApp msstore
+          - Microsoft.Edge
+          - Git.Git
+          - Docker.DockerDesktop
+          - vim.vim
+          - Microsoft.VisualStudio.2022.BuildTools
+          - Microsoft.VCRedist.2015+.x64
+          - Microsoft.VCRedist.2015+.x86
+          - GoLang.Go
+          - GNU.MidnightCommander
+          - Brave.Brave
+          - Canonical.Ubuntu.2204
+          - Logitech.UnifyingSoftware
+          - Microsoft.Teams
+          - Microsoft.WindowsTerminal
+          - 9NRWMJP3717K # Python 11
+          - Rustlang.Rustup
+          - 9NFNG39387K0 # Yubico Authenticator
+          - dorssel.usbipd-win
+          - Yubico.YubikeyManager
+          - Microsoft.Azure.StorageExplorer
+          - Alacritty.Alacritty
+          - Microsoft.OpenSSH.Beta
+          - Microsoft.OneDrive
+          - Microsoft.DotNet.Runtime.6
+          - Hugo.Hugo.Extended
+          - RedHat.Podman
+          - GnuPG.GnuPG
+      when: ansible_os_family == "Windows"
+      tags:
+        - winget
+
+    - name: Upgrade existing WinGet packages
+      ansible.windows.win_powershell:
+        script: |
+          winget upgrade --all --accept-source-agreements --accept-package-agreements --disable-interactivity --uninstall-previous --silent
+      become: true
+      when: ansible_os_family == "Windows"
+
+    - name: Install common Go packages for Windows
+      ansible.windows.win_powershell:
+        script: |
+          go install {{ item }}
+      environment:
+        CGO_ENABLED: 1
+      with_items: "{{ common_go_packages }}"
+      when: ansible_os_family == "Windows"
+      vars:
+        common_go_packages:
+          - github.com/tomnomnom/gron@latest
+          - github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+          # - github.com/junegunn/fzf@latest # Not supported
+          - github.com/sclevine/yj@latest
+          - github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+          - github.com/opentofu/opentofu/cmd/tofu@latest
+      tags:
+        - go
+
+    - name: Install common Node packages
+      ansible.windows.win_powershell:
+        script: npm install -g {{ item }}
+      with_items: "{{ common_node_packages }}"
+      tags:
+        - node
+
+    - name: Update Pip packages for current user
+      ansible.windows.win_powershell:
+        script: python.exe -m pip install --upgrade {{ item }}
+      with_items: "{{ common_pip_packages }}"
+      tags:
+        - pip
+
+    - name: Install common Cargo packages
+      ansible.windows.win_powershell:
+        script: "{{ cargo_cmd }} install {{ item }}"
+      loop: "{{ common_cargo_packages }}"
+      tags:
+        - cargo
+
+
+    - name: Install Windows specific Cargo packages
+      ansible.windows.win_powershell:
+        script: "{{ cargo_cmd }} install {{ item }}"
+      loop: "{{ cargo_packages | default ([]) }}"
+      tags:
+        - cargo
+
+  environment:
+    LD_LIBRARY_PATH: "{{ ansible_env.HOME }}/.pyenv/versions/3.12.0/lib/"

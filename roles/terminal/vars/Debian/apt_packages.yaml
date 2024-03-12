@@ -52,5 +52,6 @@ apt_packages:
     - azure-cli
   ubuntu:
     - mysql-client 
+    - scdaemon
   debian:
     - default-mysql-client
