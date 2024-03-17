@@ -10,6 +10,8 @@
 
 - name: Install WinGet packages
   hosts: win
+  roles:
+    - python
   tasks:
     - name: Install WinGet packages
       ansible.windows.win_powershell:
@@ -84,20 +86,12 @@
       tags:
         - node
 
-    - name: Update Pip packages for current user
-      ansible.windows.win_powershell:
-        script: python.exe -m pip install --upgrade {{ item }}
-      with_items: "{{ common_pip_packages }}"
-      tags:
-        - pip
-
     - name: Install common Cargo packages
       ansible.windows.win_powershell:
         script: "{{ cargo_cmd }} install {{ item }}"
       loop: "{{ common_cargo_packages }}"
       tags:
         - cargo
-
 
     - name: Install Windows specific Cargo packages
       ansible.windows.win_powershell:

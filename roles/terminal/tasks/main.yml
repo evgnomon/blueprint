@@ -11,7 +11,7 @@
   tags:
     - always
 
-- name: Inflate template configs in user home
+- name: Inflate shared template configs in user home
   include_tasks: j2_inflate.yaml
   vars:
     target: "{{ ansible_env.HOME }}"
@@ -20,12 +20,14 @@
   tags:
     - dotfiles
 
-- name: Inflate template configs in etc
+- name: Inflate template configs in etc for Debian
   include_tasks: j2_inflate.yaml
   vars:
     target: /etc
     become: true
-  when: item.state == 'file'
+  when: 
+    - item.state == 'file'
+    - ansible_os_family == "Debian"
   with_filetree: ../templates/{{ ansible_distribution }}/etc
   tags:
     - dotfiles
@@ -43,7 +45,7 @@
     - ansible_os_family == "Debian"
     - face_file_stat.stat.exists
 
-- name: Include Debian family tasks
+- name: Include distro tasks
   include_tasks: main-{{ ansible_distribution }}.yaml
   when: ansible_os_family == "Debian"
   tags:
@@ -109,12 +111,6 @@
 - name: Install fonts
   include_tasks: fonts_install.yaml
 
-- name: Update Pip packages for current user
-  shell: pip install --upgrade {{ item }}
-  with_items: "{{ common_pip_packages }}"
-  tags:
-    - pip
-
 - name: Install common Go packages
   command: go install {{ item }}
   environment:
@@ -145,8 +141,57 @@
     repo_dest_dir: "{{ repo_dest | dirname }}"
     user_profile_key: "{{ item.profile | default('main') }}"
     user_profile: "{{ profiles[user_profile_key] }}"
+    bundle_file: '{{ repo_dest_dir }}/{{ repo_name }}.bundle'
+    win_owner: "{{ ansible_nodename | upper }}\\{{ ansible_user_id }}"
   with_items: "{{ git_repos + common_git_repos }}"
+  when: ansible_os_family != "Windows"
   ignore_errors: true
+  tags:
+    - git
+
+- name: Create bundle
+  shell: |
+    git -C '{{ repo_dest }}' bundle create '{{ repo_name }}.bundle' --all
+  vars: *git_repos_vars
+  when: ansible_os_family != "Windows"
+  with_items: "{{ git_repos + common_git_repos }}"
+  tags:
+    - git
+
+- name: Make directories in Windows
+  ansible.windows.win_powershell:
+    script: |
+      mkdir -p '{{ repo_dest_dir }}'
+    creates: '{{ repo_dest_dir }}'
+  vars: *git_repos_vars
+  when: ansible_os_family == "Windows"
+  ignore_errors: true
+  with_items: "{{ git_repos + common_git_repos }}"
+  tags:
+    - git
+
+- name: Copy bundles to Windows remote
+  win_copy:
+    src:  '{{ repo_dest | replace(ansible_env.HOME , lookup("env", "HOME")) }}/{{ repo_name }}.bundle'
+    dest: '{{ repo_dest_dir }}'
+  vars: *git_repos_vars
+  ignore_errors: true
+  when: ansible_os_family == "Windows"
+  with_items: "{{ git_repos + common_git_repos }}"
+  tags:
+    - git
+
+- name: Clone Git repos in Windows
+  ansible.windows.win_powershell:
+    script: |
+      git clone '{{ bundle_file }}' '{{ repo_dest }}'
+      icacls '{{ repo_dest }}' /setowner "{{ win_owner }}" /t /c
+      Remove-Item '{{ bundle_file }}'
+    creates: '{{ repo_dest }}/.git'
+  vars: *git_repos_vars
+  when: ansible_os_family == "Windows"
+  ignore_errors: true
+  with_items: "{{ git_repos + common_git_repos }}"
   tags:
     - git
 
@@ -155,6 +200,7 @@
     git -C '{{ repo_dest }}' fetch --all
   vars: *git_repos_vars
   with_items: "{{ git_repos + common_git_repos }}"
+  when: ansible_os_family != "Windows"
   tags:
     - git
 
@@ -166,6 +212,7 @@
     git -C '{{ repo_dest }}' config commit.gpgsign true
   vars: *git_repos_vars
   with_items: "{{ git_repos + common_git_repos }}"
+  when: ansible_os_family != "Windows"
   ignore_errors: true
   tags:
     - git

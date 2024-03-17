@@ -6,3 +6,5 @@ tags
 /.ctags
 /.python-version
 /.secrets.yaml
+/*.bundle
+/.run
