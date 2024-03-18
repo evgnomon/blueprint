@@ -1,0 +1,13 @@
+---
+- name: Include main tasks
+  include_tasks: tasks/main-all.yaml
+  with_items: "{{ common_pip_packages }}"
+  when: ansible_os_family != "Windows"
+  tags:
+    - always
+
+- name: Include main tasks for Windows
+  include_tasks: tasks/main-{{ ansible_os_family }}.yaml
+  when: ansible_os_family == "Windows"
+  tags:
+    - always

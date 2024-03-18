@@ -13,6 +13,7 @@
   hosts: localhost
   roles:
     - terminal
+    - python
     - vim
   environment:
     PATH: "{{ custom_path }}"
