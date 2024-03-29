@@ -50,6 +50,7 @@ apt_packages:
     - ykcs11
     - yubioath-desktop
     - azure-cli
+    - qbittorrent
   ubuntu:
     - mysql-client 
     - scdaemon
