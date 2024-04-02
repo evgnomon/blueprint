@@ -51,6 +51,7 @@ apt_packages:
     - yubioath-desktop
     - azure-cli
     - qbittorrent
+    - heif-gdk-pixbuf
   ubuntu:
     - mysql-client 
     - scdaemon
