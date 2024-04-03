@@ -2,7 +2,11 @@
 <img src="docs/assets/evgnomon.svg" width="256" height="256">
 </p>
 
-HGL/Blueprint configures a dev workstation for Linux, macOS and Windows native and WSL2 using Ansible. The project enables smooth transition for the user to a new machine or between existing machines which makes the machine and the operating system a plugable resource. Blueprint runs inside a container to provide a consistent virtual environment for the user in the cloud. This project is part of HGL/Zygote project to extend the concept of dev workstation to the cloud and to the edge. Using Blueprint, the user can easily switch between different cloud providers and edge devices without changing the development environment.
+# HGL/Blueprint
+
+Print your workstation wherever you. The same thing, the same way, every time.
+
+Supports Linux, macOS and Windows native and WSL2 and Docker container.
 
 # Getting Started
 ```
@@ -11,7 +15,7 @@ sudo ls # to let ansible become root when needed
 usermod -aG sudo
 ./bootstrap-Linux.sh
 # Checkout your `.blueprint` settings.
-git clone git@github.com:evgnomon/.blueprint.git ~/.blueprint
+git clone git@github.com:YOURUSER/.blueprint.git ~/.blueprint
 ansible-playbook -i inventory --ask-become-pass main.yaml
 ```
 

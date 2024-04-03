@@ -1,9 +1,0 @@
----
-- file:
-    path: "{{ ansible_env.HOME }}/src/github.com/evgnomon"
-    state: directory
-
-- name: Checkout zuul repo
-  git:
-    repo: https://opendev.org/zuul/zuul.git
-    dest: "{{ ansible_env.HOME }}/src/github.com/evgnomon/zuul"
