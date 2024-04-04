@@ -65,9 +65,40 @@
 - name: Install packages using Apt for specific distribution
   become: true
   ansible.builtin.apt:
-    name: "{{ apt_packages[ansible_distribution | lower] }}"
+    name: "{{ apt_packages[dict_item] }}"
     state: present
-  when: ansible_os_family == "Debian"
+  when:
+    - ansible_os_family == "Debian"
+    - dict_item in apt_packages
+  vars:
+    dict_item: "{{ ansible_distribution | lower }}"
+  tags:
+    - apt
+
+- name: Install user packages using Apt
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+    name: "{{ user_apt_packages.share }}"
+    state: present
+  when: 
+    - ansible_os_family == "Debian"
+    - user_apt_packages is defined
+  tags:
+    - apt
+
+- name: Install user packages using Apt for specific distribution
+  become: true
+  ansible.builtin.apt:
+    name: "{{ user_apt_packages[dict_item] }}"
+    state: present
+  when:
+    - ansible_os_family == "Debian"
+    - user_apt_packages is defined
+    - dict_item in user_apt_packages
+  vars:
+    dict_item: "{{ ansible_distribution | lower }}"
   tags:
     - apt
 
