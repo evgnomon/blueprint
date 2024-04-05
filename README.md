@@ -1,7 +1,3 @@
-<p align="center">
-<img src="docs/assets/evgnomon.svg" width="256" height="256">
-</p>
-
 # HGL/Blueprint
 
 Print your workstation wherever you. The same thing, the same way, every time.
