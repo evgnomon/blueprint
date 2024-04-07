@@ -52,6 +52,7 @@ apt_packages:
     - azure-cli
     - qbittorrent
     - heif-gdk-pixbuf
+    - nordvpn
   ubuntu:
     - mysql-client 
     - scdaemon

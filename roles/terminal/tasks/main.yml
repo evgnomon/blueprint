@@ -51,6 +51,14 @@
   tags:
     - always
 
+- name: Install NordVPN Repo
+  become: true
+  shell: |
+    curl https://repo.nordvpn.com/gpg/nordvpn_public.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/nordvpn.gpg
+    echo "deb https://repo.nordvpn.com/deb/nordvpn/debian stable main" > /etc/apt/sources.list.d/nordvpn.list
+  tags:
+    always
+
 - name: Install packages using Apt
   become: true
   ansible.builtin.apt:
@@ -248,3 +256,14 @@
   tags:
     - git
     - git_config
+
+- name: Add the current user to the nordvpn group
+  become: true
+  ansible.builtin.user:
+    name: "{{ ansible_user_id }}"
+    groups: nordvpn
+    append: yes
+  when:
+    - ansible_os_family == "Debian"
+  tags:
+    - apt
