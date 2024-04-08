@@ -1,5 +1,5 @@
 ---
-- name: Update Pip packages for current user
+- name: Update Pip packages for current user in Windows
   ansible.windows.win_powershell:
     script: python.exe -m pip install --upgrade {{ item }}
   with_items: "{{ common_pip_packages }}"

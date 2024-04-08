@@ -15,9 +15,3 @@
 - name: Import playboook for MacOSX
   import_playbook: main-MacOSX.yml
   when: ansible_distribution == "MacOSX"
-
-- name: Import playboook for Ubuntu on server
-  import_playbook: main-Ubuntu-server.yml
-  when:
-    - ansible_distribution == "Ubuntu"
-    - server_runner

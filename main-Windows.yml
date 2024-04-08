@@ -49,6 +49,9 @@
           - Hugo.Hugo.Extended
           - RedHat.Podman
           - GnuPG.GnuPG
+          # - LocalSend.LocalSend # Installation fails
+          - qBittorrent.qBittorrent
+          - NordSecurity.NordVPN
       when: ansible_os_family == "Windows"
       tags:
         - winget
@@ -56,9 +59,11 @@
     - name: Upgrade existing WinGet packages
       ansible.windows.win_powershell:
         script: |
-          winget upgrade --all --accept-source-agreements --accept-package-agreements --disable-interactivity --uninstall-previous --silent
+          winget upgrade --all --accept-source-agreements --accept-package-agreements --disable-interactivity --silent
       become: true
       when: ansible_os_family == "Windows"
+      tags:
+        - winget
 
     - name: Install common Go packages for Windows
       ansible.windows.win_powershell:
