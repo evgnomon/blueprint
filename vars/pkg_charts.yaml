@@ -63,6 +63,38 @@ pkg_templates:
           'Debian': 'tar -C %(dest)s -xzvf %(src)s'
         }[ansible_os_family] | default('unzip -o -d %(dest)s %(src)s')
       }}
+  idea:
+    os: &pkg_templates_idea_os >-
+      {{
+        {
+          'Darwin': 'dmg',
+          'Debian': 'tar.gz',
+          'Windows': 'exe'
+        }[ansible_os_family] | default('')
+      }}
+    arch: &pkg_templates_idea_arch >-
+      {{
+        {
+          'x86_64': '',
+          'aarch64': '-aarch64'
+        }[ansible_architecture] | default('')
+      }}
+  java:
+    os: &pkg_templates_java_os >-
+      {{
+        {
+          'Darwin': 'mac',
+          'Debian': 'linux',
+          'Windows': 'windows'
+        }[ansible_os_family] | default('')
+      }}
+    arch: &pkg_templates_java_arch >-
+      {{
+        {
+          'x86_64': 'x64',
+          'aarch64': 'aarch64'
+        }[ansible_architecture] | default('')
+      }}
 
 pkg:
   charts:
@@ -190,3 +222,69 @@ pkg:
           chmod u+x '%(src)s'
           RUSTUP_INIT_SKIP_PATH_CHECK=yes %(src)s -y
         creates: nothing
+
+    - name: idea
+      version: 2024.1
+      template: &template_idea
+        os: *pkg_templates_idea_os
+        arch: *pkg_templates_idea_arch
+        url: https://download.jetbrains.com/%(name)s/%(name)sIC-%(version)s{{ pkg_templates.idea.arch }}.{{ pkg_templates.idea.os }}
+        ext: *ext_targz
+        inflate: *inflate_targz
+        creates: idea-IC-241.14494.240/bin/idea.sh
+      bins:
+        - name: idea
+          src: &bins_idea_src idea-IC-241.14494.240/bin/idea.sh
+
+    - name: OpenJDK21U
+      version: 21.0.2_13
+      template: &template_java
+        os: *pkg_templates_java_os
+        arch: *pkg_templates_java_arch
+        url: https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.2+13/%(name)s-jdk_{{ pkg_templates.java.arch }}_{{ pkg_templates.java.os }}_hotspot_%(version)s.tar.gz
+        ext: *ext_targz
+        inflate: *inflate_targz
+        creates: bin/java
+      bins:
+        - name: jshell
+          src: jdk-21.0.2+13/bin/jshell
+        - name: jstatd
+          src: jdk-21.0.2+13/bin/jstatd
+        - name: rmiregistry
+          src: jdk-21.0.2+13/bin/rmiregistry
+        - name: jarsigner
+          src: jdk-21.0.2+13/bin/jarsigner
+        - name: javadoc
+          src: jdk-21.0.2+13/bin/javadoc
+        - name: jconsole
+          src: jdk-21.0.2+13/bin/jconsole
+        - name: jdeps
+          src: jdk-21.0.2+13/bin/jdeps
+        - name: jimage
+          src: jdk-21.0.2+13/bin/jimage
+        - name: jmap
+          src: jdk-21.0.2+13/bin/jmap
+        - name: jps
+          src: jdk-21.0.2+13/bin/jps
+        - name: jstack
+          src: jdk-21.0.2+13/bin/jstack
+        - name: jwebserver
+          src: jdk-21.0.2+13/bin/jwebserver
+        - name: serialver
+          src: jdk-21.0.2+13/bin/serialver
+        - name: javap
+          src: jdk-21.0.2+13/bin/javap
+        - name: jdb
+          src: jdk-21.0.2+13/bin/jdb
+        - name: jfr
+          src: jdk-21.0.2+13/bin/jfr
+        - name: jinfo
+          src: jdk-21.0.2+13/bin/jinfo
+        - name: jmod
+          src: jdk-21.0.2+13/bin/jmod
+        - name: jrunscript
+          src: jdk-21.0.2+13/bin/jrunscript
+        - name: jstat
+          src: jdk-21.0.2+13/bin/jstat
+        - name: keytool
+          src: jdk-21.0.2+13/bin/keytool
