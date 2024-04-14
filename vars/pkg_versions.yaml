@@ -24,3 +24,5 @@ pkg_versions:
     version: 1.9.9
   maven:
     version: 3.9.6
+  gradle:
+    version: 8.7

@@ -228,6 +228,19 @@ pkg:
         - name: mvn
           src: apache-maven-{{ pkg_versions.maven.version }}/bin/mvn
 
+    - name: gradle
+      version: "{{ pkg_versions.gradle.version }}"
+      template:
+        os: *pkg_templates_go_os
+        arch: *pkg_templates_go_arch
+        url: https://services.gradle.org/distributions/gradle-%(version)s-bin.zip
+        ext: *ext_zip
+        inflate: *inflate_unzip
+        creates: gradle-{{ pkg_versions.gradle.version }}/bin/gradle
+      bins:
+        - name: gradle
+          src: gradle-{{ pkg_versions.gradle.version }}/bin/gradle
+
 
 
 
