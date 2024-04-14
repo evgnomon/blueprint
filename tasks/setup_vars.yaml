@@ -27,4 +27,23 @@
 
 - include_vars: "{{ item }}"
   with_first_found:
+    - "vars/pkg_versions.yaml"
+
+- include_vars: "{{ item }}"
+  with_first_found:
     - "vars/pkg_charts.yaml"
+
+- include_vars: "{{ item }}"
+  with_first_found:
+    - "vars/pkg_charts_mac.yaml"
+  when: ansible_os_family == 'Darwin'
+
+- include_vars: "{{ item }}"
+  with_first_found:
+    - "vars/pkg_charts_debian.yaml"
+  when: ansible_os_family == 'Debian'
+
+- include_vars: "{{ item }}"
+  with_first_found:
+    - "vars/dmg_charts.yaml"
+  when: ansible_os_family == 'Darwin'

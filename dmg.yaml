@@ -1,0 +1,10 @@
+---
+- name: Install DMG packages
+  hosts: localhost
+  tasks:
+    - name: Include DMG role
+      with_items: "{{ dmg.charts }}"
+      include_role:
+        name: dmg
+      loop_control:
+        loop_var: package

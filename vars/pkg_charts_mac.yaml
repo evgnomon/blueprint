@@ -1,0 +1,75 @@
+---
+pkg_templates_mac:
+  java:
+    os: &pkg_templates_java_os >-
+      {{
+        {
+          'Darwin': 'mac',
+        }[ansible_os_family] | default('')
+      }}
+    arch: &pkg_templates_java_arch >-
+      {{
+        {
+          'x86_64': 'x64',
+          'aarch64': 'aarch64'
+        }[ansible_architecture] | default('')
+      }}
+
+pkg_mac:
+  charts:
+    - name: OpenJDK
+      version: "{{ pkg_versions.java.version }}_{{ pkg_versions.java.build }}"
+      template: &template_java
+        os: *pkg_templates_java_os
+        arch: *pkg_templates_java_arch
+        url: https://github.com/adoptium/temurin21-binaries/releases/download/jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/%(name)s{{ pkg_versions.java.version.split('.')[0] }}U-jdk_{{ pkg_templates_mac.java.arch }}_{{ pkg_templates_mac.java.os }}_hotspot_%(version)s.tar.gz
+        ext: tar.gz
+        inflate: tar -C %(dest)s -xzvf %(src)s
+        creates: jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/Contents/Home/bin/java
+      bins:
+        - name: jshell
+          src: jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/Contents/Home/bin/jshell
+        - name: jstatd
+          src: jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/Contents/Home/bin/jstatd
+        - name: rmiregistry
+          src: jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/Contents/Home/bin/rmiregistry
+        - name: jarsigner
+          src: jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/Contents/Home/bin/jarsigner
+        - name: javadoc
+          src: jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/Contents/Home/bin/javadoc
+        - name: jconsole
+          src: jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/Contents/Home/bin/jconsole
+        - name: jdeps
+          src: jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/Contents/Home/bin/jdeps
+        - name: jimage
+          src: jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/Contents/Home/bin/jimage
+        - name: jmap
+          src: jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/Contents/Home/bin/jmap
+        - name: jps
+          src: jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/Contents/Home/bin/jps
+        - name: jstack
+          src: jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/Contents/Home/bin/jstack
+        - name: jwebserver
+          src: jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/Contents/Home/bin/jwebserver
+        - name: serialver
+          src: jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/Contents/Home/bin/serialver
+        - name: javap
+          src: jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/Contents/Home/bin/javap
+        - name: jdb
+          src: jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/Contents/Home/bin/jdb
+        - name: jfr
+          src: jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/Contents/Home/bin/jfr
+        - name: jinfo
+          src: jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/Contents/Home/bin/jinfo
+        - name: jmod
+          src: jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/Contents/Home/bin/jmod
+        - name: jrunscript
+          src: jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/Contents/Home/bin/jrunscript
+        - name: jstat
+          src: jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/Contents/Home/bin/jstat
+        - name: keytool
+          src: jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/Contents/Home/bin/keytool
+        - name: java
+          src: jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/Contents/Home/bin/java
+        - name: jar
+          src: jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/Contents/Home/bin/jar
