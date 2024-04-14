@@ -184,3 +184,33 @@ pkg:
           chmod u+x '%(src)s'
           RUSTUP_INIT_SKIP_PATH_CHECK=yes %(src)s -y
         creates: nothing
+    
+    - name: scala
+      version: "{{ pkg_versions.scala.version }}"
+      template:
+        os: *pkg_templates_go_os
+        arch: *pkg_templates_go_arch
+        url: https://github.com/scala/scala3/releases/download/%(version)s/scala3-%(version)s.tar.gz
+        ext: *ext_targz
+        inflate: *inflate_targz
+        creates: scala3-3.4.1/bin/scala
+      bins:
+        - name: scala
+          src: scala3-{{ pkg_versions.scala.version }}/bin/scala
+        - name: scalac
+          src: scala3-{{ pkg_versions.scala.version }}/bin/scalac
+        - name: scaladoc
+          src: scala3-{{ pkg_versions.scala.version }}/bin/scaladoc
+
+    - name: sbt
+      version: "{{ pkg_versions.sbt.version }}"
+      template:
+        os: *pkg_templates_go_os
+        arch: *pkg_templates_go_arch
+        url: https://github.com/sbt/sbt/releases/download/v%(version)s/sbt-%(version)s.tgz
+        ext: *ext_targz
+        inflate: *inflate_targz
+        creates: sbt/bin/sbt
+      bins:
+        - name: sbt
+          src: sbt/bin/sbt

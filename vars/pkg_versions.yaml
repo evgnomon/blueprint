@@ -18,3 +18,7 @@ pkg_versions:
     version: 1.21.6
   node:
     version: 20.12.2
+  scala:
+    version: 3.4.1
+  sbt:
+    version: 1.9.9
