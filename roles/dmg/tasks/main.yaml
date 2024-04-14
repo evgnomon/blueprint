@@ -10,7 +10,6 @@
   get_url:
     url: "{{ package.template.url }}"
     dest: "{{ package_src }}"
-    timeout: 60
   tags:
     - dmg
 
