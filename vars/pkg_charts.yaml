@@ -214,3 +214,21 @@ pkg:
       bins:
         - name: sbt
           src: sbt/bin/sbt
+
+    - name: maven
+      version: "{{ pkg_versions.maven.version }}"
+      template:
+        os: *pkg_templates_go_os
+        arch: *pkg_templates_go_arch
+        url: https://dlcdn.apache.org/maven/maven-3/%(version)s/binaries/apache-maven-%(version)s-bin.tar.gz
+        ext: *ext_targz
+        inflate: *inflate_targz
+        creates: apache-maven-{{ pkg_versions.maven.version }}/bin/mvn
+      bins:
+        - name: mvn
+          src: apache-maven-{{ pkg_versions.maven.version }}/bin/mvn
+
+
+
+
+
