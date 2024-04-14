@@ -37,8 +37,8 @@ pkg_debian:
         os: *pkg_templates_idea_os
         arch: *pkg_templates_idea_arch
         url: https://download.jetbrains.com/%(name)s/%(name)sIC-%(version)s{{ pkg_templates_debian.idea.arch }}.{{ pkg_templates_debian.idea.os }}
-        ext: tar.gz &ext_targz
-        inflate: tar -C %(dest)s -xzvf %(src)s &inflate_targz
+        ext: &ext_targz tar.gz 
+        inflate: &inflate_targz tar -C %(dest)s -xzvf %(src)s 
         creates: idea-IC-{{ pkg_versions.idea.version_full }}/bin/idea.sh
       bins:
         - name: idea
@@ -49,12 +49,12 @@ pkg_debian:
       template: &template_java
         os: *pkg_templates_java_os
         arch: *pkg_templates_java_arch
-        url: https://github.com/adoptium/temurin21-binaries/releases/download/jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/%(name)s{{ pkg_versions.java.version.split('.')[0] }}U-jdk_{{ pkg_templates.java.arch }}_{{ pkg_templates_debian.java.os }}_hotspot_%(version)s.tar.gz
+        url: https://github.com/adoptium/temurin21-binaries/releases/download/jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/%(name)s{{ pkg_versions.java.version.split('.')[0] }}U-jdk_{{ pkg_templates_debian.java.arch }}_{{ pkg_templates_debian.java.os }}_hotspot_%(version)s.tar.gz
         ext: *ext_targz
         inflate: *inflate_targz
         creates: "{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/bin/java"
       bins:
-- name: rmiregistry
+        - name: rmiregistry
           src: "jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/bin/rmiregistry"
         - name: jarsigner
           src: "jdk-{{ pkg_versions.java.version }}+{{ pkg_versions.java.build }}/bin/jarsigner"
