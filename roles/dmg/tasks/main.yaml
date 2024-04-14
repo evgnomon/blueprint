@@ -1,0 +1,35 @@
+---
+- name: Create the package directory for {{ package.name }}
+  file:
+    path: "{{ blueprint_home }}/{{ package.name }}/{{ package.template.os }}_{{ package.template.arch }}"
+    state: directory
+  tags:
+    - dmg
+
+- name: Download DMG for {{ package.name }}
+  get_url:
+    url: "{{ package.template.url }}"
+    dest: "{{ package_src }}"
+    timeout: 60
+  tags:
+    - dmg
+
+- name: Mount DMG for {{ package.name }}
+  command: hdiutil attach "{{ package_src }}" -nobrowse -mountpoint "{{ mount_point }}"
+  register: mount_output
+  changed_when: "mount_output.rc == 0"
+  tags:
+    - dmg
+
+- name: Copy DMG content to the Applications folder for {{ package.name }}
+  command: cp -R "{{ mount_point }}/{{ package.template.path }}" /Applications/
+  args:
+    creates: "/Applications/{{ package.template.path }}"
+  tags:
+    - dmg
+
+- name: Unmount {{ package.name }} DMG
+  command: hdiutil detach "{{ mount_point }}"
+  when: mount_output.rc == 0
+  tags:
+    - dmg

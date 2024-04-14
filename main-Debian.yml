@@ -8,6 +8,17 @@
         name: pkg
       loop_control:
         loop_var: package
+      tags:
+        - pkg
+
+    - name: Include pkg role for Debian
+      with_items: "{{ pkg_debian.charts }}"
+      include_role:
+        name: pkg
+      loop_control:
+        loop_var: package
+      tags:
+        - pkg
 
 - name: localhost roles for Debian family
   hosts: localhost

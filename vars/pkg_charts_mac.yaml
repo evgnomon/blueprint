@@ -1,0 +1,75 @@
+---
+pkg_templates_mac:
+  java:
+    os: &pkg_templates_java_os >-
+      {{
+        {
+          'Darwin': 'mac',
+        }[ansible_os_family] | default('')
+      }}
+    arch: &pkg_templates_java_arch >-
+      {{
+        {
+          'x86_64': 'x64',
+          'aarch64': 'aarch64'
+        }[ansible_architecture] | default('')
+      }}
+
+pkg_mac:
+  charts:
+    - name: OpenJDK21U
+      version: 21.0.2_13
+      template: &template_java
+        os: *pkg_templates_java_os
+        arch: *pkg_templates_java_arch
+        url: https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.2+13/%(name)s-jdk_{{ pkg_templates_mac.java.arch }}_{{ pkg_templates_mac.java.os }}_hotspot_%(version)s.tar.gz
+        ext: tar.gz
+        inflate: tar -C %(dest)s -xzvf %(src)s
+        creates: bin/java
+      bins:
+        - name: jshell
+          src: jdk-21.0.2+13/Contents/Home/bin/jshell
+        - name: jstatd
+          src: jdk-21.0.2+13/Contents/Home/bin/jstatd
+        - name: rmiregistry
+          src: jdk-21.0.2+13/Contents/Home/bin/rmiregistry
+        - name: jarsigner
+          src: jdk-21.0.2+13/Contents/Home/bin/jarsigner
+        - name: javadoc
+          src: jdk-21.0.2+13/Contents/Home/bin/javadoc
+        - name: jconsole
+          src: jdk-21.0.2+13/Contents/Home/bin/jconsole
+        - name: jdeps
+          src: jdk-21.0.2+13/Contents/Home/bin/jdeps
+        - name: jimage
+          src: jdk-21.0.2+13/Contents/Home/bin/jimage
+        - name: jmap
+          src: jdk-21.0.2+13/Contents/Home/bin/jmap
+        - name: jps
+          src: jdk-21.0.2+13/Contents/Home/bin/jps
+        - name: jstack
+          src: jdk-21.0.2+13/Contents/Home/bin/jstack
+        - name: jwebserver
+          src: jdk-21.0.2+13/Contents/Home/bin/jwebserver
+        - name: serialver
+          src: jdk-21.0.2+13/Contents/Home/bin/serialver
+        - name: javap
+          src: jdk-21.0.2+13/Contents/Home/bin/javap
+        - name: jdb
+          src: jdk-21.0.2+13/Contents/Home/bin/jdb
+        - name: jfr
+          src: jdk-21.0.2+13/Contents/Home/bin/jfr
+        - name: jinfo
+          src: jdk-21.0.2+13/Contents/Home/bin/jinfo
+        - name: jmod
+          src: jdk-21.0.2+13/Contents/Home/bin/jmod
+        - name: jrunscript
+          src: jdk-21.0.2+13/Contents/Home/bin/jrunscript
+        - name: jstat
+          src: jdk-21.0.2+13/Contents/Home/bin/jstat
+        - name: keytool
+          src: jdk-21.0.2+13/Contents/Home/bin/keytool
+        - name: java
+          src: jdk-21.0.2+13/Contents/Home/bin/java
+        - name: jar
+          src: jdk-21.0.2+13/Contents/Home/bin/jar

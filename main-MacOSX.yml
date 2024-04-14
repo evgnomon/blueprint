@@ -2,12 +2,35 @@
 - name: Install packages for MacOSX
   hosts: localhost
   tasks:
-    - name: Include pkg role
+    - name: Include PKG role
       with_items: "{{ pkg.charts }}"
       include_role:
         name: pkg
       loop_control:
         loop_var: package
+      tags:
+        - pkg
+
+    - name: Include PKG roles for MacOSX
+      with_items: "{{ pkg_mac.charts }}"
+      include_role:
+        name: pkg
+      loop_control:
+        loop_var: package
+      tags:
+        - pkg
+
+- name: Install DMG packages
+  hosts: localhost
+  tasks:
+    - name: Include DMG role
+      with_items: "{{ dmg.charts }}"
+      include_role:
+        name: dmg
+      loop_control:
+        loop_var: package
+      tags:
+        - dmg
 
 - name: localhost roles for MacOSX
   hosts: localhost
