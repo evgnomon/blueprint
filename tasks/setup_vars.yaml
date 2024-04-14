@@ -27,6 +27,10 @@
 
 - include_vars: "{{ item }}"
   with_first_found:
+    - "vars/pkg_versions.yaml"
+
+- include_vars: "{{ item }}"
+  with_first_found:
     - "vars/pkg_charts.yaml"
 
 - include_vars: "{{ item }}"

@@ -1,7 +1,7 @@
 dmg:
   charts:
     - name: Yubico Authenticator
-      version: "6.4.0"
+      version: "{{ pkg_versions.yubico_authenticator.version }}"
       template:
         os: "darwin"
         arch: "x64"
@@ -17,18 +17,18 @@ dmg:
         url: https://referrals.brave.com/latest/BRV010/Brave-Browser.dmg
         path: "Brave Browser.app"
     - name: "LocalSend"
-      version: "1.14.0"
+      version: "{{ pkg_versions.localsend.version }}"
       template:
         os: "darwin"
         arch: "x64"
         ext: "dmg"
-        url: https://github.com/localsend/localsend/releases/download/v1.14.0/LocalSend-1.14.0.dmg
+        url: https://github.com/localsend/localsend/releases/download/v{{ pkg_versions.localsend.version }}/LocalSend-{{ pkg_versions.localsend.version }}.dmg
         path: "LocalSend.app"
     - name: "ideaIC"
-      version: "2024.1"
+      version: "{{ pkg_versions.idea.version }}"
       template:
         os: "darwin"
         arch: "x64"
         ext: "dmg"
-        url: https://download.jetbrains.com/idea/ideaIC-2024.1.dmg
+        url: https://download.jetbrains.com/idea/ideaIC-{{ pkg_versions.idea.version }}.dmg
         path: "IntelliJ IDEA CE.app"

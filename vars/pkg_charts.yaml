@@ -107,7 +107,7 @@ pkg:
 
     - name: node
       archs: *archs-node
-      version: 20.11.1
+      version: "{{ pkg_versions.node.version }}"
       template: *node_tempalte
       bins:
         - name: node
@@ -143,7 +143,7 @@ pkg:
 
     - name: go
       archs: *archs-node
-      version: "{{ go_latest_version }}"
+      version: "{{ pkg_versions.go.version }}"
       template: *template_go
       bins:
         - name: go
@@ -152,7 +152,7 @@ pkg:
           src: *bins_go_fmt
 
     - name: fzf
-      version: 0.44.0
+      version: "{{ pkg_versions.fzf.version }}"
       template: &template_fzf
         os: *pkg_templates_go_os
         arch: *pkg_templates_go_arch
@@ -161,18 +161,11 @@ pkg:
         ext: "{{ pkg_templates.fzf.ext }}"
         creates: fzf
       bins:
-        - name: fzf44
-          src: fzf
-
-    - name: fzf
-      version: 0.45.0
-      template: *template_fzf
-      bins:
         - name: fzf
           src: fzf
 
     - name: jetbrains-mono
-      version: 3.0.2
+      version: "{{ pkg_versions.jetbrains_mono.version }}"
       template:
         os: all
         arch: share
