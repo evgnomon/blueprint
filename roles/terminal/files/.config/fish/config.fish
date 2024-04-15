@@ -2,8 +2,6 @@
 # Copyright (C) <2022-23> Hamed Ghasemzadeh <hg@evgnomon.org>. All rights reserved.
 
 if status is-interactive
-    set -px PATH        "$HOME/.local/bin"
-
     if set -q INTERACTIVE_INIT
         return
     end
@@ -50,10 +48,14 @@ if status is-interactive
         case Darwin
             # macports
             set -x  MACPORTS_HOME $HOME/.macports
-            set -xa PATH $HOME/.macports/bin
-            set -xa PATH $HOME/.macports/sbin
+            set -xp PATH $HOME/.macports/bin
+            set -xp PATH $HOME/.macports/sbin
+            set -x  PKG_CONFIG_PATH $MACPORTS_HOME/libexec/openssl3/lib/pkgconfig
         # case Linux
     end
+
+    set -px PATH        "$HOME/.local/libexec"
+    set -px PATH        "$HOME/.local/bin"
 
     if string match -q "*WSL2*" -- (uname -r)
       # Windows WSL2
