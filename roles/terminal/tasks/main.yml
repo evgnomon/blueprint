@@ -246,6 +246,7 @@
   when: ansible_os_family != "Windows"
   tags:
     - git
+    - never
 
 - name: Config git profiles
   shell: |
