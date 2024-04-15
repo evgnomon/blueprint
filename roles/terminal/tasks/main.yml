@@ -193,7 +193,10 @@
   shell: |
     git -C '{{ repo_dest }}' bundle create '{{ repo_name }}.bundle' --all
   vars: *git_repos_vars
-  when: ansible_os_family != "Windows"
+  when: 
+    - ansible_os_family != "Windows"
+    - wsl_runner is defined
+    - wsl_runner
   with_items: "{{ git_repos + common_git_repos }}"
   tags:
     - git

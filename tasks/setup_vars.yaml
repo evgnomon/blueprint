@@ -6,14 +6,14 @@
 
 - name: Check running in the server
   set_fact:
-    server_runner: "{{ ansible_kernel | split('-') | last == 'WSL2' }}"
+    wsl_runner: "{{ ansible_kernel | split('-') | last == 'WSL2' }}"
 
 - include_vars: "{{ item }}"
   with_first_found:
     - "vars/{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
     - "vars/{{ ansible_distribution }}.yml"
     - "vars/{{ ansible_os_family}}.yml"
-  when: not server_runner
+  when: not wsl_runner
 
 - include_vars: "{{ item }}"
   with_first_found:
@@ -23,7 +23,7 @@
     - "vars/{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
     - "vars/{{ ansible_distribution }}.yml"
     - "vars/{{ ansible_os_family}}.yml"
-  when: server_runner
+  when: wsl_runner
 
 - include_vars: "{{ item }}"
   with_first_found:
