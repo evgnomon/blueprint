@@ -45,15 +45,14 @@ if status is-interactive
     set -x EDITOR vim
     set -gx LD_LIBRARY_PATH  $HOME/.pyenv/versions/3.12.0/lib/
 
+    eval (ssh-agent -c) > /dev/null
     switch (uname)
         case Darwin
             # macports
             set -x  MACPORTS_HOME $HOME/.macports
             set -xa PATH $HOME/.macports/bin
             set -xa PATH $HOME/.macports/sbin
-           
-        case Linux
-            eval (ssh-agent -c) > /dev/null
+        # case Linux
     end
 
     if string match -q "*WSL2*" -- (uname -r)
