@@ -56,5 +56,6 @@ apt_packages:
   ubuntu:
     - mysql-client 
     - scdaemon
+    - libpam-u2f
   debian:
     - default-mysql-client
