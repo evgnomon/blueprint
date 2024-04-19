@@ -53,9 +53,9 @@ apt_packages:
     - qbittorrent
     - heif-gdk-pixbuf
     - nordvpn
+    - scdaemon
   ubuntu:
     - mysql-client 
-    - scdaemon
     - libpam-u2f
   debian:
     - default-mysql-client
