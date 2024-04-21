@@ -20,6 +20,8 @@ common_pip_packages:
   - pylint
   - podman-compose
   - yubikey-manager
+  - black
+  - pynacl
 
 common_node_packages:
   - serve
