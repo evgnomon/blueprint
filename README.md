@@ -59,3 +59,14 @@ export WIN_USER=YOUR_WINDOWS_USER
 ansible-playbook -i inventory -e ansible_become_user=$WIN_USER -e ansible_user=$WIN_USER -e ansible_python_interpreter="C:\Users\$WIN_USER\.pyenv\pyenv-win\versions\3
 .12.0\python.exe" main-Windows.yml
 ```
+
+# Secret Rotation
+
+To rotate secrets, use `ansible-vault`:
+
+```
+ANSIBLE_VAULT_PASSWORD_FILE=<(vault -d vault) ansible-playbook -i inventory rotate.yaml
+
+# or in Fish:
+ANSIBLE_VAULT_PASSWORD_FILE=(vault -d vault | psub) ansible-playbook -i inventory rotate.yaml
+```
