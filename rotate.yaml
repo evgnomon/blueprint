@@ -1,0 +1,24 @@
+- name: Set variables
+  hosts: localhost
+  gather_facts: true
+  tasks:
+    - name: Include setup variables
+      include_tasks: "tasks/setup_vars.yaml"
+  tags:
+    - always
+
+- name: include secret_files
+  hosts: localhost
+  tasks:
+    - include_vars:
+        file: "{{ item }}"
+      loop: "{{ secret_files }}"
+  tags:
+    - always
+
+- name: Update GitHub secrets
+  hosts: localhost
+  roles:
+    - name: github_secret
+      vars:
+        secrets: "{{ github_secrets }}"
