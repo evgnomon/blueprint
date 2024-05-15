@@ -26,7 +26,7 @@ if status is-interactive
     set -px PATH        $HOME/go/bin
     set -px PATH        $HOME/bin
     set -xa PATH        $HOME/.yarn/bin
-    set -xa PATH        $HOME/src/github.com/evgnomon/mybag/bin
+    set -xa PATH        $HOME/src/github.com/$USER/mybag/bin
 
     set -x  LIBVIRT_DEFAULT_URI qemu:///system
 
