@@ -22,6 +22,7 @@ common_pip_packages:
   - yubikey-manager
   - black
   - pynacl
+  - coverage
 
 common_node_packages:
   - serve
