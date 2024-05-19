@@ -51,6 +51,10 @@ pamu2fcfg -n >> ~/.config/Yubico/u2f_keys # with the spare key
 sudo mv ~/.config/Yubico/u2f_keys /etc/Yubico/u2f_keys
 sudo chown root:root -R /etc/Yubico/u2f_keys
 ```
+Add a new key using:
+```
+pamu2fcfg -n | sudo tee -a /etc/Yubico/u2f_keys
+```
 
 # Windows
 Run ansible in WSL2 for to run ansible on Windows native host:
