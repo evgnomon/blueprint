@@ -56,6 +56,13 @@ Add a new key using:
 pamu2fcfg -n | sudo tee -a /etc/Yubico/u2f_keys
 ```
 
+# Git signing
+
+Add pubkeys to `allowed_signers` for git verification:
+```
+echo "$(git config --get user.email) namespaces=\"git\" $(cat ~/.ssh/vortex.pub)" >> ~/.ssh/allowed_signers
+```
+
 # Windows
 Run ansible in WSL2 for to run ansible on Windows native host:
 ```

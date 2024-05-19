@@ -256,6 +256,7 @@
     git -C '{{ repo_dest }}' config commit.gpgsign true
     git -C '{{ repo_dest }}' config tag.gpgSign true
     git -C '{{ repo_dest }}' config gpg.format ssh
+    git -C '{{ repo_dest }}' config gpg.ssh.allowedSignersFile '{{ user_profile.allowed_signers_file | default (ansible_env.HOME + "/.ssh/allowed_signers") }}'
   vars: *git_repos_vars
   with_items: "{{ git_repos + common_git_repos }}"
   when: ansible_os_family != "Windows"
