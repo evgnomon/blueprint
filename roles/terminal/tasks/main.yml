@@ -254,6 +254,8 @@
     git -C '{{ repo_dest }}' config user.name '{{ user_profile.fullname | default(user_profile.username) }}'
     git -C '{{ repo_dest }}' config user.signingKey '{{ user_profile.gpg_key }}'
     git -C '{{ repo_dest }}' config commit.gpgsign true
+    git -C '{{ repo_dest }}' config tag.gpgSign true
+    git -C '{{ repo_dest }}' config gpg.format ssh
   vars: *git_repos_vars
   with_items: "{{ git_repos + common_git_repos }}"
   when: ansible_os_family != "Windows"
