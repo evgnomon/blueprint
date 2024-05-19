@@ -80,7 +80,7 @@
           # - github.com/junegunn/fzf@latest # Not supported
           - github.com/sclevine/yj@latest
           - github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-          - github.com/opentofu/opentofu/cmd/tofu@latest
+          # - github.com/opentofu/opentofu/cmd/tofu@latest # Not supported
       tags:
         - go
 
