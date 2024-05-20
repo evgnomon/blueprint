@@ -241,7 +241,15 @@ pkg:
         - name: gradle
           src: gradle-{{ pkg_versions.gradle.version }}/bin/gradle
 
-
-
-
-
+    - name: opentofu
+      version: 1.7.1
+      template:
+        os: *pkg_templates_go_os
+        arch: *pkg_templates_go_arch
+        url: 'https://github.com/opentofu/opentofu/releases/download/v%(version)s/tofu_%(version)s_{{ pkg_templates.go.os }}_{{ pkg_templates.go.arch }}.tar.gz'
+        ext: *ext_targz
+        inflate: *inflate_targz
+        creates: tofu
+      bins:
+        - name: tofu
+          src: tofu
