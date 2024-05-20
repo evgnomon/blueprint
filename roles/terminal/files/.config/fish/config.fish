@@ -1,6 +1,3 @@
-# License-Identifier: HGL
-# Copyright (C) <2022-23> Hamed Ghasemzadeh <hg@evgnomon.org>. All rights reserved.
-
 if status is-interactive
     if set -q INTERACTIVE_INIT
         return
