@@ -130,6 +130,7 @@ autocmd FileType rust                                       noremap <C-k><C-r> :
 
 " Commands
 map <C-A> :Commands<CR>
+map <C-S-A> :CocCommand<CR>
 map <leader>kp :echo @% <CR>
 
 " Tags
@@ -147,9 +148,8 @@ map <Leader>v "+p
 map <Leader>c "+y
 map ]l :cn<CR>
 
-autocmd FileType go nmap <leader>i :CocCommand editor.action.organizeImport<CR>
-
-autocmd FileType <leader>;  <Plug>(coc-fix-current)
+nmap <leader>i :CocCommand editor.action.organizeImport<CR>
+nmap <leader>. <Plug>(coc-codeaction)
 
 let g:loclist_follow = 1
 let g:tex_flavor = 'pdflatex'
