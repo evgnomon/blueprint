@@ -115,6 +115,23 @@ pkg_templates:
           'Windows': 'unzip -o -d %(dest)s %(src)s'
         }[ansible_os_family] | default('')
       }}
+  bazelisk:
+    osarch: &pkg_templates_bazelisk_osarch >-
+      {{
+        {
+          'Darwin': {
+            'x86_64': 'darwin-amd64',
+            'aarch64': 'darwin-arm64'
+          },
+          'Debian': {
+            'x86_64': 'linux-amd64',
+            'aarch64': 'linux-arm64'
+          },
+          'Windows': {
+            'x86_64': 'windows-amd64.exe',
+          }
+        }[ansible_os_family][ansible_architecture] | default('')
+      }}
       
 
 
@@ -326,3 +343,18 @@ pkg:
         - name: ccmake
           src: cmake-{{ pkg_versions.cmake.version }}-{{ pkg_templates.cmake.osarch }}/bin/ccmake
 
+    - name: bazelisk
+      version: "{{ pkg_versions.bazelisk.version }}"
+      template:
+        os: *pkg_templates_go_os
+        arch: *pkg_templates_go_arch
+        url: https://github.com/bazelbuild/bazelisk/releases/download/v%(version)s/bazelisk-{{ pkg_templates.bazelisk.osarch }}
+        inflate: &inflate_bin |
+          chmod u+x '%(src)s'
+          mv '%(src)s' '%(dest)s'
+        creates: bazelisk_{{ pkg_versions.bazelisk.version }}.bin
+      bins:
+        - name: bazelisk
+          src: bazelisk_{{ pkg_versions.bazelisk.version }}.bin
+        - name: bazel
+          src: bazelisk_{{ pkg_versions.bazelisk.version }}.bin
