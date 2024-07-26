@@ -63,6 +63,59 @@ pkg_templates:
           'Debian': 'tar -C %(dest)s -xzvf %(src)s'
         }[ansible_os_family] | default('unzip -o -d %(dest)s %(src)s')
       }}
+  cmake:
+    os: &pkg_templates_cmake_os >-
+      {{
+        {
+          'Darwin': 'darwin',
+          'Debian': 'linux',
+          'Windows': 'windows'
+        }[ansible_os_family] | default('')
+      }}
+    arch: &pkg_templates_cmake_arch >-
+      {{
+        {
+          'x86_64': 'amd64',
+          'aarch64': 'aarch64',
+          'i386': 'i386'
+        }[ansible_architecture] | default('')
+      }}
+    osarch: &pkg_templates_cmake_osarch >-
+      {{
+        {
+          'Darwin': {
+            'x86_64': 'macos-universal',
+            'aarch64': 'macos-universal'
+          },
+          'Debian': {
+            'x86_64': 'linux-x86_64',
+            'aarch64': 'linux-aarch64'
+          },
+          'Windows': {
+            'x86_64': 'windows-x86_64',
+            'aarch64': 'windows-arm64'
+          }
+        }[ansible_os_family][ansible_architecture] | default('')
+      }}
+
+    ext: >-
+      {{
+        {
+          'Darwin': 'tar.gz',
+          'Debian': 'tar.gz',
+          'Windows': 'zip'
+        }[ansible_os_family] | default('')
+      }}
+
+    inflate: >-
+      {{
+        {
+          'Darwin': 'tar -C %(dest)s -xzvf %(src)s',
+          'Debian': 'tar -C %(dest)s -xzvf %(src)s',
+          'Windows': 'unzip -o -d %(dest)s %(src)s'
+        }[ansible_os_family] | default('')
+      }}
+      
 
 
 pkg:
@@ -253,3 +306,23 @@ pkg:
       bins:
         - name: tofu
           src: tofu
+
+    - name: cmake
+      version: "{{ pkg_versions.cmake.version }}"
+      template:
+        os: *pkg_templates_cmake_os
+        arch: *pkg_templates_cmake_arch
+        url: https://github.com/Kitware/CMake/releases/download/v%(version)s/cmake-%(version)s-{{ pkg_templates.cmake.osarch }}.{{ pkg_templates.cmake.ext }}
+        ext: "{{ pkg_templates.cmake.ext }}"
+        inflate: "{{ pkg_templates.cmake.inflate }}"
+        creates: cmake-{{ pkg_versions.cmake.version }}-{{ pkg_templates.cmake.osarch }}/bin/cmake
+      bins:
+        - name: cmake
+          src: cmake-{{ pkg_versions.cmake.version }}-{{ pkg_templates.cmake.osarch }}/bin/cmake
+        - name: ctest
+          src: cmake-{{ pkg_versions.cmake.version }}-{{ pkg_templates.cmake.osarch }}/bin/ctest
+        - name: cpack
+          src: cmake-{{ pkg_versions.cmake.version }}-{{ pkg_templates.cmake.osarch }}/bin/cpack
+        - name: ccmake
+          src: cmake-{{ pkg_versions.cmake.version }}-{{ pkg_templates.cmake.osarch }}/bin/ccmake
+
