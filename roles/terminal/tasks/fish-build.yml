@@ -4,26 +4,23 @@
     path: "{{ ansible_env.HOME }}/.local/bin/fish"
   register: fish_bin_file
 
-- name: Checkout out fish and build
-  when: not fish_bin_file.stat.exists
-  block:
-    - name: Checkout Fish repository
-      git:
-        dest: "{{ fish_src_dir }}"
-        repo: "https://github.com/fish-shell/fish-shell.git"
+- name: Checkout Fish repository
+  git:
+    dest: "{{ fish_src_dir }}"
+    repo: "https://github.com/fish-shell/fish-shell.git"
 
-    - name: Create build directory
-      ansible.builtin.file:
-        path: "{{ fish_build_dir }}"
-        state: directory
-        mode: '0755'
+- name: Create build directory
+  ansible.builtin.file:
+    path: "{{ fish_build_dir }}"
+    state: directory
+    mode: '0755'
 
-    - name: Run cmake
-      ansible.builtin.command:
-        chdir: "{{ fish_build_dir }}"
-        cmd: cmake .. -DCMAKE_INSTALL_PREFIX={{ ansible_env.HOME }}/.local
+- name: Run cmake
+  ansible.builtin.command:
+    chdir: "{{ fish_build_dir }}"
+    cmd: cmake .. -DCMAKE_INSTALL_PREFIX={{ ansible_env.HOME }}/.local
 
-    - name: Run make
-      ansible.builtin.command:
-        chdir: "{{ fish_build_dir }}"
-        cmd: make install
+- name: Run make
+  ansible.builtin.command:
+    chdir: "{{ fish_build_dir }}"
+    cmd: make install

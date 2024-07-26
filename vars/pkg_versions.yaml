@@ -1,28 +1,28 @@
 ---
 pkg_versions:
   java:
-    version: 21.0.2
-    build: 13
+    version: 21.0.4
+    build: 7
   idea:
-    version_full: 241.14494.240
-    version: 2024.1
+    version_full: 241.18034.62
+    version: 2024.1.4
   localsend:
-    version: 1.14.0
+    version: 1.15.2
   yubico_authenticator:
-    version: 6.4.0
+    version: 7.0.1
   fzf:
-    version: 0.45.0
+    version: 0.54.2
   jetbrains_mono:
-    version: 3.0.2
+    version: 3.2.1
   go:
-    version: 1.21.6
+    version: 1.22.5
   node:
-    version: 20.12.2
+    version: 20.16.0
   scala:
-    version: 3.4.1
+    version: 3.4.2
   sbt:
-    version: 1.9.9
+    version: 1.10.1
   maven:
-    version: 3.9.6
+    version: 3.9.8
   gradle:
-    version: 8.7
+    version: 8.9

@@ -156,7 +156,7 @@ pkg:
       template: &template_fzf
         os: *pkg_templates_go_os
         arch: *pkg_templates_go_arch
-        url: https://github.com/junegunn/%(name)s/releases/download/%(version)s/%(name)s-%(version)s-{{ pkg_templates.go.os }}_{{ pkg_templates.go.arch }}.{{ pkg_templates.fzf.ext }}
+        url: https://github.com/junegunn/%(name)s/releases/download/v%(version)s/%(name)s-%(version)s-{{ pkg_templates.go.os }}_{{ pkg_templates.go.arch }}.{{ pkg_templates.fzf.ext }}
         inflate: "{{ pkg_templates.fzf.inflate }}"
         ext: "{{ pkg_templates.fzf.ext }}"
         creates: fzf
