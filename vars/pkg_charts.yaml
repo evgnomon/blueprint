@@ -312,7 +312,7 @@ pkg:
           src: gradle-{{ pkg_versions.gradle.version }}/bin/gradle
 
     - name: opentofu
-      version: 1.7.1
+      version: "{{ pkg_versions.tofu.version }}"
       template:
         os: *pkg_templates_go_os
         arch: *pkg_templates_go_arch
