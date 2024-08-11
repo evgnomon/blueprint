@@ -40,7 +40,19 @@ shasum -a 512 -c SHA512SUMS
 
 # Security Key
 Share the YubiKey with WSL2 for Windows:
-https://learn.microsoft.com/en-us/windows/wsl/connect-usb
+
+Using an admin shell run this:
+```
+# winget install usbipd
+usbipd bind -i 1050:0407
+usbipd attach --wsl -i 1050:0407
+```
+
+Which is the device if of the YubiKey, find the device id using:
+```
+usbipd list
+```
+
 
 Use YubiKey for password less `sudo`:
 
