@@ -103,8 +103,8 @@ nmap <silent> <leader>kk ?function<cr>:noh<cr><Plug>(jsdoc)
 colorscheme PaperColor
 
 " Snippets
-let g:UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit = $HOME.'/src/github.com/evgnomon/mybag/ultisnips'
-let g:UltiSnipsSnippetDirectories=[$HOME."/src/github.com/evgnomon/mybag/ultisnips", "UltiSnips"]
+let g:UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit = $HOME."/src/github.com/".$USER."/nuggets/ultisnips"
+let g:UltiSnipsSnippetDirectories=[$HOME."/src/github.com/".$USER."/nuggets/ultisnips", "UltiSnips"]
 let g:UltiSnipsExpandTrigger="<tab>"                                            
 let g:UltiSnipsJumpForwardTrigger="<tab>"                                       
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"                                    
