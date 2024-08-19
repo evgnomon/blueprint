@@ -54,13 +54,15 @@ pkg_templates:
     ext: &pkg_templates_fzf_ext >-
       {{
         {
-          'Debian': 'tar.gz'
+          'Debian': 'tar.gz',
+          'Darwin': 'tar.gz'
         }[ansible_os_family] | default('zip')
       }}
     inflate: &pkg_templates_fzf_inflate >-
       {{
         {
-          'Debian': 'tar -C %(dest)s -xzvf %(src)s'
+          'Debian': 'tar -C %(dest)s -xzvf %(src)s',
+          'Darwin': 'tar -C %(dest)s -xzvf %(src)s'
         }[ansible_os_family] | default('unzip -o -d %(dest)s %(src)s')
       }}
   cmake:
