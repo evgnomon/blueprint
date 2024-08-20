@@ -1,7 +1,6 @@
 ---
-- name: Update Pip packages for current user in Windows
-  ansible.windows.win_powershell:
-    script: python.exe -m pip install --upgrade {{ item }}
+- name: Update Pip packages for Windows
+  win_shell: pip install --upgrade {{ item }}
   with_items: "{{ common_pip_packages }}"
   tags:
     - pip

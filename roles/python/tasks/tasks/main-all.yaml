@@ -1,5 +1,5 @@
 ---
-- name: Update Pip packages for current user
+- name: Update Pip packages
   shell: pip install --upgrade {{ item }}
   with_items: "{{ common_pip_packages }}"
   tags:

@@ -1,4 +1,5 @@
-blueprint_home: '{{ ansible_env.HOME }}\AppData\Local\Blueprint'
+blueprint_user_home: "{{ ansible_env.USERPROFILE }}"
+blueprint_home: '{{ blueprint_user_home }}\AppData\Local\Blueprint'
 path_components:
   - C:\Program Files\Alacritty\
   - C:\Program Files\OpenSSH\
@@ -13,26 +14,25 @@ path_components:
   - C:\Program Files\Docker\Docker\resources\bin
   - C:\Program Files\dotnet\
   - C:\Program Files\Go\bin
-  - '{{ ansible_env.HOME }}\.pyenv\pyenv-win\bin'
-  - '{{ ansible_env.HOME }}\.pyenv\pyenv-win\shims'
-  - '{{ ansible_env.HOME }}\.cargo\bin'
-  - '{{ ansible_env.HOME }}\AppData\Local\Microsoft\WindowsApps'
-  - '{{ ansible_env.HOME }}\.dotnet\tools'
-  - '{{ ansible_env.HOME }}\AppData\Roaming\npm'
-  - '{{ ansible_env.HOME }}\pyenv-win\versions\3.12.0'
-  - '{{ ansible_env.HOME }}\pyenv-win\versions\2.17.18'
+  - '{{ blueprint_user_home }}\.pyenv\pyenv-win\bin'
+  - '{{ blueprint_user_home }}\.pyenv\pyenv-win\shims'
+  - '{{ blueprint_user_home }}\.cargo\bin'
+  - '{{ blueprint_user_home }}\AppData\Local\Microsoft\WindowsApps'
+  - '{{ blueprint_user_home }}\.dotnet\tools'
+  - '{{ blueprint_user_home }}\AppData\Roaming\npm'
+  - '{{ blueprint_user_home }}\pyenv-win\versions\3.12.0'
+  - '{{ blueprint_user_home }}\pyenv-win\versions\2.17.18'
   - C:\Program Files\Vim\vim91
   - C:\Program Files\Git\bin
   - C:\Program Files (x86)\Midnight Commander
   - C:\Program Files\Yubico\Yubico PIV Tool\bin
-  - '{{ ansible_env.HOME }}\.dotnet\tools'
-  - '{{ ansible_env.HOME }}\go\bin'
-  - '{{ ansible_env.HOME }}\AppData\Local\Microsoft\WinGet\Packages\Hugo.Hugo.Extended_Microsoft.Winget.Source_8wekyb3d8bbwe'
+  - '{{ blueprint_user_home }}\.dotnet\tools'
+  - '{{ blueprint_user_home }}\go\bin'
+  - '{{ blueprint_user_home }}\AppData\Local\Microsoft\WinGet\Packages\Hugo.Hugo.Extended_Microsoft.Winget.Source_8wekyb3d8bbwe'
   - C:\Program Files\OpenSSH
   - C:\Program Files (x86)\GnuPG\bin
   - C:\Program Files\WinLibs\mingw64\bin
 
 custom_path: "{{ path_components | join(';') }}:$PATH"
 
-cargo_cmd: '{{ ansible_env.HOME }}\.cargo\bin\cargo.exe'
-
+cargo_cmd: 'C:\Program Files\Rust stable MSVC 1.80\bin\cargo.exe'

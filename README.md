@@ -6,7 +6,7 @@ Supports Linux, macOS and Windows native and WSL2 and Docker container.
 
 # Getting Started
 ```
-sudo ls # to let ansible become root when needed
+sudo -v
 # In Debian/Ubuntu add your the user to sudo group:
 usermod -aG sudo
 ./bootstrap-Linux.sh

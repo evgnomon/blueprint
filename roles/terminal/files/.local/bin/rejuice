@@ -1,5 +1,5 @@
 #!/bin/sh
 
 cd "$HOME/src/github.com/$USER/blueprint"
-  ansible-playbook -i inventory --ask-become-pass main.yaml "$@"
+  ansible-playbook -i inventory.py --ask-become-pass main.yaml "$@"
 cd - > /dev/null

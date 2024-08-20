@@ -8,6 +8,7 @@ common_cargo_packages:
   - ripgrep
   - git-delta
   - bat
+  - nu
 
 common_pip_packages:
   - pip
@@ -23,6 +24,8 @@ common_pip_packages:
   - black
   - pynacl
   - coverage
+  - ruff
+  - ruff-lsp
 
 common_node_packages:
   - serve
@@ -35,9 +38,9 @@ common_go_packages:
   - github.com/golangci/golangci-lint/cmd/golangci-lint@latest
   # - github.com/junegunn/fzf@latest # Not supported
   - github.com/sclevine/yj@latest
-  - github.com/golangci/golangci-lint/cmd/golangci-lint@latest
   # - github.com/opentofu/opentofu/cmd/tofu@latest # Not supported
   - -tags extended github.com/gohugoio/hugo@latest
+  - github.com/gokcehan/lf@latest
 
 common_git_repos:
   - url: https://github.com/alacritty/alacritty.git

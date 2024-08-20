@@ -1,0 +1,9 @@
+- name: Install Pip packages
+  hosts: all
+  vars:
+    become_flag: "{{ ansible_os_family == 'Windows' }}"
+  become: "{{ become_flag }}"
+  roles:
+    - python
+  tags:
+    - pip

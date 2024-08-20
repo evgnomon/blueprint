@@ -24,7 +24,6 @@
   hosts: localhost
   roles:
     - terminal
-    - python
     - vim
     - docker
   environment:

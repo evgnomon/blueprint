@@ -1,6 +1,6 @@
 ---
 - name: Set variables
-  hosts: localhost
+  hosts: all
   gather_facts: true
   tasks:
     - name: Include setup variables
@@ -12,6 +12,13 @@
   import_playbook: main-Debian.yml
   when: ansible_os_family == "Debian"
 
-- name: Import playboook for MacOSX
-  import_playbook: main-MacOSX.yml
-  when: ansible_distribution == "MacOSX"
+- name: Import playboook for Darwin
+  import_playbook: main-Darwin.yml
+  when: ansible_os_family == "Darwin"
+
+- name: Import playboook for Windows
+  import_playbook: main-Windows.yml
+  when: ansible_os_family == "Windows"
+
+- name: Import playbook for all platforms
+  import_playbook: main-all.yml
