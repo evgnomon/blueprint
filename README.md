@@ -24,7 +24,6 @@ Run this after installation in vim to setup vim plugins:
 
 ```
 :PlugInstall
-:CocInstall coc-rust-analyzer coc-prettier coc-tsserver coc-go coc-pyright coc-snippets coc-go @yaegassy/coc-ruff
 ```
 
 # MacOS

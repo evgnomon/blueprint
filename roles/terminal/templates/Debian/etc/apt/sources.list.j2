@@ -1,6 +1,8 @@
+{% if not wsl_runner %}
 deb http://deb.debian.org/debian {{ ansible_distribution_release }} main non-free-firmware
 deb-src http://deb.debian.org/debian {{ ansible_distribution_release }} main non-free-firmware
 deb http://deb.debian.org/debian-security/ {{ ansible_distribution_release }}-security main non-free-firmware
 deb-src http://deb.debian.org/debian-security/ {{ ansible_distribution_release }}-security main non-free-firmware
 deb http://deb.debian.org/debian {{ ansible_distribution_release }}-updates main non-free-firmware
 deb-src http://deb.debian.org/debian {{ ansible_distribution_release }}-updates main non-free-firmware
+{% endif %}

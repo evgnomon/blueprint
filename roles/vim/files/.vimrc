@@ -1,39 +1,38 @@
-set nocompatible              
-set exrc
-set secure
-set encoding=utf-8
-set autowrite " writes in case of :make (used in go)
-set ic " case insensitive search
-set mouse=a
-" set textwidth=79
-filetype on
-filetype plugin indent on
-filetype plugin on
-set signcolumn=yes
-set scrolloff=0
-set noswapfile
-set nowritebackup
-set nobackup
-set number
-set cursorline
-set ttyfast
-syntax on
-set tabstop=2
-set shiftwidth=2
-set smarttab
-set autoindent
-set expandtab
-set exrc
-nmap <F10> :on<CR>
-set incsearch
-set hlsearch
-let mapleader=","
+set nocompatible              " Disable compatibility mode with vi, enabling more advanced Vim features.
+set exrc                      " Allow the use of local .vimrc files in each directory (can be a security risk if editing untrusted files).
+set secure                    " Disable potentially dangerous commands in local .vimrc files (enhances security when using 'exrc').
+set encoding=utf-8            " Set the character encoding to UTF-8, ensuring proper handling of international characters.
+set autowrite                 " Automatically save the file before running certain commands like `:make`.
+set ic                        " Make search case insensitive, unless an uppercase letter is used in the search.
+set mouse=a                   " Enable mouse support in all modes (normal, insert, visual, etc.).
+filetype on                   " Enable file type detection, allowing Vim to detect and set settings based on file type.
+filetype plugin indent on     " Enable file type-specific plugins and indentation rules.
+filetype plugin on            " Enable file type-specific plugins.
+set signcolumn=yes            " Always display the sign column (used for displaying Git changes, linting errors, etc.).
+set scrolloff=0               " Set the minimum number of lines to keep above and below the cursor when scrolling (0 means no extra lines).
+set noswapfile                " Disable swap file creation, preventing Vim from creating temporary files during editing.
+set nowritebackup             " Disable backup file creation before overwriting a file.
+set nobackup                  " Disable backup file creation when editing a file.
+set number                    " Display line numbers in the editor.
+set cursorline                " Highlight the line where the cursor is located.
+set ttyfast                   " Assume a fast terminal connection, optimizing screen redraws.
+syntax on                     " Enable syntax highlighting.
+set tabstop=2                 " Set the number of spaces a tab character represents to 2.
+set shiftwidth=2              " Set the number of spaces used for indentation to 2.
+set smarttab                  " Insert appropriate number of spaces when tab is pressed based on `shiftwidth`.
+set autoindent                " Maintain the indentation level of the previous line.
+set expandtab                 " Convert tabs to spaces.
+set exrc                      " (Duplicate) Allow the use of local .vimrc files in each directory.
+nmap <F10> :on<CR>            " Map the F10 key to turn on the current window.
+set incsearch                 " Show partial matches for a search as you type.
+set hlsearch                  " Highlight all search pattern matches.
+let mapleader=","             " Set the leader key to a comma, allowing custom key bindings with this leader.
 
-:set showmatch
-:set number relativenumber
-:let python_highlight_all = 1
-:set backspace=indent,eol,start
-set background=dark
+:set showmatch                  " Briefly jump to the matching parenthesis, bracket, or brace when one is inserted.
+:set number relativenumber      " Display both absolute line numbers and relative line numbers.
+:let python_highlight_all = 1   " Enable full syntax highlighting for Python, including highlighting of built-in functions and classes.
+:set backspace=indent,eol,start " Allow backspacing over indentation, end of line, and insertion start position in insert mode.
+set background=dark             " Optimize colors for a dark background.
 
 :augroup numbertoggle
 :  autocmd!
@@ -49,16 +48,16 @@ elseif has('unix')
     set clipboard=unnamedplus
 endif
 
-set guifont=Inconsolata\ Nerd\ Font:h15
-" let g:Powerline_symbols = 'fancy'
-set t_Co=256
-set fillchars+=stl:\ ,stlnc:\
-set term=xterm-256color
-set termencoding=utf-8
-set completeopt=preview,menuone,popup
+set guifont=Inconsolata\ Nerd\ Font:h15    " Set the GUI font to Inconsolata Nerd Font with a height of 15.
+set t_Co=256                               " Set the terminal to use 256 colors.
+set fillchars+=stl:\ ,stlnc:\              " Customize statusline fill characters: empty space for both active and inactive status lines.
+set term=xterm-256color                    " Set the terminal type to xterm with 256-color support.
+set termencoding=utf-8                     " Set terminal encoding to UTF-8, ensuring correct character display.
+set completeopt=preview,menuone,popup      " Configure completion options: show a preview window, show the menu even with one match, and use a popup menu.
 
 " Plugins
 call plug#begin('~/.vim/plugged')
+Plug 'voldikss/vim-floaterm'
 
 " Colors
 Plug 'flazz/vim-colorschemes'
@@ -66,7 +65,7 @@ Plug 'flazz/vim-colorschemes'
 " Search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'mcchrish/nnn.vim'
+Plug 'ptzz/lf.vim'
 
 " Snippet
 Plug 'SirVer/ultisnips'
@@ -76,14 +75,8 @@ Plug 'tpope/vim-commentary'
 Plug 'https://github.com/rhysd/vim-clang-format'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
-" Github
-Plug 'ruanyl/vim-gh-line'
-
 " Terraform
 Plug 'hashivim/vim-terraform'
-
-" Python
-" Plug 'mgedmin/python-imports.vim'
 
 " JS/TS
 Plug 'heavenshell/vim-jsdoc', {
@@ -91,11 +84,24 @@ Plug 'heavenshell/vim-jsdoc', {
   \ 'do': 'make install'
 \}
 
-" Auto Completion / LSP
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Copilot
 Plug 'github/copilot.vim'
 
+" Auto Completion / LSP
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
+
+" Set up CoC global extensions
+let g:coc_global_extensions = [
+\ 'coc-rust-analyzer',
+\ 'coc-prettier',
+\ 'coc-tsserver',
+\ 'coc-go',
+\ 'coc-pyright',
+\ 'coc-snippets',
+\ '@yaegassy/coc-ruff',
+\ 'coc-toml'
+\]
 
 nmap <silent> <leader>kk ?function<cr>:noh<cr><Plug>(jsdoc)
 
@@ -105,32 +111,32 @@ colorscheme PaperColor
 " Snippets
 let g:UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit = $HOME."/src/github.com/".$USER."/nuggets/ultisnips"
 let g:UltiSnipsSnippetDirectories=[$HOME."/src/github.com/".$USER."/nuggets/ultisnips", "UltiSnips"]
-let g:UltiSnipsExpandTrigger="<tab>"                                            
-let g:UltiSnipsJumpForwardTrigger="<tab>"                                       
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"                                    
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " nnoremap <leader>o :CtrlPBuffer<CR>
-nnoremap <C-J> :bnext<CR>
-nnoremap <C-K> :bprev<CR>
 nnoremap <C-P> :History<CR>
 nnoremap <leader>o :Files<CR>
 
 " Reformat
 let g:black_linelength=79
 
+" File types
+autocmd BufRead,BufNewFile *.j2 setfiletype jinja2
+
 autocmd FileType python,go,javascript,typescript,
 \javascriptreact,typescriptreact,rust,sh                    nnoremap <C-l> <Plug>(coc-format)
 autocmd FileType proto                                      noremap <C-l> :ClangFormat<CR>
 autocmd FileType json,html                                  noremap <C-l> :Prettier<CR>
-autocmd FileType toml                                       noremap <C-l> :Prettier<CR>
+autocmd FileType toml                                       noremap <C-l> <Plug>(coc-format)
 autocmd FileType terraform                                  noremap <C-l> :TerraformFmt<CR>
 
 " Run Command
 autocmd FileType rust                                       noremap <C-k><C-r> :CocCommand rust-analyzer.testCurrent<CR>
 
 " Commands
-map <C-A> :Commands<CR>
-map <C-S-A> :CocCommand<CR>
+map <C-A> :CocCommand<CR>
 map <leader>kp :echo @% <CR>
 
 " Tags
@@ -154,12 +160,6 @@ nmap <leader>. <Plug>(coc-codeaction)
 let g:loclist_follow = 1
 let g:tex_flavor = 'pdflatex'
 
-let g:gh_line_map_default = 0
-let g:gh_line_blame_map_default = 0
-let g:gh_line_map = '<leader>kg'
-let g:gh_line_blame_map = '<leader>kb'
-let g:gh_repo_map = '<leader>kr'
-
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
@@ -175,7 +175,6 @@ nmap <silent> <leader>g <Plug>(coc-definition)
 nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> <leader>3 <Plug>(coc-references)
-" nmap <silent> gr <Plug>(coc-references)
 
 nmap <silent> <F2> <Plug>(coc-diagnostic-next)
 noremap <silent> <S-F2> <Plug>(coc-diagnostic-prev)
@@ -209,12 +208,7 @@ if has('patch-8.2.0750')
   vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 endif
 
-function! ToggleFile()
-  if bufname("%") == ""
-    execute ":NnnPicker"
-  else
-    execute ":NnnPicker %:p"
-  endif
-endfunction
-
-nnoremap <leader>x :call ToggleFile()<CR>
+" Lf
+let g:lf_map_keys = 0
+nnoremap <leader>x :Lf<CR>
+let g:floaterm_opener='edit'
