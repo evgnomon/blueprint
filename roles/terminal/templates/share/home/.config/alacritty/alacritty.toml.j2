@@ -26,7 +26,7 @@ program = "{{ fish_bin_prefix }}/fish"
 # columns = 140
 # lines = 60
 
-{% if ansible_distribution == "Darwin" %}
+{% if ansible_os_family == "Darwin" %}
 [[keyboard.bindings]]
 key = "Return"
 mods = "Command"
