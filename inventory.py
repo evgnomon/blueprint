@@ -45,11 +45,6 @@ def get_inventory() -> dict[str, dict[str, Any]]:
     config_file_path = Path(user_home) / ".blueprint" / "config.yaml"
     with config_file_path.open() as f:
         configs = yaml.safe_load(f)
-        win_home = configs["win"]["home"]
-        win_user = configs["win"]["user"]
-        ansible_python_interpreter = (
-            f"{win_home}\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
-        )
 
         inventory = {
             "local": {
@@ -61,10 +56,14 @@ def get_inventory() -> dict[str, dict[str, Any]]:
             },
         }
 
-        win_ip_addr = get_default_gateway()
-
-        if not win_ip_addr:
+        if not configs.get("win"):
             return inventory
+
+        win_home = configs["win"]["home"]
+        win_user = configs["win"]["user"]
+        ansible_python_interpreter = (
+            f"{win_home}\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
+        )
 
         inventory["win"] = {
             "hosts": [get_default_gateway()],
