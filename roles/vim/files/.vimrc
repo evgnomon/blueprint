@@ -35,17 +35,17 @@ let mapleader=","             " Set the leader key to a comma, allowing custom k
 set background=dark             " Optimize colors for a dark background.
 
 :augroup numbertoggle
-:  autocmd!
-:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+  :  autocmd!
+  :  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  :  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 :augroup END
 
 if has('win32')
-    set clipboard=unnamed
+  set clipboard=unnamed
 elseif has('mac')
-    set clipboard=unnamed
+  set clipboard=unnamed
 elseif has('unix')
-    set clipboard=unnamedplus
+  set clipboard=unnamedplus
 endif
 
 set guifont=Inconsolata\ Nerd\ Font:h15    " Set the GUI font to Inconsolata Nerd Font with a height of 15.
@@ -80,9 +80,9 @@ Plug 'hashivim/vim-terraform'
 
 " JS/TS
 Plug 'heavenshell/vim-jsdoc', {
-  \ 'for': ['javascript', 'javascript.jsx','typescript'],
-  \ 'do': 'make install'
-\}
+      \ 'for': ['javascript', 'javascript.jsx','typescript'],
+      \ 'do': 'make install'
+      \}
 
 " Copilot
 Plug 'github/copilot.vim'
@@ -93,15 +93,15 @@ call plug#end()
 
 " Set up CoC global extensions
 let g:coc_global_extensions = [
-\ 'coc-rust-analyzer',
-\ 'coc-prettier',
-\ 'coc-tsserver',
-\ 'coc-go',
-\ 'coc-pyright',
-\ 'coc-snippets',
-\ '@yaegassy/coc-ruff',
-\ 'coc-toml'
-\]
+      \ 'coc-rust-analyzer',
+      \ 'coc-prettier',
+      \ 'coc-tsserver',
+      \ 'coc-go',
+      \ 'coc-pyright',
+      \ 'coc-snippets',
+      \ '@yaegassy/coc-ruff',
+      \ 'coc-toml'
+      \]
 
 nmap <silent> <leader>kk ?function<cr>:noh<cr><Plug>(jsdoc)
 
@@ -126,9 +126,9 @@ let g:black_linelength=79
 autocmd BufRead,BufNewFile *.j2 setfiletype jinja2
 
 autocmd FileType python,go,javascript,typescript,
-\javascriptreact,typescriptreact,rust,sh                    nnoremap <C-l> <Plug>(coc-format)
+      \javascriptreact,typescriptreact,rust,sh              nnoremap <C-l> <Plug>(coc-format)
 autocmd FileType proto                                      noremap <C-l> :ClangFormat<CR>
-autocmd FileType json,html                                  noremap <C-l> :Prettier<CR>
+autocmd FileType json,html,yaml                             noremap <C-l> :Prettier<CR>
 autocmd FileType toml                                       noremap <C-l> <Plug>(coc-format)
 autocmd FileType terraform                                  noremap <C-l> :TerraformFmt<CR>
 
@@ -193,7 +193,7 @@ endfunction
 inoremap <silent><expr> <c-@> coc#refresh()
 
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 nmap <S-F6> <Plug>(coc-rename)
 
