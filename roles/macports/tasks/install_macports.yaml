@@ -1,18 +1,18 @@
 ---
 - name: Create directory
   file:
-    path: "{{ ansible_env.HOME }}/cellar/github.com/macports/macports-base/v2.8.1/macports"
+    path: "{{ ansible_env.HOME }}/cellar/github.com/macports/macports-base/v{{ pkg_versions.macports.version }}/macports"
     state: directory
     mode: '0755'
 
 - name: Download MacPorts tarball
   get_url:
-    url: https://github.com/macports/macports-base/releases/download/v2.8.1/MacPorts-2.8.1.tar.gz
-    dest: "/tmp/MacPorts-2.8.1.tar.gz"
+    url: https://github.com/macports/macports-base/releases/download/v{{ pkg_versions.macports.version }}/MacPorts-{{ pkg_versions.macports.version }}.tar.gz
+    dest: "/tmp/MacPorts-{{ pkg_versions.macports.version }}.tar.gz"
     mode: '0644'
 
 - name: Extract MacPorts archive
-  shell: tar -xzvf /tmp/MacPorts-2.8.1.tar.gz -C ~/cellar/github.com/macports/macports-base/v2.8.1/macports
+  shell: tar -xzvf /tmp/MacPorts-{{ pkg_versions.macports.version }}.tar.gz -C ~/cellar/github.com/macports/macports-base/v{{ pkg_versions.macports.version }}/macports
 
 - name: Extract MacPorts archive
   shell: |
@@ -20,4 +20,4 @@
     make
     make install
   args:
-    chdir: "{{ ansible_env.HOME }}/cellar/github.com/macports/macports-base/v2.8.1/macports/MacPorts-2.8.1"
+    chdir: "{{ ansible_env.HOME }}/cellar/github.com/macports/macports-base/v{{ pkg_versions.macports.version }}/macports/MacPorts-{{ pkg_versions.macports.version }}"

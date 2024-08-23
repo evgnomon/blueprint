@@ -32,3 +32,5 @@ pkg_versions:
     version: 1.20.0
   tofu:
     version: 1.7.3
+  macports:
+    version: 2.10.1
