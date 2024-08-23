@@ -1,6 +1,7 @@
 [font]
 size = 16
 
+{% if ansible_os_family != "Windows" %}
 [font.bold]
 family = "JetBrainsMono Nerd Font"
 style = "Bold"
@@ -16,15 +17,18 @@ style = "Italic"
 [font.normal]
 family = "JetBrainsMono Nerd Font"
 style = "Regular"
+{% endif %}
 
 [shell]
+{% if ansible_os_family != "Windows" %}
 args = ["--login"]
-program = "{{ fish_bin_prefix }}/fish"
+{% endif %}
+program = 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe'
 
-# This is problematic in Ubuntu using multiple monitors with different sizes
-# [window.dimensions]
-# columns = 140
-# lines = 60
+# Work with displays with different DPIs and Resolutions
+[window.dimensions]
+columns = 140
+lines = 60
 
 {% if ansible_os_family == "Darwin" %}
 [[keyboard.bindings]]

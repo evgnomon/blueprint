@@ -89,6 +89,7 @@
       environment:
         CARGO_HOME: "{{ blueprint_user_home }}/.cargo"
 
-
   environment:
     LD_LIBRARY_PATH: "{{ blueprint_user_home }}/.pyenv/versions/3.12.0/lib/"
+
+

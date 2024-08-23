@@ -81,6 +81,8 @@ def get_inventory() -> dict[str, dict[str, Any]]:
                 "ansible_become_method": "runas",
                 "ansible_become_user": win_user,
                 "ansible_python_interpreter": ansible_python_interpreter,
+                "blueprint_user_home": win_home,
+                "blueprint_user": win_user,
             },
         }
         return inventory

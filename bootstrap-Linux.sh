@@ -25,7 +25,7 @@ curl -sSL https://raw.githubusercontent.com/Yubico/libfido2/main/udev/70-u2f.rul
 PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 3.12.0 2.7.18
 pyenv global 3.12.0 2.7.18
 pip install --upgrade pip
-pip install --upgrade ansible
+pip install --upgrade ansible pyyaml
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source "$HOME/.cargo/env"

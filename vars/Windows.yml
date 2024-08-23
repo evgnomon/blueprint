@@ -1,4 +1,3 @@
-blueprint_user_home: "{{ ansible_env.USERPROFILE }}"
 blueprint_home: '{{ blueprint_user_home }}\AppData\Local\Blueprint'
 path_components:
   - C:\Program Files\Alacritty\

@@ -1,3 +1,11 @@
+- name: Install Alacritty
+  hosts:
+    - all
+  roles:
+    - alacritty
+  tags:
+    - alacritty
+
 - name: Install Pip packages
   hosts: all
   vars:
