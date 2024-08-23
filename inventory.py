@@ -56,11 +56,19 @@ def get_inventory() -> dict[str, dict[str, Any]]:
             },
         }
 
-        if not configs.get("win"):
+        if not configs.get("win_user"):
             return inventory
 
-        win_home = configs["win"]["home"]
-        win_user = configs["win"]["user"]
+        host_name = os.getenv("NAME")
+
+        if not host_name:
+            return inventory
+
+        if not configs.get("win_user").get(host_name):
+            return inventory
+
+        win_home = configs["win_user"][host_name]["home"]
+        win_user = configs["win_user"][host_name]["user"]
         ansible_python_interpreter = (
             f"{win_home}\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
         )
