@@ -3,6 +3,8 @@
 SECRETS_DIR="$HOME/.blueprint/secrets"
 GPG_KEY={{ gpg.key }}
 
+export EDITOR=vi
+
 # Function for encryption
 encrypt_file() {
      if [ -z "$1" ]; then

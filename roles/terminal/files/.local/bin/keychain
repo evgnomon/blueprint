@@ -1,5 +1,5 @@
 #!/bin/bash
-
+export EDITOR=vi
 VAULT_ADDR=$1
 
 SECRET_FILE=$HOME/.blueprint/secrets/secrets.yaml
