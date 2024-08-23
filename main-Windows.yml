@@ -54,6 +54,21 @@
         - never
         - upgrade
 
+    - name: Uninstall Windows web experience
+      ansible.windows.win_shell: |
+        winget uninstall --id 9MSSGKG348SP
+      when: ansible_os_family == "Windows"
+      register: result
+      failed_when:
+        - result.rc != 0
+        - '"No installed package found matching input criteria." not in result.stdout'
+      changed_when:
+        - result.rc == 0
+        - '"No installed package found matching input criteria." not in result.stdout'
+      tags:
+        - never
+        - autoremove
+
     - name: Install common Go packages for Windows
       ansible.windows.win_shell: |
           go install -ldflags="-s -w" {{ item }}
