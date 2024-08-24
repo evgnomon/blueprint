@@ -23,7 +23,10 @@ style = "Regular"
 {% if ansible_os_family != "Windows" %}
 args = ["--login"]
 {% endif %}
-program = 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe'
+{% if ansible_os_family == "Windows" %}
+program = "wsl"
+args = ["~", "-e", "{{ wsl_user_home }}/.local/bin/fish"]
+{% endif %}
 
 # Work with displays with different DPIs and Resolutions
 [window.dimensions]

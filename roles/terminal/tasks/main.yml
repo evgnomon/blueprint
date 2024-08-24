@@ -14,7 +14,7 @@
 - name: Inflate shared template configs in user home
   include_tasks: j2_inflate.yaml
   vars:
-    target: "{{ ansible_env.HOME }}"
+    target: "{{ blueprint_user_home }}"
   when: item.state == 'file'
   with_filetree: ../templates/share/home
   tags:
@@ -195,8 +195,7 @@
   vars: *git_repos_vars
   when: 
     - ansible_os_family != "Windows"
-    - wsl_runner is defined
-    - wsl_runner
+    - wsl2_kernel
   with_items: "{{ git_repos + common_git_repos }}"
   tags:
     - git

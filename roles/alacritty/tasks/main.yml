@@ -17,3 +17,5 @@
 - template:
     src: templates/alacritty.toml.j2
     dest: "{{ alacritty_config_file }}"
+  vars:
+    wsl_user_home: "/home/{{ profiles['main'].username }}"

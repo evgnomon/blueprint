@@ -48,7 +48,7 @@
 
     - name: Upgrade existing WinGet packages
       ansible.windows.win_shell: |
-          winget upgrade --all --accept-source-agreements --accept-package-agreements --disable-interactivity
+          winget upgrade --all --accept-source-agreements --accept-package-agreements --disable-interactivity  --uninstall-previous
       when: ansible_os_family == "Windows"
       tags:
         - never
