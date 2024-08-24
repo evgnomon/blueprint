@@ -111,6 +111,28 @@
   tags:
     - apt
 
+- name: Upgrade all Apt packages
+  become: true
+  ansible.builtin.apt:
+    upgrade: full
+    update_cache: true
+    cache_valid_time: 3600
+  when: ansible_os_family == "Debian"
+  tags:
+    - never
+    - upgrade
+    - apt
+
+- name: auto-remove Apt packages
+  become: true
+  ansible.builtin.apt:
+    autoremove: yes
+  when: ansible_os_family == "Debian"
+  tags:
+    - never
+    - autoremove
+    - apt
+
 - name: Build fish shell
   include_tasks:
     file: fish-build.yml
