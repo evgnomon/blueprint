@@ -1,4 +1,4 @@
-{% if wsl_runner and ansible_os_family != "Windows" %}
+{% if wsl2_kernel and ansible_os_family != "Windows" %}
 set -ax PATH '/mnt/c/Program Files/OpenSSH/'
 set -ax PATH '/mnt/c/Program Files/Vim/vim91'
 set -ax PATH '/mnt/c/Program Files/Alacritty/'

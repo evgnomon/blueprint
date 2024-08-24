@@ -6,7 +6,6 @@ macports_packages:
   - rsync
   - ctags
   - gnupg2
-  # This requires XCode
   - pinentry-mac
   - tree
   - the_silver_searcher
