@@ -8,6 +8,7 @@ common_cargo_packages:
   - ripgrep
   - git-delta
   - bat
+  - bottom
 
 common_pip_packages:
   - pip

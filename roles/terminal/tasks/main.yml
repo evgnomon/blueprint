@@ -131,7 +131,7 @@
   tags:
     - never
     - autoremove
-    - apt
+    - upgrade
 
 - name: Build fish shell
   include_tasks:

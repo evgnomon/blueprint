@@ -1,7 +1,6 @@
 ---
 macports_packages:
   - fish
-  - nnn
   - alacritty
   - rsync
   - ctags

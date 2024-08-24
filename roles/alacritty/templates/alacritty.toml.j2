@@ -22,6 +22,7 @@ style = "Regular"
 [shell]
 {% if ansible_os_family != "Windows" %}
 args = ["--login"]
+program = "{{ blueprint_user_home }}/.local/bin/fish"
 {% endif %}
 {% if ansible_os_family == "Windows" %}
 program = "wsl"
