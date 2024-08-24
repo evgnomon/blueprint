@@ -190,12 +190,6 @@ pkg:
           src: *bin_src_bin
         - name: npm
           src: *bin_src_bin
-        - name: prettier
-          src: *bin_src_bin
-        - name: serve
-          src: *bin_src_bin
-        - name: nodemon
-          src: *bin_src_bin
 
     - name: go
       archs: *archs-node

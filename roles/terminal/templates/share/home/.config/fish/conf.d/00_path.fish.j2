@@ -1,4 +1,8 @@
+{% set node_os   = { 'Darwin': 'darwin', 'Debian': 'linux', 'Windows': 'win' }[ansible_os_family] | default('') %}
+{% set node_arch = { 'x86_64': 'x64', 'aarch64': 'arm64', 'i386': 'x86' }[ansible_architecture] | default('') %}
+set -ax PATH {{ blueprint_home }}/node/{{ node_os }}_{{ node_arch }}/node_{{ pkg_versions.node.version }}/node-v{{ pkg_versions.node.version }}-{{ node_os }}-{{ node_arch }}/bin
 {% if wsl2_kernel and ansible_os_family != "Windows" %}
+
 set -ax PATH '/mnt/c/Program Files/OpenSSH/'
 set -ax PATH '/mnt/c/Program Files/Vim/vim91'
 set -ax PATH '/mnt/c/Program Files/Alacritty/'
