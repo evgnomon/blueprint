@@ -1,42 +1,32 @@
 ---
-- name: Install packages
+- name: Update PATH
   hosts: win
-  become: true
+  gather_facts: no
+  become_user: "{{ blueprint_user }}"
+  become_method: runas
+  become: yes
+  tasks:
+    - name: Add a directory to the user PATH
+      ansible.windows.win_environment:
+        name: PATH
+        state: present
+        value: "{{ custom_path }}"
+        level: user
+  tags:
+    - always
+
+- name: Install Packages
+  hosts: win
+  gather_facts: no
+  become_user: "{{ blueprint_user }}"
+  become: yes
+  become_method: runas
   tasks:
     - name: Install WinGet packages
       ansible.windows.win_shell: | 
         winget install --accept-source-agreements --accept-package-agreements --disable-interactivity --uninstall-previous -e --id {{ item }}
       ignore_errors: yes
-      with_items: "{{ app_ids }}"
-      vars:
-        app_ids:
-          - Microsoft.Edge
-          - Git.Git
-          - vim.vim
-          - Microsoft.VisualStudio.2022.BuildTools
-          - Microsoft.VCRedist.2015+.x64
-          - Microsoft.VCRedist.2015+.x86
-          - GoLang.Go
-          - Brave.Brave
-          - Microsoft.Teams
-          - Microsoft.WindowsTerminal
-          - Rustlang.Rust.MSVC
-          - dorssel.usbipd-win
-          - Yubico.YubikeyManager
-          - Microsoft.Azure.StorageExplorer
-          - Alacritty.Alacritty
-          - Microsoft.OpenSSH.Beta
-          - Microsoft.OneDrive
-          - Microsoft.DotNet.Runtime.6
-          - Hugo.Hugo.Extended
-          - RedHat.Podman
-          - GnuPG.GnuPG
-          # - LocalSend.LocalSend # Installation fails
-          - qBittorrent.qBittorrent
-          - NordSecurity.NordVPN
-          - Python.Python.3.12
-          - JetBrains.IntelliJIDEA.Community
-      when: ansible_os_family == "Windows"
+      with_items: "{{ winget_packages }}"
       register: result
       failed_when:
         - result.rc != 0
@@ -49,7 +39,6 @@
     - name: Upgrade existing WinGet packages
       ansible.windows.win_shell: |
           winget upgrade --all --accept-source-agreements --accept-package-agreements --disable-interactivity
-      when: ansible_os_family == "Windows"
       tags:
         - never
         - upgrade
@@ -74,17 +63,17 @@
           go install -ldflags="-s -w" {{ item }}
       environment:
         CGO_ENABLED: 1
+        CC: clang
       with_items: "{{ common_go_packages }}"
-      when: ansible_os_family == "Windows"
       tags:
         - go
 
-#     - name: Install common Node packages
-#       ansible.windows.win_powershell:
-#         script: npm install -g {{ item }}
-#       with_items: "{{ common_node_packages }}"
-#       tags:
-#         - node
+    - name: Install common Node packages
+      ansible.windows.win_powershell:
+        script: npm install -g {{ item }}
+      with_items: "{{ common_node_packages }}"
+      tags:
+        - node
 
     - name: Install common Cargo packages
       ansible.windows.win_shell: |
@@ -106,5 +95,4 @@
 
   environment:
     LD_LIBRARY_PATH: "{{ blueprint_user_home }}/.pyenv/versions/3.12.0/lib/"
-
-
+    PATH: "{{ custom_path }}"

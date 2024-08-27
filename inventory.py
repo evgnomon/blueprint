@@ -68,7 +68,6 @@ def get_inventory() -> dict[str, dict[str, Any]]:
             return inventory
 
         win_home = configs["win_user"][host_name]["home"]
-        win_user = configs["win_user"][host_name]["user"]
         ansible_python_interpreter = (
             f"{win_home}\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
         )
@@ -78,11 +77,7 @@ def get_inventory() -> dict[str, dict[str, Any]]:
             "vars": {
                 "ansible_shell_type": "cmd",
                 "ansible_connection": "ssh",
-                "ansible_become_method": "runas",
-                "ansible_become_user": win_user,
                 "ansible_python_interpreter": ansible_python_interpreter,
-                "blueprint_user_home": win_home,
-                "blueprint_user": win_user,
             },
         }
         return inventory

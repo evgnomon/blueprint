@@ -1,37 +1,66 @@
 blueprint_home: '{{ blueprint_user_home }}\AppData\Local\Blueprint'
 path_components:
-  - C:\Program Files\Alacritty\
-  - C:\Program Files\OpenSSH\
-  - C:\Windows\system32
-  - C:\Windows
-  - C:\Windows\System32\Wbem
-  - C:\Windows\System32\WindowsPowerShell\v1.0\
-  - C:\Windows\System32\OpenSSH\
-  - C:\Program Files\nodejs\
-  - C:\Program Files\usbipd-win\
-  - C:\Program Files\Git\cmd
-  - C:\Program Files\Docker\Docker\resources\bin
-  - C:\Program Files\dotnet\
-  - C:\Program Files\Go\bin
-  - '{{ blueprint_user_home }}\.pyenv\pyenv-win\bin'
-  - '{{ blueprint_user_home }}\.pyenv\pyenv-win\shims'
+  - 'C:\Windows\system32'
+  - 'C:\Windows'
+  - 'C:\Windows\System32\Wbem'
+  - 'C:\Program Files\PowerShell\7\'
+  - 'C:\Windows\System32\WindowsPowerShell\v1.0\'
+  - 'C:\Windows\System32\OpenSSH\'
+  - 'C:\Program Files\usbipd-win\'
+  - 'C:\Windows\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps'
+  - 'C:\Program Files\OpenSSH\'
+  - 'C:\Program Files\Vim\vim91'
+  - 'C:\Program Files\Alacritty\'
+  - 'C:\Program Files\Git\cmd'
+  - 'C:\Program Files\Rust stable MSVC 1.80\bin'
+  - 'C:\Program Files\Go\bin'
+  - 'C:\Program Files\nodejs'
+  - 'C:\Program Files\dotnet\'
+  - 'C:\Program Files (x86)\gnupg\bin'
+  - 'C:\Program Files\RedHat\Podman\'
+  - 'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.41.34120\bin\Hostx64\x64'
+  - 'C:\Program Files\LLVM\bin'
+  - '{{ blueprint_user_home }}\AppData\Local\Programs\Python\Python312\Scripts\'
+  - '{{ blueprint_user_home }}\AppData\Local\Programs\Python\Python312\'
   - '{{ blueprint_user_home }}\.cargo\bin'
+  - '{{ blueprint_user_home }}\AppData\Local\Programs\Python\Launcher\'
   - '{{ blueprint_user_home }}\AppData\Local\Microsoft\WindowsApps'
+  - '{{ blueprint_user_home }}\go\bin'
+  - '{{ blueprint_user_home }}\AppData\Local\Microsoft\WinGet\Links'
+  - '{{ blueprint_user_home }}\AppData\Local\Programs\Microsoft VS Code\bin'
   - '{{ blueprint_user_home }}\.dotnet\tools'
   - '{{ blueprint_user_home }}\AppData\Roaming\npm'
-  - '{{ blueprint_user_home }}\pyenv-win\versions\3.12.0'
-  - '{{ blueprint_user_home }}\pyenv-win\versions\2.17.18'
-  - C:\Program Files\Vim\vim91
-  - C:\Program Files\Git\bin
-  - C:\Program Files (x86)\Midnight Commander
-  - C:\Program Files\Yubico\Yubico PIV Tool\bin
-  - '{{ blueprint_user_home }}\.dotnet\tools'
-  - '{{ blueprint_user_home }}\go\bin'
-  - '{{ blueprint_user_home }}\AppData\Local\Microsoft\WinGet\Packages\Hugo.Hugo.Extended_Microsoft.Winget.Source_8wekyb3d8bbwe'
-  - C:\Program Files\OpenSSH
-  - C:\Program Files (x86)\GnuPG\bin
-  - C:\Program Files\WinLibs\mingw64\bin
 
-custom_path: "{{ path_components | join(';') }}:$PATH"
+custom_path: "{{ path_components | unique | join(';') }}"
 
 cargo_cmd: 'C:\Program Files\Rust stable MSVC 1.80\bin\cargo.exe'
+
+winget_packages:
+  - Microsoft.VisualStudio.2022.BuildTools --force --override "--wait --passive --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --add Microsoft.VisualStudio.Component.Windows11SDK.22000"
+  - Microsoft.VCRedist.2015+.x64
+  - Microsoft.VCRedist.2015+.x86
+  - Microsoft.Sysinternals.PsTools
+  - Microsoft.Edge
+  - Git.Git
+  - vim.vim
+  - GoLang.Go
+  - Brave.Brave
+  - Microsoft.Teams
+  - Microsoft.WindowsTerminal
+  - Rustlang.Rust.MSVC
+  - OpenJS.NodeJS
+  - dorssel.usbipd-win
+  - Yubico.YubikeyManager
+  - Microsoft.Azure.StorageExplorer
+  - Alacritty.Alacritty
+  - Microsoft.OpenSSH.Beta
+  - Microsoft.OneDrive
+  - Microsoft.DotNet.Runtime.6
+  - Hugo.Hugo.Extended
+  - RedHat.Podman
+  - GnuPG.GnuPG
+  # - LocalSend.LocalSend # Installation fails
+  - qBittorrent.qBittorrent
+  - NordSecurity.NordVPN
+  - Python.Python.3.12
+  - JetBrains.IntelliJIDEA.Community
