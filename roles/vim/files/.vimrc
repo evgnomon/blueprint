@@ -212,3 +212,6 @@ endif
 let g:lf_map_keys = 0
 nnoremap <leader>x :Lf<CR>
 let g:floaterm_opener='edit'
+let g:floaterm_height=0.95
+let g:floaterm_width=0.95
+let g:lf_replace_netrw = 1
