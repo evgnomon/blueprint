@@ -1,5 +1,8 @@
 ---
 - name: Update Pip packages for Windows
+  become: yes
+  become_method: runas
+  become_user: "{{ blueprint_user }}"
   win_shell: pip install --upgrade {{ item }}
   with_items: "{{ common_pip_packages }}"
   tags:

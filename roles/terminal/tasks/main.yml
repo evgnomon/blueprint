@@ -181,6 +181,15 @@
   tags:
     - go
 
+- name: Install common Go packages for Debian
+  command: go install {{ item }}
+  environment:
+    CGO_ENABLED: 1
+  with_items: "{{ debian_go_packages }}"
+  when: ansible_os_family == "Debian"
+  tags:
+    - go
+
 - name: Install common Node packages
   command: npm install -g {{ item }}
   with_items: "{{ common_node_packages }}"

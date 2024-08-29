@@ -39,9 +39,11 @@ common_go_packages:
   # - github.com/junegunn/fzf@latest # Not supported
   - github.com/sclevine/yj@latest
   # - github.com/opentofu/opentofu/cmd/tofu@latest # Not supported
-  - -tags extended github.com/gohugoio/hugo@latest
   - github.com/gokcehan/lf@latest
   - github.com/zyedidia/eget@latest
+
+debian_go_packages:
+  - -tags "extended" github.com/gohugoio/hugo@latest
 
 common_git_repos:
   - url: https://github.com/alacritty/alacritty.git
