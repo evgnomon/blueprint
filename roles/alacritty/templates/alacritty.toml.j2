@@ -20,7 +20,7 @@ style = "Regular"
 {% endif %}
 
 [shell]
-{% if ansible_os_family != "Windows" %}
+{% if ansible_os_family == "Debian" %}
 args = ["--login"]
 program = "{{ blueprint_user_home }}/.local/bin/fish"
 {% endif %}
@@ -28,15 +28,30 @@ program = "{{ blueprint_user_home }}/.local/bin/fish"
 program = "wsl"
 args = ["~", "-e", "{{ wsl_user_home }}/.local/bin/fish"]
 {% endif %}
+{% if ansible_os_family == "Darwin" %}
+args = ["--login"]
+program = "{{ blueprint_user_home }}/.macports/bin/fish"
+{% endif %}
 
 # Work with displays with different DPIs and Resolutions
 [window.dimensions]
 columns = 140
 lines = 60
 
+[keyboard]
 {% if ansible_os_family == "Darwin" %}
 [[keyboard.bindings]]
 key = "Return"
-mods = "Command"
+mods = "Control"
 action = "ToggleSimpleFullscreen"
+
 {% endif %}
+[[keyboard.bindings]]
+key = "C"
+mods = "Control|Shift"
+action = "Copy"
+
+[[keyboard.bindings]]
+key = "V"
+mods = "Control|Shift"
+action = "Paste"

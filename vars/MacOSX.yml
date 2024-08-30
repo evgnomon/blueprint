@@ -9,6 +9,7 @@ path_components:
   - "{{ blueprint_user_home }}/.pyenv/shims"
   - "{{ blueprint_user_home }}/bin"
   - "{{ blueprint_user_home }}/sbin"
+  - "{{ macports_home }}/bin"
   - "/usr/local/bin"
   - "/usr/bin"
   - "/usr/sbin"
