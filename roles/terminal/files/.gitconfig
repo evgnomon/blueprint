@@ -53,6 +53,7 @@
   gone = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D"
   sync = ! "git switch main && git pull && git switch - && git merge main"
   fly  = ! "git add -p && git commit --amend --no-edit && git push $BLUE_CODE HEAD:refs/for/master"
+  run  = ! "git add -u && git commit --amend --no-edit && git push -f"
 
 [pull]
     rebase = false
