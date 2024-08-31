@@ -17,3 +17,11 @@
     - python
   tags:
     - pip
+
+- name: Install Eget packages
+  gather_facts: no
+  hosts: all
+  roles:
+    - eget
+  tags:
+    - eget

@@ -14,6 +14,7 @@ usermod -aG sudo
 # Checkout your `.blueprint` settings.
 git clone git@github.com:YOURUSER/.blueprint.git ~/.blueprint
 sudo -v
+# ssh-add ~/.ssh/YOUR_PRIVATE_KEY
 ansible-playbook -i inventory.py main.yaml
 sudo -K
 ```
@@ -25,7 +26,7 @@ And don't forget to close your session if `sudo` is not needed anymore.
 To let ansible configure the windows node,
 run this as Administrator in PowerShell on a fresh installed Windows node:
 ```
-iex (iwr "https://raw.githubusercontent.com/evgnomon/blueprint/winboot/bootstrap-Windows.ps1")
+iex (iwr "https://raw.githubusercontent.com/evgnomon/blueprint/main/bootstrap-Windows.ps1")
 ```
 Which restarts the Windows machine after installation.
 

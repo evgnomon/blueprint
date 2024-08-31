@@ -42,8 +42,22 @@ common_go_packages:
   - github.com/gokcehan/lf@latest
   - github.com/zyedidia/eget@latest
 
+eget_packages:
+  - name: cli/cli
+    archs:
+      windows: -a zip -f **/*.exe
+      debian: -a tar.gz
+      darwin: -a zip
+
+  - name: gohugoio/hugo 
+    archs:
+      windows: -a extended -a zip
+      debian: -a extended -a tar.gz
+      darwin: -a extended -a tar.gz
+
 debian_go_packages:
-  - -tags "extended" github.com/gohugoio/hugo@latest
+
+darwin_go_packages:
 
 common_git_repos:
   - url: https://github.com/alacritty/alacritty.git

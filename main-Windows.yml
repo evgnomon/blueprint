@@ -45,9 +45,10 @@
 
     - name: Uninstall Windows web experience
       ansible.windows.win_shell: |
-        winget uninstall --id 9MSSGKG348SP
+        winget uninstall --id {{ item }} --disable-interactivity
       when: ansible_os_family == "Windows"
       register: result
+      with_items: "{{ winget_packages_autoremove }}"
       failed_when:
         - result.rc != 0
         - '"No installed package found matching input criteria." not in result.stdout'

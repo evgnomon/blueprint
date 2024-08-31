@@ -11,4 +11,3 @@ macports_packages:
   - podman
   - swig
   - swig-python
-  - gh

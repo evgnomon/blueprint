@@ -1,0 +1,17 @@
+---
+- name: Install using Eget
+  command: eget --to "{{ blueprint_user_home }}/.local/bin" {{ item.archs[(ansible_os_family | lower )] }} {{ item.name }}
+  with_items: "{{ eget_packages }}"
+  when: ansible_os_family != "Windows"
+  tags:
+    - eget
+
+- name: Install using Eget
+  become: yes
+  become_method: runas
+  become_user: "{{ blueprint_user }}"
+  win_shell: eget --to {{ blueprint_user_home }}\.local\bin\ {{ item.archs[(ansible_os_family | lower )] }} {{ item.name }}
+  with_items: "{{ eget_packages }}"
+  when: ansible_os_family == "Windows"
+  tags:
+    - eget

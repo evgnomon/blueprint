@@ -56,7 +56,6 @@ winget_packages:
   - Microsoft.OpenSSH.Beta
   - Microsoft.OneDrive
   - Microsoft.DotNet.Runtime.6
-  - Hugo.Hugo.Extended
   - RedHat.Podman
   - GnuPG.GnuPG
   # - LocalSend.LocalSend # Installation fails
@@ -64,3 +63,7 @@ winget_packages:
   - NordSecurity.NordVPN
   - Python.Python.3.12
   - JetBrains.IntelliJIDEA.Community
+
+winget_packages_autoremove:
+  - Hugo.Hugo.Extended
+  - 9MSSGKG348SP
