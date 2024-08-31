@@ -215,3 +215,9 @@ let g:floaterm_opener='edit'
 let g:floaterm_height=0.95
 let g:floaterm_width=0.95
 let g:lf_replace_netrw = 1
+
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9, 'yoffset': 0.5, 'xoffset': 0.5, 'border': 'sharp' } }
+command! -bang -nargs=* Rg
+    \ call fzf#vim#grep(
+    \   'rg --line-number --no-heading --color=always --hidden -i --glob "!{.git,node_modules}/*" -- '.shellescape(<q-args>), 1,
+    \   fzf#vim#with_preview(), <bang>0)
