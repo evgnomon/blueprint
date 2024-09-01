@@ -95,7 +95,7 @@ Use YubiKey for password less `sudo`:
 mkdir -p ~/.config/Yubico
 pamu2fcfg > ~/.config/Yubico/u2f_keys
 pamu2fcfg -n >> ~/.config/Yubico/u2f_keys # with the spare key
-sudo mv ~/.config/Yubico/u2f_keys /etc/Yubico/u2f_keys
+sudo mv ~/.config/Yubico/u2f_keys /etc/Yubico
 sudo chown root:root -R /etc/Yubico/u2f_keys
 ```
 Add a new key using:
