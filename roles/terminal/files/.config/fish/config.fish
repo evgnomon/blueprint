@@ -34,13 +34,14 @@ if status is-interactive
     set -x  FZF_DEFAULT_COMMAND "fd --type f --strip-cwd-prefix --hidden --exclude .git"
     set -x  FZF_CTRL_T_COMMAND  "$FZF_DEFAULT_COMMAND"
 
+    eval (ssh-agent -c) > /dev/null
+
     set -x GPG_TTY $(tty)
-    set -x SSH_AUTH_SOCK $HOME/.gnupg/S.gpg-agent.ssh
+    gpg --card-status > /dev/null 2>&1; or true
 
     set -x EDITOR vim
     set -gx LD_LIBRARY_PATH  $HOME/.pyenv/versions/3.12.0/lib/
 
-    eval (ssh-agent -c) > /dev/null
     switch (uname)
         case Darwin
             # macports
