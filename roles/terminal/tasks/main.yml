@@ -186,7 +186,9 @@
   environment:
     CGO_ENABLED: 1
   with_items: "{{ debian_go_packages }}"
-  when: ansible_os_family == "Debian"
+  when:
+    - ansible_os_family == "Debian"
+    - debian_go_packages
   tags:
     - go
 
@@ -285,7 +287,7 @@
     git -C '{{ repo_dest }}' config user.signingKey '{{ user_profile.gpg_key }}'
     git -C '{{ repo_dest }}' config commit.gpgsign true
     git -C '{{ repo_dest }}' config tag.gpgSign true
-    {% if user_profile.git_sign_format %}
+    {% if user_profile.get("git_sign_format") %}
     git -C '{{ repo_dest }}' config gpg.format '{{ user_profile.git_sign_format }}'
     {% else %}
     git -C '{{ repo_dest }}' config --unset gpg.format

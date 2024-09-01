@@ -89,6 +89,8 @@ Which is the device if of the YubiKey, find the device id using:
 usbipd list
 ```
 
+# YubiKey
+
 Use YubiKey for password less `sudo`:
 
 ```
@@ -101,6 +103,13 @@ sudo chown root:root -R /etc/Yubico/u2f_keys
 Add a new key using:
 ```
 pamu2fcfg -n | sudo tee -a /etc/Yubico/u2f_keys
+```
+
+Make sure DEC slug requires touch for GPG decryption, signing and authentication:
+```
+ykman openpgp keys set-touch dec on
+ykman openpgp keys set-touch aut on
+ykman openpgp keys set-touch sig on
 ```
 
 # Git signing
