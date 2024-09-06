@@ -53,6 +53,7 @@ apt_packages:
     - heif-gdk-pixbuf
     - nordvpn
     - scdaemon
+    - zip
   ubuntu:
     - mysql-client 
     - libpam-u2f
