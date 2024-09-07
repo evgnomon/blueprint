@@ -58,7 +58,7 @@ winget_packages:
   - Microsoft.DotNet.Runtime.6
   - RedHat.Podman
   - GnuPG.GnuPG
-  # - LocalSend.LocalSend # Installation fails
+  - LocalSend.LocalSend
   - qBittorrent.qBittorrent
   - NordSecurity.NordVPN
   - Python.Python.3.12
