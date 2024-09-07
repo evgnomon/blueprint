@@ -54,6 +54,7 @@ apt_packages:
     - nordvpn
     - scdaemon
     - zip
+    - rbenv
   ubuntu:
     - mysql-client 
     - libpam-u2f

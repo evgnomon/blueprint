@@ -11,6 +11,8 @@ if status is-interactive
     end
     set -e pyenv_index
     set -gx PATH "$HOME/.pyenv/shims" $PATH
+    set -gx PATH "$HOME/.rbenv/shims" $PATH
+    set -gx GEM_HOME "$HOME/.gem"
 
     set     CDPATH
     set -x  CDPATH
