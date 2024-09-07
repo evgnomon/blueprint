@@ -1,0 +1,7 @@
+{
+  "snippets.ultisnips.pythonPrompt": false,
+  "python.formatting.provider": "black",
+  "python.formatting.blackPath": "${env:HOME}/.pyenv/shims/black",
+  "python.pythonPath": "${env:HOME}/.pyenv/shims/python",
+  "solargraph.commandPath": "${env:HOME}/.gem/bin/solargraph"
+}

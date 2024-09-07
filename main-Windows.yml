@@ -76,6 +76,22 @@
       tags:
         - node
 
+    - name: Update rustup
+      ansible.windows.win_shell: |
+        rustup update
+      tags:
+        - rustup
+        - never
+        - upgrade
+
+    - name: Update rustup
+      ansible.windows.win_shell: |
+        C:\msys64\usr\bin\bash -lc "pacman --noconfirm -yS {{ item }}"
+      loop: "{{ pacman_packages }}"
+      tags:
+        - pacman
+        - never
+
     - name: Install common Cargo packages
       ansible.windows.win_shell: |
         & '{{ cargo_cmd }}' install {{ item }}

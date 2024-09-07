@@ -7,6 +7,8 @@ path_components:
   - "{{ blueprint_user_home }}/go/bin"
   - "{{ blueprint_user_home }}/.local/bin"
   - "{{ blueprint_user_home }}/.pyenv/shims"
+  - "{{ blueprint_user_home }}/.rbenv/shims"
+  - "{{ blueprint_user_home }}/.gem/bin"
   - "{{ blueprint_user_home }}/bin"
   - "{{ blueprint_user_home }}/sbin"
   - "{{ macports_home }}/bin"

@@ -11,3 +11,5 @@ macports_packages:
   - swig
   - swig-python
   - openssh +fido2
+  - rbenv
+  - ruby-build

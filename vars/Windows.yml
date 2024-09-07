@@ -12,7 +12,7 @@ path_components:
   - 'C:\Program Files\Vim\vim91'
   - 'C:\Program Files\Alacritty\'
   - 'C:\Program Files\Git\cmd'
-  - 'C:\Program Files\Rust stable MSVC 1.80\bin'
+  - '{{ blueprint_user_home }}\.cargo\bin'
   - 'C:\Program Files\Go\bin'
   - 'C:\Program Files\nodejs'
   - 'C:\Program Files\dotnet\'
@@ -22,7 +22,6 @@ path_components:
   - 'C:\Program Files\LLVM\bin'
   - '{{ blueprint_user_home }}\AppData\Local\Programs\Python\Python312\Scripts\'
   - '{{ blueprint_user_home }}\AppData\Local\Programs\Python\Python312\'
-  - '{{ blueprint_user_home }}\.cargo\bin'
   - '{{ blueprint_user_home }}\AppData\Local\Programs\Python\Launcher\'
   - '{{ blueprint_user_home }}\AppData\Local\Microsoft\WindowsApps'
   - '{{ blueprint_user_home }}\go\bin'
@@ -30,10 +29,11 @@ path_components:
   - '{{ blueprint_user_home }}\AppData\Local\Programs\Microsoft VS Code\bin'
   - '{{ blueprint_user_home }}\.dotnet\tools'
   - '{{ blueprint_user_home }}\AppData\Roaming\npm'
+  - 'C:\Ruby31-x64\bin'
 
 custom_path: "{{ path_components | unique | join(';') }}"
 
-cargo_cmd: 'C:\Program Files\Rust stable MSVC 1.80\bin\cargo.exe'
+cargo_cmd: '{{blueprint_user_home}}\.cargo\bin\cargo.exe'
 
 winget_packages:
   - Microsoft.VisualStudio.2022.BuildTools --force --override "--wait --passive --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --add Microsoft.VisualStudio.Component.Windows11SDK.22000"
@@ -47,7 +47,6 @@ winget_packages:
   - Brave.Brave
   - Microsoft.Teams
   - Microsoft.WindowsTerminal
-  - Rustlang.Rust.MSVC
   - OpenJS.NodeJS
   - dorssel.usbipd-win
   - Yubico.YubikeyManager
@@ -63,7 +62,14 @@ winget_packages:
   - NordSecurity.NordVPN
   - Python.Python.3.12
   - JetBrains.IntelliJIDEA.Community
+  - RubyInstallerTeam.Ruby.3.1
+  - Rustlang.Rustup
+  - MSYS2.MSYS2
 
 winget_packages_autoremove:
   - Hugo.Hugo.Extended
   - 9MSSGKG348SP
+
+pacman_packages:
+  - mingw-w64-x86_64-gcc
+  - fish
