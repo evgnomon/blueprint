@@ -1,0 +1,10 @@
+---
+- name: Install Gems
+  become: yes
+  become_method: runas
+  become_user: "{{ blueprint_user }}"
+  win_shell: |
+    gem install {{ item }}
+  with_items: "{{ common_ruby_packages }}"
+  tags:
+    - ruby

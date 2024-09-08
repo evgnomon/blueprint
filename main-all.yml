@@ -25,3 +25,11 @@
     - eget
   tags:
     - eget
+
+- name: Install Ruby packages
+  gather_facts: no
+  hosts: all
+  roles:
+    - ruby
+  tags:
+    - ruby

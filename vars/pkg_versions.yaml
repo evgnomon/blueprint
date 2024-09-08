@@ -36,3 +36,5 @@ pkg_versions:
     version: 2.10.1
   alacritty:
     version: 0.13.2
+  ruby:
+    version: 3.1.2
