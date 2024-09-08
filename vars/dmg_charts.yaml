@@ -35,3 +35,12 @@ dmg:
         ext: "dmg"
         url: https://download.jetbrains.com/idea/ideaIC-{{ pkg_versions.idea.version }}.dmg
         path: "IntelliJ IDEA CE.app"
+
+    - name: Alacritty
+      version: "{{ pkg_versions.alacritty.version }}"
+      template:
+        os: "darwin"
+        arch: "x64"
+        ext: "dmg"
+        path: "Alacritty.app"
+        url: https://github.com/alacritty/alacritty/releases/download/v{{ pkg_versions.alacritty.version }}/Alacritty-v{{ pkg_versions.alacritty.version }}.dmg

@@ -2,9 +2,10 @@
 - name: Update MacPorts self
   command: port selfupdate
   tags:
-    - macports
+    - port
 
 - name: Update MacPort outdated packages
   command: port upgrade outdated
   tags:
-    - macports
+    - never
+    - upgrade

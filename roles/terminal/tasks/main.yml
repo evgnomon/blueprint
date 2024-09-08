@@ -142,18 +142,24 @@
   ansible.builtin.command:
     cmd: "{{ cargo_cmd }} install {{ item }}"
   loop: "{{ common_cargo_packages }}"
+  when: common_cargo_packages
+  tags:
+    - cargo
 
 - name: Install OS specific Cargo packages
   ansible.builtin.command:
     cmd: "{{ cargo_cmd }} install {{ item }}"
   loop: "{{ cargo_packages | default ([]) }}"
+  when: cargo_packages is defined
+  tags:
+    - cargo
 
 - name: Install using MacPorts
-  command: port -N install "{{ item }}"
+  command: port -N install {{ item }}
   when: ansible_distribution == "MacOSX"
   with_items: "{{ macports_packages }}"
   tags:
-    - macports
+    - port
 
 - name: Copy configs
   synchronize:

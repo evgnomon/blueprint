@@ -1,3 +1,2 @@
 ---
-cargo_packages:
-  - alacritty
+# cargo_packages:

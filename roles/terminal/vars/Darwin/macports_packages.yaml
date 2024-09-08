@@ -1,7 +1,6 @@
 ---
 macports_packages:
   - fish
-  - alacritty
   - rsync
   - ctags
   - gnupg2
@@ -11,3 +10,4 @@ macports_packages:
   - podman
   - swig
   - swig-python
+  - openssh +fido2
