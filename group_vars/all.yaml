@@ -27,8 +27,9 @@ common_pip_packages:
   - ruff
   - ruff-lsp
 
-common_ruby_packages:
+common_gem_packages:
   - solargraph
+  - bundler
 
 common_node_packages:
   - serve

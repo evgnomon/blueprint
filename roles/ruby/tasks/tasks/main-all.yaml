@@ -21,6 +21,7 @@
   shell: |
     unset SDKROOT
     gem install {{ item }}
-  with_items: "{{ common_ruby_packages }}"
+  with_items: "{{ common_gem_packages }}"
   tags:
     - ruby
+    - gem

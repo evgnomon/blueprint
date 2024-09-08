@@ -5,6 +5,6 @@
   become_user: "{{ blueprint_user }}"
   win_shell: |
     gem install {{ item }}
-  with_items: "{{ common_ruby_packages }}"
+  with_items: "{{ common_gem_packages }}"
   tags:
     - ruby
