@@ -26,10 +26,21 @@ common_pip_packages:
   - coverage
   - ruff
   - ruff-lsp
+  - poetry
+  - orjson
+  - aiohttp
+  - typer
+  - pyyaml
+  - mypy
+  - pytest
+  - sphinx
+  - poethepoet
+  - furo
 
 common_gem_packages:
   - solargraph
   - bundler
+  - rails
 
 common_node_packages:
   - serve
