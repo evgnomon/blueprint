@@ -112,9 +112,9 @@ colorscheme PaperColor
 " Snippets
 let g:UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit = $HOME."/src/github.com/".$USER."/nuggets/ultisnips"
 let g:UltiSnipsSnippetDirectories=[$HOME."/src/github.com/".$USER."/nuggets/ultisnips", "UltiSnips"]
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsExpandTrigger="<CR>"           " Use Ctrl+j to expand snippets
+let g:UltiSnipsJumpForwardTrigger="<CR>"      " Use Enter to jump forward
+let g:UltiSnipsJumpBackwardTrigger="<S-CR>"   " Use Shift+Enter to jump backward
 
 " nnoremap <leader>o :CtrlPBuffer<CR>
 nnoremap <C-P> :History<CR>
