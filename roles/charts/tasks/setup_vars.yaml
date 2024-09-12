@@ -8,17 +8,6 @@
     - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
     - "{{ ansible_distribution }}.yml"
     - "{{ ansible_os_family}}.yml"
-  when: not wsl2_kernel
-
-- include_vars: "{{ item }}"
-  with_first_found:
-    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}-server.yml"
-    - "{{ ansible_distribution }}-server.yml"
-    - "{{ ansible_os_family}}-server.yml"
-    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
-    - "{{ ansible_distribution }}.yml"
-    - "{{ ansible_os_family}}.yml"
-  when: wsl2_kernel
 
 - include_vars: "{{ item }}"
   with_first_found:
