@@ -1,0 +1,44 @@
+---
+- name: Check running in the server
+  set_fact:
+    wsl2_kernel: "{{ ansible_kernel | split('-') | last == 'WSL2' }}"
+
+- include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_distribution }}.yml"
+    - "{{ ansible_os_family}}.yml"
+  when: not wsl2_kernel
+
+- include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}-server.yml"
+    - "{{ ansible_distribution }}-server.yml"
+    - "{{ ansible_os_family}}-server.yml"
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_distribution }}.yml"
+    - "{{ ansible_os_family}}.yml"
+  when: wsl2_kernel
+
+- include_vars: "{{ item }}"
+  with_first_found:
+    - "pkg_versions.yaml"
+
+- include_vars: "{{ item }}"
+  with_first_found:
+    - "pkg_charts.yaml"
+
+- include_vars: "{{ item }}"
+  with_first_found:
+    - "pkg_charts_mac.yaml"
+  when: ansible_os_family == 'Darwin'
+
+- include_vars: "{{ item }}"
+  with_first_found:
+    - "pkg_charts_debian.yaml"
+  when: ansible_os_family == 'Debian'
+
+- include_vars: "{{ item }}"
+  with_first_found:
+    - "dmg_charts.yaml"
+  when: ansible_os_family == 'Darwin'

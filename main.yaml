@@ -1,25 +1,9 @@
 ---
-- name: Set variables
+- name: Include Charts
   hosts: all
-  gather_facts: true
-  tasks:
-    - name: Read Blueprint config file
-      include_vars: "{{ item }}"
-      with_first_found:
-        - "{{ blueprint_config_file }}"
-    - name: Resolve Windows hostname
-      ansible.windows.win_command:
-        cmd: hostname
-      register: result
-      when: ansible_os_family == "Windows"
-    - name: Set fact for blueprint user
-      set_fact:
-        blueprint_host_name: "{{ result.stdout | trim }}"
-        blueprint_user_home: "{{ win_user[(result.stdout | trim)].home }}"
-        blueprint_user:  "{{ win_user[(result.stdout | trim)].user }}"
-      when: ansible_os_family == "Windows"
-    - name: Include setup variables
-      include_tasks: "tasks/setup_vars.yaml"
+  gather_facts: yes
+  roles:
+    - charts
   tags:
     - always
 
