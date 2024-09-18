@@ -112,11 +112,10 @@ colorscheme PaperColor
 " Snippets
 let g:UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit = $HOME."/src/github.com/".$USER."/nuggets/ultisnips"
 let g:UltiSnipsSnippetDirectories=[$HOME."/src/github.com/".$USER."/nuggets/ultisnips", "UltiSnips"]
-let g:UltiSnipsExpandTrigger="<CR>"           " Use Ctrl+j to expand snippets
-let g:UltiSnipsJumpForwardTrigger="<CR>"      " Use Enter to jump forward
-let g:UltiSnipsJumpBackwardTrigger="<S-CR>"   " Use Shift+Enter to jump backward
+let g:UltiSnipsExpandTrigger="<CR>"
+let g:UltiSnipsJumpForwardTrigger="<CR>"
+let g:UltiSnipsJumpBackwardTrigger="<S-CR>"
 
-" nnoremap <leader>o :CtrlPBuffer<CR>
 nnoremap <C-P> :History<CR>
 nnoremap <leader>o :Files<CR>
 
@@ -192,10 +191,7 @@ function! ShowDocumentation()
 endfunction
 
 inoremap <silent><expr> <c-@> coc#refresh()
-
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
+inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<CR>"
 nmap <S-F6> <Plug>(coc-rename)
 
 
