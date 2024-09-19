@@ -1,0 +1,11 @@
+let mapleader = ","
+set clipboard+=unnamedplus
+
+nnoremap <leader>o :action GotoFile<CR>
+nnoremap <leader>t :action GotoSymbol<CR>
+nnoremap <leader>f :action FindInPath<CR>
+nnoremap <leader>x :action ActivateProjectToolWindow<CR>
+nnoremap <leader>. :action ShowIntentionActions<CR>
+nnoremap <leader>q :action QuickJavaDoc<CR>
+nnoremap <leader>g :action GotoImplementation<CR>
+nnoremap <leader>kp :action CopyPath<CR>

@@ -28,6 +28,7 @@
     dest: "{{ blueprint_user_home }}"
   loop:
     - .vimrc
+    - .ideavimrc
     - coc-settings.json
   tags:
     - dotfiles
