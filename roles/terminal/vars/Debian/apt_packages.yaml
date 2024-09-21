@@ -55,6 +55,7 @@ apt_packages:
     - scdaemon
     - zip
     - rbenv
+    - x11-xkb-utils
   ubuntu:
     - mysql-client 
     - libpam-u2f
