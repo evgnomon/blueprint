@@ -110,6 +110,15 @@
       environment:
         CARGO_HOME: "{{ blueprint_user_home }}/.cargo"
 
+    - name: Disable Beep via Windows Registry
+      win_regedit :
+        path: 'HKLM:\SYSTEM\CurrentControlSet\Services\Beep'
+        name: Start
+        type: dword
+        data: 4
+      tags:
+        - regedit
+
   environment:
     LD_LIBRARY_PATH: "{{ blueprint_user_home }}/.pyenv/versions/3.12.0/lib/"
     PATH: "{{ custom_path }}"

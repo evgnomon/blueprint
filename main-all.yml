@@ -33,3 +33,15 @@
     - ruby
   tags:
     - ruby
+
+- name: vim role
+  hosts: all
+  strategy: free
+  gather_facts: no
+  roles:
+    - vim
+  tags:
+    - vim
+  environment:
+    PATH: "{{ custom_path }}"
+    LD_LIBRARY_PATH: "{{ ansible_env.HOME }}/.pyenv/versions/3.12.0/lib/"

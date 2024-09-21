@@ -44,14 +44,15 @@ if has('win32')
   set clipboard=unnamed
 elseif has('mac')
   set clipboard=unnamed
+  set term=xterm-256color                    " Set the terminal type to xterm with 256-color support.
 elseif has('unix')
   set clipboard=unnamedplus
+  set term=xterm-256color                    " Set the terminal type to xterm with 256-color support.
 endif
 
 set guifont=Inconsolata\ Nerd\ Font:h15    " Set the GUI font to Inconsolata Nerd Font with a height of 15.
 set t_Co=256                               " Set the terminal to use 256 colors.
 set fillchars+=stl:\ ,stlnc:\              " Customize statusline fill characters: empty space for both active and inactive status lines.
-set term=xterm-256color                    " Set the terminal type to xterm with 256-color support.
 set termencoding=utf-8                     " Set terminal encoding to UTF-8, ensuring correct character display.
 set completeopt=preview,menuone,popup      " Configure completion options: show a preview window, show the menu even with one match, and use a popup menu.
 

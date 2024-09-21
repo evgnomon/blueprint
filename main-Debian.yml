@@ -26,7 +26,6 @@
   hosts: localhost
   roles:
     - terminal
-    - vim
     - docker
   environment:
     PATH: "{{ custom_path }}"
