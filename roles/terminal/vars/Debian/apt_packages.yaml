@@ -56,6 +56,9 @@ apt_packages:
     - zip
     - rbenv
     - x11-xkb-utils
+    - libvirt-daemon-system
+    - libvirt-clients
+    - virt-manager
   ubuntu:
     - mysql-client 
     - libpam-u2f
