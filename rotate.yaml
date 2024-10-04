@@ -1,18 +1,9 @@
-- name: Set variables
-  hosts: localhost
-  gather_facts: true
-  tasks:
-    - name: Include setup variables
-      include_tasks: "tasks/setup_vars.yaml"
-  tags:
-    - always
-
-- name: include secret_files
-  hosts: localhost
-  tasks:
-    - include_vars:
-        file: "{{ item }}"
-      loop: "{{ secret_files }}"
+---
+- name: Include Charts
+  hosts: all
+  gather_facts: no
+  roles:
+    - charts
   tags:
     - always
 
@@ -21,4 +12,4 @@
   roles:
     - name: github_secret
       vars:
-        secrets: "{{ github_secrets }}"
+        secrets: "{{ secrets }}"

@@ -59,6 +59,7 @@ apt_packages:
     - libvirt-daemon-system
     - libvirt-clients
     - virt-manager
+    - libvirt-dev
   ubuntu:
     - mysql-client 
     - libpam-u2f

@@ -70,6 +70,12 @@ eget_packages:
       debian: -a extended -a tar.gz
       darwin: -a extended -a tar.gz
 
+  - name: hetznercloud/cli
+    archs:
+      windows: -f hcloud
+      debian: -f hcloud
+      darwin: -f hcloud
+
 debian_go_packages:
 
 darwin_go_packages:

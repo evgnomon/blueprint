@@ -1,4 +1,0 @@
-#!/bin/bash
-
-ANSIBLE_VAULT_PASSWORD_FILE=<(vault -d vault) ansible-playbook -i inventory rotate.yaml
-
