@@ -63,9 +63,10 @@ if status is-interactive
     end
 
     abbr gpu 'git push --set-upstream origin (git branch --show-current)'
+    abbr gpf 'git push -f'
+    abbr gca 'git commit --amend --no-edit'
     abbr npl 'npm ls -g --depth=0 --link=true'
     abbr fd  'fd -I --hidden --exclude .git'
-    abbr hcloud 'hcloud --config (~/.config/hcloud/cli.sh | psub )'
 
 
     set -x INTERACTIVE_INIT true
