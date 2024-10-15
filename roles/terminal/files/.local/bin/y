@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ -f "playbooks/main.yaml" ]; then
+    yacht "$@"
+    exit $?
+fi
+
+rejuice "$@"
+
+
