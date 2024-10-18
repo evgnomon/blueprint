@@ -1,15 +1,16 @@
 ---
 macports_packages:
-  - fish
-  - rsync
   - ctags
+  - fish
   - gnupg2
+  - jq
+  - openssh +fido2
   - pinentry-mac
-  - tree
-  - the_silver_searcher
   - podman
+  - rbenv
+  - rsync
+  - ruby-build
   - swig
   - swig-python
-  - openssh +fido2
-  - rbenv
-  - ruby-build
+  - the_silver_searcher
+  - tree
