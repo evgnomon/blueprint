@@ -1,5 +1,9 @@
 [font]
+{% if ansible_os_family == "Debian" %}
+size = 20
+{% else %}
 size = 16
+{% endif %}
 
 {% if ansible_os_family != "Windows" %}
 [font.bold]
