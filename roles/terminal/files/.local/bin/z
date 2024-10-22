@@ -1,4 +1,4 @@
 #!/bin/sh
 
-yacht -vt z "$@"
+y -vt z "$@"
 
