@@ -3,6 +3,8 @@
   command: port selfupdate
   tags:
     - port
+    - never
+    - upgrade
 
 - name: Update MacPort outdated packages
   command: port upgrade outdated

@@ -1,9 +1,11 @@
 ---
 macports_packages:
+  - coreutils
   - ctags
   - fish
   - gnupg2
   - jq
+  - libyaml
   - openssh +fido2
   - pinentry-mac
   - podman
