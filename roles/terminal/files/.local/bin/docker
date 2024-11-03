@@ -1,8 +1,12 @@
 #!/bin/sh
 
 if [ -f /usr/local/bin/docker ]; then
+  if [ $(uname) = "Darwin" ]; then
+    /usr/local/bin/docker --config $HOME/.docker $@
+    exit $?
+  fi
   sudo /usr/local/bin/docker --config $HOME/.docker $@
   exit $?
 fi
 
-sudo /usr/bin/docker --config $HOME/.docker $@
+/usr/bin/docker --config $HOME/.docker $@

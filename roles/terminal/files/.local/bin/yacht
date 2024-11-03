@@ -14,7 +14,8 @@ fi
 docker run -it --rm -v.:/github/workspace \
   -v $HOME/.blueprint:/root/.blueprint \
   -v $HOME/.ssh:/root/.ssh \
-  -e "INPUT_VAULT_PASS=$INPUT_VAULT_PASS" \
+  -e "INPUT_VAULT_PASS" \
+  -e 'INPUT_VAULT' \
   -e "INPUT_PLAYBOOK=$INPUT_PLAYBOOK" \
   -e "INPUT_ARGS=$@" \
   --workdir /github/workspace yacht
