@@ -14,9 +14,9 @@ common_pip_packages:
   - pip
   - docker
   - setuptools
-  - git-review  # needed by Zuul
-  - ansible-lint  # check Ansible changes before commit
-  - yamllint  # Yaml issues exposed in Coc vim
+  - git-review # needed by Zuul
+  - ansible-lint # check Ansible changes before commit
+  - yamllint # Yaml issues exposed in Coc vim
   - pre-commit
   - pylint
   - podman-compose
@@ -36,6 +36,7 @@ common_pip_packages:
   - sphinx
   - poethepoet
   - furo
+  - hcloud
 
 common_gem_packages:
   - solargraph
@@ -56,6 +57,7 @@ common_go_packages:
   # - github.com/opentofu/opentofu/cmd/tofu@latest # Not supported
   - github.com/gokcehan/lf@latest
   - github.com/zyedidia/eget@latest
+  - github.com/digitalocean/doctl/cmd/doctl@latest
 
 eget_packages:
   - name: cli/cli
@@ -64,7 +66,7 @@ eget_packages:
       debian: -a tar.gz
       darwin: -a zip
 
-  - name: gohugoio/hugo 
+  - name: gohugoio/hugo
     archs:
       windows: -a extended -a zip
       debian: -a extended -a tar.gz
