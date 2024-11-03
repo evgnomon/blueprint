@@ -11,10 +11,6 @@ mk_role() {
   mkdir -p "roles/$ROLE_NAME"/{tasks,handlers,files,templates,vars,defaults,meta}
   
   echo "---" > "roles/$ROLE_NAME/tasks/main.yaml"
-  echo "---" > "roles/$ROLE_NAME/handlers/main.yaml"
-  echo "---" > "roles/$ROLE_NAME/vars/main.yaml"
-  echo "---" > "roles/$ROLE_NAME/defaults/main.yaml"
-  echo "---" > "roles/$ROLE_NAME/meta/main.yaml"
 
   cat << EOF > "roles.yaml"
 - hosts: localhost
