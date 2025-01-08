@@ -37,6 +37,7 @@ common_pip_packages:
   - poethepoet
   - furo
   - hcloud
+  - pandas
 
 common_gem_packages:
   - solargraph
@@ -70,7 +71,7 @@ eget_packages:
     archs:
       windows: -a extended -a zip
       debian: -a extended -a tar.gz
-      darwin: -a extended -a tar.gz
+      darwin: -a extended -a tar.gz -a withdeploy
 
   - name: hetznercloud/cli
     archs:
