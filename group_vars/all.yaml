@@ -70,7 +70,7 @@ eget_packages:
   - name: gohugoio/hugo
     archs:
       windows: -a extended -a zip
-      debian: -a extended -a tar.gz
+      debian: -a extended -a tar.gz -a withdeploy
       darwin: -a extended -a tar.gz -a withdeploy
 
   - name: hetznercloud/cli
