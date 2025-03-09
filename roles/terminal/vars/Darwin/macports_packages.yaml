@@ -16,3 +16,4 @@ macports_packages:
   - swig-python
   - the_silver_searcher
   - tree
+  - aria2

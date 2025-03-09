@@ -38,6 +38,7 @@ common_pip_packages:
   - furo
   - hcloud
   - pandas
+  - yt-dlp
 
 common_gem_packages:
   - solargraph

@@ -60,6 +60,7 @@ apt_packages:
     - libvirt-clients
     - virt-manager
     - libvirt-dev
+    - aria2
   ubuntu:
     - mysql-client 
     - libpam-u2f
