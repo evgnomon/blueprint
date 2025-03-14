@@ -1,43 +1,43 @@
 ---
 pkg_versions:
   java:
-    version: 21.0.6 # Assuming a major update to Java 22
+    version: 21.0.6
     build: 7
   idea:
-    version_full: 243.25659.59 # Hypothetical 2025.1 release
+    version_full: 243.25659.59
     version: 2024.3.4.1
   localsend:
-    version: 1.17.0 # Minor + patch update
+    version: 1.17.0
   yubico_authenticator:
-    version: 7.1.2 # Minor + patch update
+    version: 7.1.2
   fzf:
-    version: 0.60.3 # Minor update
+    version: 0.60.3
   jetbrains_mono:
-    version: 3.2.1 # Minor + patch update
+    version: 3.2.1
   go:
-    version: 1.24.0 # Minor update
+    version: 1.24.0
   node:
-    version: 22.14.0 # Assuming a major update to Node 22
+    version: 22.14.0
   scala:
-    version: 3.5.1 # Minor + patch update
+    version: 3.5.1
   sbt:
-    version: 1.10.10 # Minor update
+    version: 1.10.10
   maven:
-    version: 3.9.9 # Minor update
+    version: 3.9.9
   gradle:
-    version: 8.13 # Minor + patch update
+    version: 8.13
   cmake:
-    version: 3.31.6 # Minor update
+    version: 3.31.6
   bazelisk:
-    version: 1.22.0 # Minor update
+    version: 1.22.0
   tofu:
-    version: 1.9.0 # Minor + patch update
+    version: 1.9.0
   macports:
-    version: 2.10.5-15 # Minor update
+    version: 2.10.5-15
   alacritty:
-    version: 0.15.1 # Minor + patch update
+    version: 0.15.1
   ruby:
-    version: 3.3.5 # Minor update
+    version: 3.1.2
   debian:
     version: 12
-    build: 20250210-2019 # Hypothetical newer build
+    build: 20250210-2019
