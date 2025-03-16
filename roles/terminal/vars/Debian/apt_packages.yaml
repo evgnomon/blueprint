@@ -51,7 +51,7 @@ apt_packages:
     - azure-cli
     - qbittorrent
     - heif-gdk-pixbuf
-    - nordvpn
+    - mullvad-vpn
     - scdaemon
     - zip
     - rbenv
