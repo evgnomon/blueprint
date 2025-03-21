@@ -1,3 +1,0 @@
-#!/usr/bin/env fish
-hcloud --config (~/.config/hcloud/cli.sh | psub ) $argv
-
