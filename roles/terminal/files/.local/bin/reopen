@@ -1,8 +1,0 @@
-#!/bin/sh
-REPO_DIR=$(basename $(pwd))
-
-cd ..
-  ORG_DIR=$(basename $(pwd))
-cd -
-
-open https://github.com/$ORG_DIR/$REPO_DIR/actions > /dev/null 2>&1
