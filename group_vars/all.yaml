@@ -60,6 +60,7 @@ common_go_packages:
   - github.com/gokcehan/lf@latest
   - github.com/zyedidia/eget@latest
   - github.com/digitalocean/doctl/cmd/doctl@latest
+  - golang.org/x/tools/cmd/godoc@latest
 
 eget_packages:
   - name: cli/cli
