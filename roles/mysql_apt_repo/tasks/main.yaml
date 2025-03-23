@@ -1,0 +1,10 @@
+---
+- name: Install MySQL Repo
+  become: true
+  shell: |
+    curl -fsSLo /usr/share/keyrings/mullvad-keyring.asc https://repository.mullvad.net/deb/mullvad-keyring.asc
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/mysql.asc]  http://repo.mysql.com/apt/$( lsb_release -is | tr '[:upper:]' '[:lower:]' )/ $( lsb_release -cs ) mysql-8.0" | sudo tee /etc/apt/sources.list.d/mysql.list
+    echo "deb-src [arch=amd64 signed-by=/usr/share/keyrings/mysql.asc] http://repo.mysql.com/apt/$( lsb_release -is | tr '[:upper:]' '[:lower:]' )/ $( lsb_release -cs ) mysql-8.0" | sudo tee -a /etc/apt/sources.list.d/mysql.list
+  when: ansible_os_family == "Debian"
+  tags:
+    always

@@ -21,7 +21,7 @@
       tags:
         - pkg
 
-- name: localhost roles for Debian family
+- name: Localhost roles for Debian family
   gather_facts: no
   hosts: localhost
   roles:

@@ -66,4 +66,4 @@ apt_packages:
     - mysql-client 
     - libpam-u2f
   debian:
-    - default-mysql-client
+    - mysql-community-client

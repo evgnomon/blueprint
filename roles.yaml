@@ -1,0 +1,7 @@
+- hosts: localhost
+  gather_facts: no
+  roles:
+    - mysql_client
+  tags:
+    - never
+    - mysql_client
