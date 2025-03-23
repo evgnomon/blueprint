@@ -61,6 +61,7 @@ common_go_packages:
   - github.com/zyedidia/eget@latest
   - github.com/digitalocean/doctl/cmd/doctl@latest
   - golang.org/x/tools/cmd/godoc@latest
+  - github.com/go-delve/delve/cmd/dlv@latest
 
 eget_packages:
   - name: cli/cli
