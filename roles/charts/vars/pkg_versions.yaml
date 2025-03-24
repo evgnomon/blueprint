@@ -41,3 +41,5 @@ pkg_versions:
   debian:
     version: 12
     build: 20250210-2019
+  docker:
+    version: 184744

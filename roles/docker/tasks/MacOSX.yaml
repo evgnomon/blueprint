@@ -17,6 +17,6 @@
   vars:
     dmg_file: *dmg_file
   args:
-    creates: /usr/local/bin/docker
+    creates: /Applications/Docker.app/Contents/Resources/bin/docker
   tags:
-    - docker
+    - never

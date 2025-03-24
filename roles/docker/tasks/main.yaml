@@ -14,4 +14,4 @@
     - "tasks/{{ ansible_distribution }}.yaml"
     - "tasks/{{ ansible_os_family}}.yaml"
   tags:
-    - docker
+    - always
