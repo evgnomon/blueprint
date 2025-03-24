@@ -43,3 +43,9 @@ pkg_versions:
     build: 20250210-2019
   docker:
     version: 184744
+  mysql:
+    version: 8.0.41
+    major: 8.0
+    os:
+      darwin: macos15
+      debian: linux-glibc2.28

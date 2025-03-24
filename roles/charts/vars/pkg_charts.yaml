@@ -134,7 +134,21 @@ pkg_templates:
           }
         }[ansible_os_family][ansible_architecture] | default('')
       }}
-      
+  mysql:
+    ext: &pkg_templates_mysql_ext >-
+      {{
+        {
+          'Darwin': 'tar.gz',
+          'Debian': 'tar.xz',
+        }[ansible_os_family] | default('')
+      }}
+    inflate: &pkg_templates_mysql_inflate >-
+      {{
+        {
+          'Darwin': 'tar -C %(dest)s -xzvf %(src)s',
+          'Debian': 'tar -C %(dest)s -xJvf %(src)s',
+        }[ansible_os_family] | default('')
+      }}
 
 
 pkg:
@@ -364,3 +378,16 @@ pkg:
         creates: debian_{{ pkg_versions.debian.version }}.bin
         inflate: &inflate_image |
           mv '%(src)s' '%(dest)s'
+
+    - name: mysql
+      version: "{{ pkg_versions.mysql.version }}"
+      template:
+        os: *pkg_templates_rustup_os
+        arch: *pkg_templates_rustup_arch
+        url: https://dev.mysql.com/get/Downloads/MySQL-{{ pkg_versions.mysql.major }}/mysql-%(version)s-{{ pkg_versions.mysql.os[(ansible_os_family | lower )] }}-{{ pkg_templates.rustup.arch }}.{{ pkg_templates.mysql.ext }}
+        ext: "{{ pkg_templates.mysql.ext }}"
+        inflate: "{{ pkg_templates.mysql.inflate }}"
+        creates: mysql-{{ pkg_versions.mysql.version }}-{{ pkg_versions.mysql.os[(ansible_os_family | lower )] }}-{{ pkg_templates.rustup.arch }}/bin/mysql
+      bins:
+        - name: mysql
+          src: mysql-{{ pkg_versions.mysql.version }}-{{ pkg_versions.mysql.os[(ansible_os_family | lower )] }}-{{ pkg_templates.rustup.arch }}/bin/mysql
