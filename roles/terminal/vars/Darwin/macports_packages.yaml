@@ -1,7 +1,6 @@
 ---
 macports_packages:
   - coreutils
-  - ctags
   - fish
   - gnupg2
   - jq
@@ -17,3 +16,5 @@ macports_packages:
   - the_silver_searcher
   - tree
   - aria2
+  - universal-ctags
+
