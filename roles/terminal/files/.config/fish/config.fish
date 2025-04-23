@@ -13,6 +13,7 @@ if status is-interactive
     set -gx PATH "$HOME/.pyenv/shims" $PATH
     set -gx PATH "$HOME/.rbenv/shims" $PATH
     set -gx GEM_HOME "$HOME/.gem"
+    set -gx CODE_HOME "$HOME/src"
     set -px PATH     "$GEM_HOME/bin"
 
 
