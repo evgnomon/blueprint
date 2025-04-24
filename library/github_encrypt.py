@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import base64
 from dataclasses import dataclass
 from http import HTTPStatus

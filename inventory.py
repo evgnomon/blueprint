@@ -51,7 +51,6 @@ def get_inventory() -> dict[str, dict[str, Any]]:
                 "hosts": ["localhost"],
                 "vars": {
                     "ansible_connection": "local",
-                    "ansible_python_interpreter": "/usr/bin/python3",
                 },
             },
         }
