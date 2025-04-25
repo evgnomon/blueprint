@@ -292,7 +292,7 @@
   with_items: "{{ git_repos + common_git_repos }}"
   when: ansible_os_family != "Windows"
   tags:
-    - git
+    - git_fetch
     - never
 
 - name: Config git profiles
@@ -314,7 +314,6 @@
   ignore_errors: true
   tags:
     - git
-    - git_config
 
 - name: Add the current user to the nordvpn group
   become: true
