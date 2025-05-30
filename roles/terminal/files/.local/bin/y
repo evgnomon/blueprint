@@ -30,7 +30,9 @@ fi
 
 INPUT_VAULT_PASS=$(vault -d $VAULT_FILE)
 INPUT_VAULT=$(cat $SECRET_FILE)
-INPUT_PLAYBOOK=playbooks/main.yaml
+if [ -z "$INPUT_PLAYBOOK" ]; then
+  INPUT_PLAYBOOK=playbooks/main.yaml
+fi
 export YACHT_REF_NAME=$(git symbolic-ref --short HEAD)
 export ANSIBLE_COLLECTIONS_PATH=$CODE_HOME/github.com/evgnomon/catamaran/ansible_collections
 
