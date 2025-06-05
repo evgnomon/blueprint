@@ -62,6 +62,7 @@ apt_packages:
     - libvirt-dev
     - aria2
     - net-tools
+    - imagemagick
   ubuntu:
     - mysql-client 
     - libpam-u2f
