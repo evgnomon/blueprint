@@ -54,6 +54,12 @@ usbipd bind -i your_device_id
 usbipd attach --wsl -i your_device_id
 ```
 
+### error: Loading vhci_hcd failed
+Then load  `vhci_hcd` module in WSL2.
+```
+sudo modprobe vhci_hcd
+```
+
 find the device id using `usbipd.exe list`.
 
 ## Hyper-V

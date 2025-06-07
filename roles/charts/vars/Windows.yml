@@ -59,7 +59,6 @@ winget_packages:
   - GnuPG.GnuPG
   - LocalSend.LocalSend
   - qBittorrent.qBittorrent
-  - NordSecurity.NordVPN
   - Python.Python.3.12
   - JetBrains.IntelliJIDEA.Community
   - RubyInstallerTeam.Ruby.3.1
@@ -69,6 +68,7 @@ winget_packages:
 winget_packages_autoremove:
   - Hugo.Hugo.Extended
   - 9MSSGKG348SP
+  - NordSecurity.NordVPN
 
 pacman_packages:
   - mingw-w64-x86_64-gcc

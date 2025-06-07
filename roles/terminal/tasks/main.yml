@@ -51,15 +51,6 @@
   tags:
     - always
 
-- name: Install NordVPN Repo
-  become: true
-  shell: |
-    curl https://repo.nordvpn.com/gpg/nordvpn_public.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/nordvpn.gpg
-    echo "deb https://repo.nordvpn.com/deb/nordvpn/debian stable main" > /etc/apt/sources.list.d/nordvpn.list
-  when: ansible_os_family == "Debian"
-  tags:
-    nordvpn
-
 - name: Install Mullvad Repo
   become: true
   shell: |
