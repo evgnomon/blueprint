@@ -39,6 +39,7 @@
     - terminal
     - python
     - docker
+    - dotnet
   environment:
     PATH: "{{ custom_path }}"
     MACPORTS_HOME: "{{ macports_home }}"

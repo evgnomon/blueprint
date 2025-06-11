@@ -1,0 +1,19 @@
+---
+- name: Download dotnet-install.sh script
+  ansible.builtin.get_url:
+    url: https://dot.net/v1/dotnet-install.sh
+    dest: "/tmp/dotnet-install.sh"
+    mode: '0755'
+
+- name: Execute dotnet-install.sh script
+  ansible.builtin.command:
+    cmd: "/tmp/dotnet-install.sh"
+    creates: "{{ lookup('env','HOME') }}/.dotnet/dotnet"
+
+- name: Create symbolic link for dotnet executable
+  ansible.builtin.file:
+    src: "{{ lookup('env','HOME') }}/.dotnet/dotnet"
+    dest: "{{ lookup('env','HOME') }}/.local/bin/dotnet"
+    state: link
+    mode: '0755'
+    force: yes
