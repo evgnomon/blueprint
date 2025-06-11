@@ -88,6 +88,8 @@ eget_packages:
       debian: -a ^core
       darwin: -a ^core
     to: z
+  - name: terraform-linters/tflint
+    to: tflint
 
 debian_go_packages:
 
