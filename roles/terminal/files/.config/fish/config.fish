@@ -30,6 +30,7 @@ if status is-interactive
     set -xa PATH        $HOME/.yarn/bin
     set -xa PATH        $HOME/src/github.com/$USER/mybag/bin
 
+
     set -x  LIBVIRT_DEFAULT_URI qemu:///system
 
     set -x  NNN_PLUG    "o:fzopen;c:cdpath;y:cbcopy-mac;"
@@ -41,12 +42,14 @@ if status is-interactive
 
     switch (uname)
         case Darwin
+            set -ax CDPATH /Volumes
             # macports
             set -x  MACPORTS_HOME $HOME/.macports
             set -xp PATH $HOME/.macports/bin
             set -xp PATH $HOME/.macports/sbin
             set -x  PKG_CONFIG_PATH $MACPORTS_HOME/libexec/openssl3/lib/pkgconfig
-        # case Linux
+        case Linux
+            set -ax CDPATH /media/$USER
     end
 
     eval (ssh-agent -c) > /dev/null

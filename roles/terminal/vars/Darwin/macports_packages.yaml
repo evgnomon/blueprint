@@ -17,4 +17,5 @@ macports_packages:
   - tree
   - aria2
   - universal-ctags
+  - ImageMagick
 
