@@ -54,4 +54,16 @@ dmg:
         path: "Docker.app"
         url: https://desktop.docker.com/mac/main/amd64/{{ pkg_versions.docker.version }}/Docker.dmg
 
+    - name: Wasabi
+      version: "{{ pkg_versions.wasabi.version }}"
+      template:
+        os: "darwin"
+        arch: "x64"
+        ext: "dmg"
+        path: "Wasabi Wallet.app"
+        url: https://github.com/WalletWasabi/WalletWasabi/releases/download/v{{ pkg_versions.wasabi.version }}/Wasabi-{{ pkg_versions.wasabi.version }}.dmg
+
+
+
+
 

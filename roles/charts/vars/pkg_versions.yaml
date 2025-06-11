@@ -49,3 +49,5 @@ pkg_versions:
     os:
       darwin: macos15
       debian: linux-glibc2.28
+  wasabi:
+    version: 2.6.0
