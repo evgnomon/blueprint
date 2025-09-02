@@ -4,8 +4,8 @@ pkg_versions:
     version: 21.0.6
     build: 7
   idea:
-    version_full: 243.25659.59
-    version: 2024.3.4.1
+    version_full: 252.25557.131
+    version: 2025.2.1
   localsend:
     version: 1.17.0
   yubico_authenticator:
@@ -17,7 +17,7 @@ pkg_versions:
   go:
     version: 1.24.0
   node:
-    version: 22.14.0
+    version: 24.7.0
   scala:
     version: 3.5.1
   sbt:
