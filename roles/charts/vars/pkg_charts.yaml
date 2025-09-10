@@ -149,6 +149,20 @@ pkg_templates:
           'Debian': 'tar -C %(dest)s -xJvf %(src)s',
         }[ansible_os_family] | default('')
       }}
+  ollama:
+    osarch: >-
+      {{
+        {
+          'Darwin': {
+            'x86_64': 'darwin',
+            'aarch64': 'darwin'
+          },
+          'Debian': {
+            'x86_64': 'linux-amd64',
+            'aarch64': 'linux-arm64'
+          },
+        }[ansible_os_family][ansible_architecture] | default('')
+      }}
 
 
 pkg:
@@ -391,3 +405,16 @@ pkg:
       bins:
         - name: mysql
           src: mysql-{{ pkg_versions.mysql.version }}-{{ pkg_versions.mysql.os[(ansible_os_family | lower )] }}-{{ pkg_templates.rustup.arch }}/bin/mysql
+
+    - name: ollama
+      version: "{{ pkg_versions.ollama.version }}"
+      template:
+        os: *pkg_templates_rustup_os
+        arch: *pkg_templates_rustup_arch
+        url: https://github.com/ollama/ollama/releases/download/v{{ pkg_versions.ollama.version }}/ollama-{{ pkg_templates.ollama.osarch }}.tgz
+        ext: tgz
+        inflate: *inflate_targz
+        creates: bin/ollama
+      bins:
+        - name: ollama
+          src: bin/ollama

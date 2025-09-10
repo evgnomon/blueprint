@@ -63,6 +63,8 @@ apt_packages:
     - aria2
     - net-tools
     - imagemagick
+    - dmidecode
+    - libcurl4-gnutls-dev # to use curl in C code
   ubuntu:
     - mysql-client 
     - libpam-u2f

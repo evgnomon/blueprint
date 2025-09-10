@@ -39,6 +39,7 @@ common_pip_packages:
   - hcloud
   - pandas
   - yt-dlp
+  - uv
 
 common_gem_packages:
   - solargraph
