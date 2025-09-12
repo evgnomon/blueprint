@@ -4,10 +4,10 @@
     unset SDKROOT
     rbenv install {{ pkg_versions.ruby.version }}
   register: ruby_install
-  failed_when: 
+  failed_when:
     - ruby_install.rc != 0
     - not "already exists" in ruby_install.stderr
-  changed_when: 
+  changed_when:
     - ruby_install.rc == 0
   tags:
     - ruby

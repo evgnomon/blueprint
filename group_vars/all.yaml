@@ -84,7 +84,7 @@ eget_packages:
       darwin: -f hcloud
 
   - name: evgnomon/zygote
-    archs: 
+    archs:
       windows: -a ^core
       debian: -a ^core
       darwin: -a ^core

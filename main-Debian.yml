@@ -1,7 +1,7 @@
 ---
 - name: Install packages for Debian family
   hosts: localhost
-  gather_facts: no
+  gather_facts: false
   tasks:
     - name: Include pkg role
       with_items: "{{ pkg.charts }}"
@@ -22,7 +22,7 @@
         - pkg
 
 - name: Localhost roles for Debian family
-  gather_facts: no
+  gather_facts: false
   hosts: localhost
   roles:
     - terminal

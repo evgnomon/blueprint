@@ -1,10 +1,10 @@
 ---
 - name: Update PATH
   hosts: win
-  gather_facts: no
+  gather_facts: false
   become_user: "{{ blueprint_user }}"
   become_method: runas
-  become: yes
+  become: true
   tasks:
     - name: Add a directory to the user PATH
       ansible.windows.win_environment:
@@ -17,15 +17,15 @@
 
 - name: Install Packages
   hosts: win
-  gather_facts: no
+  gather_facts: false
   become_user: "{{ blueprint_user }}"
-  become: yes
+  become: true
   become_method: runas
   tasks:
     - name: Install WinGet packages
-      ansible.windows.win_shell: | 
+      ansible.windows.win_shell: |
         winget install --accept-source-agreements --accept-package-agreements --disable-interactivity --uninstall-previous -e --id {{ item }}
-      ignore_errors: yes
+      ignore_errors: true
       with_items: "{{ winget_packages }}"
       register: result
       failed_when:
@@ -98,7 +98,7 @@
       loop: "{{ common_cargo_packages }}"
       tags:
         - cargo
-      environment: 
+      environment:
         CARGO_HOME: "{{ blueprint_user_home }}/.cargo"
 
     - name: Install Windows specific Cargo packages
@@ -111,7 +111,7 @@
         CARGO_HOME: "{{ blueprint_user_home }}/.cargo"
 
     - name: Disable Beep via Windows Registry
-      win_regedit :
+      win_regedit:
         path: 'HKLM:\SYSTEM\CurrentControlSet\Services\Beep'
         name: Start
         type: dword

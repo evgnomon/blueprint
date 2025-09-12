@@ -218,6 +218,8 @@ pkg:
           src: *bin_src_bin
         - name: npm
           src: *bin_src_bin
+        - name: claude
+          src: *bin_src_bin
 
     - name: go
       archs: *archs-node
@@ -278,7 +280,6 @@ pkg:
           chmod u+x '%(src)s'
           RUSTUP_INIT_SKIP_PATH_CHECK=yes %(src)s -y
         creates: nothing
-    
     - name: scala
       version: "{{ pkg_versions.scala.version }}"
       template:

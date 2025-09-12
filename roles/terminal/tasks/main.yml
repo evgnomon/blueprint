@@ -25,7 +25,7 @@
   vars:
     target: /etc
     become: true
-  when: 
+  when:
     - item.state == 'file'
     - ansible_os_family == "Debian"
   with_filetree: ../templates/{{ ansible_distribution }}/etc
@@ -91,7 +91,7 @@
     cache_valid_time: 3600
     name: "{{ user_apt_packages.share }}"
     state: present
-  when: 
+  when:
     - ansible_os_family == "Debian"
     - user_apt_packages is defined
   tags:
@@ -126,7 +126,7 @@
 - name: auto-remove Apt packages
   become: true
   ansible.builtin.apt:
-    autoremove: yes
+    autoremove: true
   when: ansible_os_family == "Debian"
   tags:
     - never
@@ -232,7 +232,7 @@
   shell: |
     git -C '{{ repo_dest }}' bundle create '{{ repo_name }}.bundle' --all
   vars: *git_repos_vars
-  when: 
+  when:
     - ansible_os_family != "Windows"
     - wsl2_kernel
   with_items: "{{ git_repos + common_git_repos }}"
@@ -253,7 +253,7 @@
 
 - name: Copy bundles to Windows remote
   win_copy:
-    src:  '{{ repo_dest | replace(ansible_env.HOME , lookup("env", "HOME")) }}/{{ repo_name }}.bundle'
+    src: '{{ repo_dest | replace(ansible_env.HOME , lookup("env", "HOME")) }}/{{ repo_name }}.bundle'
     dest: '{{ repo_dest_dir }}'
   vars: *git_repos_vars
   ignore_errors: true
@@ -311,7 +311,7 @@
   ansible.builtin.user:
     name: "{{ ansible_user_id }}"
     groups: nordvpn
-    append: yes
+    append: true
   when:
     - ansible_os_family == "Debian"
   tags:

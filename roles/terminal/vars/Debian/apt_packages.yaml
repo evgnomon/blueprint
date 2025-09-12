@@ -66,7 +66,7 @@ apt_packages:
     - dmidecode
     - libcurl4-gnutls-dev # to use curl in C code
   ubuntu:
-    - mysql-client 
+    - mysql-client
     - libpam-u2f
   debian:
     - mysql-community-client

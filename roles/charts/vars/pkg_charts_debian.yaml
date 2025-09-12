@@ -37,8 +37,8 @@ pkg_debian:
         os: *pkg_templates_idea_os
         arch: *pkg_templates_idea_arch
         url: https://download.jetbrains.com/%(name)s/%(name)sIC-%(version)s{{ pkg_templates_debian.idea.arch }}.{{ pkg_templates_debian.idea.os }}
-        ext: &ext_targz tar.gz 
-        inflate: &inflate_targz tar -C %(dest)s -xzvf %(src)s 
+        ext: &ext_targz tar.gz
+        inflate: &inflate_targz tar -C %(dest)s -xzvf %(src)s
         creates: idea-IC-{{ pkg_versions.idea.version_full }}/bin/idea.sh
       bins:
         - name: idea

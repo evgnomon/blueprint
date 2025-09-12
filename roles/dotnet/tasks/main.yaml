@@ -16,4 +16,4 @@
     dest: "{{ lookup('env','HOME') }}/.local/bin/dotnet"
     state: link
     mode: '0755'
-    force: yes
+    force: true

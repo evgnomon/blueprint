@@ -1,5 +1,5 @@
 - name: Install Alacritty
-  gather_facts: no
+  gather_facts: false
   hosts:
     - all
   roles:
@@ -8,7 +8,7 @@
     - alacritty
 
 - name: Install Pip packages
-  gather_facts: no
+  gather_facts: false
   hosts: all
   vars:
     become_flag: "{{ ansible_os_family == 'Windows' }}"
@@ -19,7 +19,7 @@
     - pip
 
 - name: Install Eget packages
-  gather_facts: no
+  gather_facts: false
   hosts: all
   roles:
     - eget
@@ -27,7 +27,7 @@
     - eget
 
 - name: Install Ruby packages
-  gather_facts: no
+  gather_facts: false
   hosts: all
   roles:
     - ruby
@@ -37,7 +37,7 @@
 - name: vim role
   hosts: all
   strategy: free
-  gather_facts: no
+  gather_facts: false
   roles:
     - vim
   tags:
