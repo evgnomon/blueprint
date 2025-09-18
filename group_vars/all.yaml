@@ -40,6 +40,9 @@ common_pip_packages:
   - pandas
   - yt-dlp
   - uv
+  - azure-core
+  - pydo
+  - boto3
 
 common_gem_packages:
   - solargraph

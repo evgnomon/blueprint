@@ -2,6 +2,6 @@
 
 sudo -v
 cd "$HOME/src/github.com/$USER/blueprint"
-  ansible-playbook -i inventory.py  main.yaml "$@"
+  ansible-playbook -K -i inventory.py  main.yaml "$@"
 cd - > /dev/null
 sudo -K

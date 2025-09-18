@@ -12,8 +12,8 @@ pkg_versions:
     version: 7.1.2
   fzf:
     version: 0.60.3
-  jetbrains_mono:
-    version: 3.2.1
+  nerdfonts:
+    version: 3.4.0
   go:
     version: 1.24.0
   node:
@@ -53,3 +53,5 @@ pkg_versions:
     version: 2.6.0
   ollama:
     version: 0.11.10
+  kubectl:
+    version: 1.33.1

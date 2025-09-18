@@ -1,6 +1,8 @@
 ---
 - name: Update Pip packages
-  shell: pip install --upgrade {{ item }}
+  pip:
+    name: "{{ item }}"
+    state: latest
   with_items: "{{ common_pip_packages }}"
   tags:
     - pip

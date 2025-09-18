@@ -61,7 +61,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'voldikss/vim-floaterm'
 
 " Colors
-Plug 'flazz/vim-colorschemes'
+Plug 'vv9k/vim-github-dark', {'commit': '25361ac70c66d776bdcf5d749042f07e6e7f50ff'}
 
 " Search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -109,14 +109,11 @@ let g:coc_global_extensions = [
 nmap <silent> <leader>kk ?function<cr>:noh<cr><Plug>(jsdoc)
 
 " Must be after laoding plugins
-colorscheme PaperColor
+colorscheme ghdark
 
 " Snippets
 let g:UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit = $HOME."/src/github.com/".$USER."/nuggets/ultisnips"
 let g:UltiSnipsSnippetDirectories=[$HOME."/src/github.com/".$USER."/nuggets/ultisnips", "UltiSnips"]
-" let g:UltiSnipsExpandTrigger="<CR>"
-" let g:UltiSnipsJumpForwardTrigger="<CR>"
-" let g:UltiSnipsJumpBackwardTrigger="<S-CR>"
 
 nnoremap <C-P> :History<CR>
 nnoremap <leader>o :Files<CR>

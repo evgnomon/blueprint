@@ -1,25 +1,56 @@
+[colors.primary]
+background = '#0d1117'
+foreground = '#c9d1d9'
+
+# Cursor colors
+[colors.cursor]
+text = '#0d1117'
+cursor = '#c9d1d9'
+
+# Normal colors
+[colors.normal]
+black = '#484f58'
+red = '#ff7b72'
+green = '#58a6ff'
+yellow = '#d29922'
+blue = '#58a6ff'
+magenta = '#bc8cff'
+cyan = '#39c5cf'
+white = '#b1bac4'
+
+# Bright colors
+[colors.bright]
+black = '#6e7681'
+red = '#ffa198'
+green = '#79c0ff'
+yellow = '#e3b341'
+blue = '#79c0ff'
+magenta = '#bc8cff'
+cyan = '#39c5cf'
+white = '#b1bac4'
+
 [font]
 {% if ansible_os_family == "Darwin" %}
-size = 20
+size = 18
 {% else %}
-size = 16
+size = 14
 {% endif %}
 
 {% if ansible_os_family != "Windows" %}
 [font.bold]
-family = "JetBrainsMono Nerd Font"
+family = "{{ default_font_family }}"
 style = "Bold"
 
 [font.bold_italic]
-family = "JetBrainsMono Nerd Font"
+family = "{{ default_font_family }}"
 style = "Bold Italic"
 
 [font.italic]
-family = "JetBrainsMono Nerd Font"
+family = "{{ default_font_family }}"
 style = "Italic"
 
 [font.normal]
-family = "JetBrainsMono Nerd Font"
+family = "{{ default_font_family }}"
 style = "Regular"
 {% endif %}
 

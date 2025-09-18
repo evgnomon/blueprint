@@ -261,7 +261,7 @@ pkg:
           src: fzf
 
     - name: jetbrains-mono
-      version: "{{ pkg_versions.jetbrains_mono.version }}"
+      version: "{{ pkg_versions.nerdfonts.version }}"
       template:
         os: all
         arch: share
@@ -269,6 +269,26 @@ pkg:
         inflate: &inflate_unzip unzip -o -d %(dest)s %(src)s
         ext: &ext_zip zip
         creates: JetBrainsMonoNerdFontMono-*.ttf
+
+    - name: firamono
+      version: "{{ pkg_versions.nerdfonts.version }}"
+      template:
+        os: all
+        arch: share
+        url: https://github.com/ryanoasis/nerd-fonts/releases/download/v%(version)s/FiraMono.zip
+        inflate: *inflate_unzip
+        ext: *ext_zip
+        creates: FiraMonoNerdFontMono-*.ttf
+
+    - name: cascadia-mono
+      version: "{{ pkg_versions.nerdfonts.version }}"
+      template:
+        os: all
+        arch: share
+        url: https://github.com/ryanoasis/nerd-fonts/releases/download/v%(version)s/CascadiaMono.zip
+        inflate: *inflate_unzip
+        ext: *ext_zip
+        creates: CaskaydiaMonoNerdFontMono-*.ttf
 
     - name: rustup-init
       version: latest
@@ -280,6 +300,7 @@ pkg:
           chmod u+x '%(src)s'
           RUSTUP_INIT_SKIP_PATH_CHECK=yes %(src)s -y
         creates: nothing
+
     - name: scala
       version: "{{ pkg_versions.scala.version }}"
       template:
@@ -383,6 +404,18 @@ pkg:
           src: bazelisk_{{ pkg_versions.bazelisk.version }}.bin
         - name: bazel
           src: bazelisk_{{ pkg_versions.bazelisk.version }}.bin
+
+    - name: kubectl
+      version: "{{ pkg_versions.kubectl.version }}"
+      template:
+        os: *pkg_templates_go_os
+        arch: *pkg_templates_go_arch
+        url: https://dl.k8s.io/release/v%(version)s/bin/linux/{{ pkg_templates.go.arch }}/kubectl
+        inflate: *inflate_bin
+        creates: kubectl_{{ pkg_versions.bazelisk.version }}.bin
+      bins:
+        - name: kubectl
+          src: kubectl_{{ pkg_versions.kubectl.version }}.bin
 
     - name: debian
       version: "{{ pkg_versions.debian.version }}"
