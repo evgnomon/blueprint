@@ -187,6 +187,9 @@ nnoremap <M-S-Left> <C-O>
 " Map Alt+Shift+Right Arrow to go forward in jump list
 nnoremap <M-S-Right> <C-I>
 
+nnoremap <F7> *
+nnoremap <S-F7> #
+
 " Use K to show documentation in preview window
 nnoremap <leader>q :call ShowDocumentation()<CR>
 
