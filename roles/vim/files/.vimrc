@@ -33,6 +33,7 @@ let mapleader=","             " Set the leader key to a comma, allowing custom k
 :let python_highlight_all = 1   " Enable full syntax highlighting for Python, including highlighting of built-in functions and classes.
 :set backspace=indent,eol,start " Allow backspacing over indentation, end of line, and insertion start position in insert mode.
 set background=dark             " Optimize colors for a dark background.
+set termguicolors
 
 :augroup numbertoggle
   :  autocmd!
@@ -52,6 +53,7 @@ endif
 
 set guifont=Inconsolata\ Nerd\ Font:h15    " Set the GUI font to Inconsolata Nerd Font with a height of 15.
 set t_Co=256                               " Set the terminal to use 256 colors.
+set termguicolors
 set fillchars+=stl:\ ,stlnc:\              " Customize statusline fill characters: empty space for both active and inactive status lines.
 set termencoding=utf-8                     " Set terminal encoding to UTF-8, ensuring correct character display.
 set completeopt=preview,menuone,popup      " Configure completion options: show a preview window, show the menu even with one match, and use a popup menu.
@@ -175,8 +177,8 @@ nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> <leader>3 <Plug>(coc-references)
 
-nmap <silent> <F2> <Plug>(coc-diagnostic-next)
-noremap <silent> <S-F2> <Plug>(coc-diagnostic-prev)
+nmap <silent> <F8> <Plug>(coc-diagnostic-next)
+noremap <silent> <S-F8> <Plug>(coc-diagnostic-prev)
 
 " Use K to show documentation in preview window
 nnoremap <leader>q :call ShowDocumentation()<CR>
