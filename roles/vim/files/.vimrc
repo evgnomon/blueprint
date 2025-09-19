@@ -33,7 +33,6 @@ let mapleader=","             " Set the leader key to a comma, allowing custom k
 :let python_highlight_all = 1   " Enable full syntax highlighting for Python, including highlighting of built-in functions and classes.
 :set backspace=indent,eol,start " Allow backspacing over indentation, end of line, and insertion start position in insert mode.
 set background=dark             " Optimize colors for a dark background.
-set termguicolors
 
 :augroup numbertoggle
   :  autocmd!
@@ -53,7 +52,6 @@ endif
 
 set guifont=Inconsolata\ Nerd\ Font:h15    " Set the GUI font to Inconsolata Nerd Font with a height of 15.
 set t_Co=256                               " Set the terminal to use 256 colors.
-set termguicolors
 set fillchars+=stl:\ ,stlnc:\              " Customize statusline fill characters: empty space for both active and inactive status lines.
 set termencoding=utf-8                     " Set terminal encoding to UTF-8, ensuring correct character display.
 set completeopt=preview,menuone,popup      " Configure completion options: show a preview window, show the menu even with one match, and use a popup menu.
@@ -112,6 +110,7 @@ nmap <silent> <leader>kk ?function<cr>:noh<cr><Plug>(jsdoc)
 
 " Must be after laoding plugins
 colorscheme ghdark
+set termguicolors
 
 " Snippets
 let g:UltiSnipsSnippetStorageDirectoryForUltiSnipsEdit = $HOME."/src/github.com/".$USER."/nuggets/ultisnips"
@@ -137,7 +136,7 @@ autocmd FileType terraform                                  noremap <C-l> :Terra
 autocmd FileType rust                                       noremap <C-k><C-r> :CocCommand rust-analyzer.testCurrent<CR>
 
 " Commands
-map <C-A> :CocCommand<CR>
+" map <C-A> :CocCommand<CR>
 map <leader>kp :echo @% <CR>
 
 " Tags
@@ -146,16 +145,15 @@ map <leader>f :Rg!<CR>
 nmap <Leader>7 :BTags<CR>
 nmap <S-F3> :CocList -I symbols<CR>
 
-" References
 " Copy Location to clipboard
-:nmap <leader>8 :let @+ = join([expand('%'),  line(".")], ':')<cr>
+:nmap <leader>8 :let @+ = join([expand('%'), line(".")], ':')<cr>
 
 " Copy/Paste
 map <Leader>v "+p
 map <Leader>c "+y
-map ]l :cn<CR>
+" map ]l :cn<CR>
 
-nmap <leader>i :CocCommand editor.action.organizeImport<CR>
+" nmap <leader>i :CocCommand editor.action.organizeImport<CR>
 nmap <leader>. <Plug>(coc-codeaction)
 
 let g:loclist_follow = 1
@@ -173,12 +171,21 @@ let g:go_gopls_gofumpt=1
 
 " GoTo code navigation
 nmap <silent> <leader>g <Plug>(coc-definition)
+nmap <silent> <F12> <Plug>(coc-definition)
+
 nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
+
 nmap <silent> <leader>3 <Plug>(coc-references)
+nmap <silent> <S-F12> <Plug>(coc-references)
 
 nmap <silent> <F8> <Plug>(coc-diagnostic-next)
 noremap <silent> <S-F8> <Plug>(coc-diagnostic-prev)
+
+" Map Alt+Shift+Left Arrow to go back in jump list
+nnoremap <M-S-Left> <C-O>
+" Map Alt+Shift+Right Arrow to go forward in jump list
+nnoremap <M-S-Right> <C-I>
 
 " Use K to show documentation in preview window
 nnoremap <leader>q :call ShowDocumentation()<CR>
@@ -219,3 +226,4 @@ command! -bang -nargs=* Rg
     \ call fzf#vim#grep(
     \   'rg --line-number --no-heading --color=always --hidden -i --glob "!{.git,node_modules}/*" -- '.shellescape(<q-args>), 1,
     \   fzf#vim#with_preview(), <bang>0)
+
