@@ -34,7 +34,6 @@ apt_packages:
     - unzip
     - apt-transport-https
     - lsb-release
-    - mc
     - libcanberra-gtk-module
     - software-properties-common
     - libpam-yubico
@@ -49,24 +48,14 @@ apt_packages:
     - ykcs11
     - yubioath-desktop
     - azure-cli
-    - qbittorrent
     - heif-gdk-pixbuf
-    - mullvad-vpn
     - scdaemon
     - zip
-    - rbenv
-    - x11-xkb-utils
-    - libvirt-daemon-system
-    - libvirt-clients
-    - virt-manager
-    - libvirt-dev
-    - aria2
     - net-tools
-    - imagemagick
     - dmidecode
-    - libcurl4-gnutls-dev # to use curl in C code
   ubuntu:
     - mysql-client
     - libpam-u2f
   debian:
     - mysql-community-client
+    - rbenv

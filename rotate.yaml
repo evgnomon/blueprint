@@ -1,6 +1,8 @@
 ---
 - name: Include Charts
-  hosts: all
+  hosts: 
+    - all
+    - localhost
   gather_facts: false
   roles:
     - charts

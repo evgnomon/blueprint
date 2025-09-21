@@ -3,8 +3,11 @@
   hosts: localhost
   gather_facts: false
   tasks:
+    - name: Filter packages based on OS compatibility and WSL support
+      include_tasks: roles/charts/tasks/filter_packages.yaml
+
     - name: Include pkg role
-      with_items: "{{ pkg.charts }}"
+      with_items: "{{ compatible_packages }}"
       include_role:
         name: pkg
       loop_control:
@@ -25,6 +28,8 @@
   gather_facts: false
   hosts: localhost
   roles:
+    - mysql_apt_repo
+    - mullvad_apt_repo
     - terminal
     - docker
   environment:

@@ -50,14 +50,6 @@
   tags:
     - always
 
-- name: Install Mullvad Repo
-  shell: |
-    sudo curl -fsSLo /usr/share/keyrings/mullvad-keyring.asc https://repository.mullvad.net/deb/mullvad-keyring.asc
-    echo "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$( dpkg --print-architecture )] https://repository.mullvad.net/deb/stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/mullvad.list
-  when: ansible_os_family == "Debian"
-  tags:
-    always
-
 - name: Install packages using Apt
   become: true
   ansible.builtin.apt:
@@ -87,7 +79,7 @@
   ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
-    name: "{{ user_apt_packages.share }}"
+    name: "{{ user_apt_packages.get('share', []) }}"
     state: present
   when:
     - ansible_os_family == "Debian"
@@ -98,7 +90,7 @@
 - name: Install user packages using Apt for specific distribution
   become: true
   ansible.builtin.apt:
-    name: "{{ user_apt_packages[dict_item] }}"
+    name: "{{ user_apt_packages.get(dict_item, []) }}"
     state: present
   when:
     - ansible_os_family == "Debian"
@@ -180,7 +172,7 @@
 - name: Install common Go packages
   command: go install {{ item }}
   environment:
-    CGO_ENABLED: 1
+    CGO_ENABLED: "1"
   with_items: "{{ common_go_packages }}"
   tags:
     - go
@@ -188,7 +180,7 @@
 - name: Install common Go packages for Debian
   command: go install {{ item }}
   environment:
-    CGO_ENABLED: 1
+    CGO_ENABLED: "1"
   with_items: "{{ debian_go_packages }}"
   when:
     - ansible_os_family == "Debian"

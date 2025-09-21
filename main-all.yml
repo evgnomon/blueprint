@@ -9,7 +9,9 @@
 
 - name: Install Pip packages
   gather_facts: false
-  hosts: all
+  hosts:
+    - all
+    - localhost    
   vars:
     become_flag: "{{ ansible_os_family == 'Windows' }}"
   become: "{{ become_flag }}"
@@ -20,7 +22,9 @@
 
 - name: Install Eget packages
   gather_facts: false
-  hosts: all
+  hosts: 
+    - all
+    - localhost
   roles:
     - eget
   tags:
@@ -28,14 +32,18 @@
 
 - name: Install Ruby packages
   gather_facts: false
-  hosts: all
+  hosts: 
+    - all
+    - localhost
   roles:
     - ruby
   tags:
     - ruby
 
 - name: vim role
-  hosts: all
+  hosts: 
+    - all
+    - localhost
   strategy: free
   gather_facts: false
   roles:

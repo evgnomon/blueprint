@@ -8,6 +8,6 @@
 - template:
     src: "{{ item.src }}"
     dest: "{{ target }}/{{ item.path | replace('.j2', '') }}"
-  become: "{{ become | default(false) }}"
+  become: true
   tags:
     - always

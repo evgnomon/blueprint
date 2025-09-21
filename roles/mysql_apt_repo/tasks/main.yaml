@@ -1,10 +1,30 @@
 ---
-- name: Install MySQL Repo
-  # become: true
-  shell: |
-    sudo curl -fsSLo /usr/share/keyrings/mullvad-keyring.asc https://repository.mullvad.net/deb/mullvad-keyring.asc
-    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/mysql.asc]  http://repo.mysql.com/apt/$( lsb_release -is | tr '[:upper:]' '[:lower:]' )/ $( lsb_release -cs ) mysql-8.0" | sudo tee /etc/apt/sources.list.d/mysql.list
-    echo "deb-src [arch=amd64 signed-by=/usr/share/keyrings/mysql.asc] http://repo.mysql.com/apt/$( lsb_release -is | tr '[:upper:]' '[:lower:]' )/ $( lsb_release -cs ) mysql-8.0" | sudo tee -a /etc/apt/sources.list.d/mysql.list
+- name: Import MySQL GPG key directly
+  ansible.builtin.apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: B7B3B788A8D3785C
+    state: present
+  become: true
   when: ansible_os_family == "Debian"
-  tags:
-    - always
+
+- name: Add MySQL APT repository
+  ansible.builtin.apt_repository:
+    repo: "deb http://repo.mysql.com/apt/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release }} mysql-8.0"
+    state: present
+    filename: mysql
+  become: true
+  when: ansible_os_family == "Debian"
+
+- name: Add MySQL source repository
+  ansible.builtin.apt_repository:
+    repo: "deb-src http://repo.mysql.com/apt/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release }} mysql-8.0"
+    state: present
+    filename: mysql
+  become: true
+  when: ansible_os_family == "Debian"
+
+- name: Update APT cache
+  ansible.builtin.apt:
+    update_cache: true
+  become: true
+  when: ansible_os_family == "Debian"
