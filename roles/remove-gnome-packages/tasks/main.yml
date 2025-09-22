@@ -1,0 +1,38 @@
+---
+- name: Remove GNOME games and applications from Debian
+  ansible.builtin.apt:
+    name:
+      - gnome-games
+      - gnome-mahjongg
+      - gnome-chess
+      - gnome-sudoku
+      - aisleriot
+      - quadrapassel
+      - gnome-mines
+      - iagno
+      - gnome-2048
+      - baobab
+      - simple-scan
+      - evolution
+      - firefox
+      - firefox-esr
+      - libreoffice-common
+      - libreoffice-writer
+      - libreoffice-calc
+      - libreoffice-impress
+      - libreoffice-base
+      - libreoffice-draw
+      - libreoffice-math
+      - gnome-maps
+      - gnome-music
+      - shotwell
+      - transmission-gtk
+      - gnome-terminal
+      - totem
+      - gnome-characters
+      - gnome-calendar
+      - rhythmbox
+    state: absent
+    purge: yes
+  become: yes
+  when: ansible_os_family == "Debian"
