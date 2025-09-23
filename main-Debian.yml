@@ -3,20 +3,24 @@
   hosts: localhost
   gather_facts: false
   tasks:
-    - name: Filter packages based on OS compatibility and WSL support
-      include_tasks: roles/charts/tasks/filter_packages.yaml
-
-    - name: Include pkg role
-      with_items: "{{ compatible_packages }}"
+    - name: Include pkg role for all packages
+      with_items: "{{ pkg.charts }}"
       include_role:
         name: pkg
       loop_control:
         loop_var: package
       tags:
         - pkg
+      when:
+        - ansible_os_family in pkg_versions.get(package.name, {}).get('os_families', [ansible_os_family])
+        - pkg_versions.get(package.name, {}).get('wsl', true) or not wsl2_kernel | default(false)         
 
-    - name: Include pkg role for Debian
+    - name: Include pkg role for Debian specific packages
       with_items: "{{ pkg_debian.charts }}"
+      when:
+        - ansible_os_family in pkg_versions.get(package.name, {}).get('os_families', [ansible_os_family])
+        - pkg_versions.get(package.name, {}).get('wsl', true) or not wsl2_kernel | default(false)
+
       include_role:
         name: pkg
       loop_control:

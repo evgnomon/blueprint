@@ -290,6 +290,16 @@ pkg:
         ext: *ext_zip
         creates: CaskaydiaMonoNerdFontMono-*.ttf
 
+    - name: cascadia-code
+      version: "{{ pkg_versions.nerdfonts.version }}"
+      template:
+        os: all
+        arch: share
+        url: https://github.com/ryanoasis/nerd-fonts/releases/download/v%(version)s/CascadiaCode.zip
+        inflate: *inflate_unzip
+        ext: *ext_zip
+        creates: CaskaydiaCodeNerdFontCode-*.ttf
+
     - name: rustup-init
       version: latest
       template:

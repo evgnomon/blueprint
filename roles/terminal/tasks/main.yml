@@ -168,6 +168,8 @@
 
 - name: Install fonts
   include_tasks: fonts_install.yaml
+  tags:
+    - fonts
 
 - name: Install common Go packages
   command: go install {{ item }}

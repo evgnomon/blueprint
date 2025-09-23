@@ -2,19 +2,18 @@
 - name: Install packages for MacOSX
   hosts: localhost
   tasks:
-    - name: Filter packages based on OS compatibility and WSL support
-      include_tasks: roles/charts/tasks/filter_packages.yaml
-
-    - name: Include PKG role
-      with_items: "{{ compatible_packages }}"
+    - name: Include PKG role for all packages
+      with_items: "{{ pkg.charts }}"
       include_role:
         name: pkg
       loop_control:
         loop_var: package
       tags:
         - pkg
+      when:
+        - ansible_os_family in pkg_versions.get(package.name, {}).get('os_families', [ansible_os_family])
 
-    - name: Include PKG roles for MacOSX
+    - name: Include PKG roles for MacOSX specific packages
       with_items: "{{ pkg_mac.charts }}"
       include_role:
         name: pkg
@@ -22,6 +21,8 @@
         loop_var: package
       tags:
         - pkg
+      when:
+        - ansible_os_family in pkg_versions.get(package.name, {}).get('os_families', [ansible_os_family])
 
 - name: Install DMG packages
   hosts: localhost
