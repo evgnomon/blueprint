@@ -13,4 +13,3 @@ path_components:
 custom_path: "{{ path_components | join(':') }}:$PATH"
 
 cargo_packages:
-  - zellij

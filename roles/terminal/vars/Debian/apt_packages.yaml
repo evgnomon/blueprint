@@ -53,6 +53,7 @@ apt_packages:
     - zip
     - net-tools
     - dmidecode
+    - tmux
   ubuntu:
     - mysql-client
     - libpam-u2f
