@@ -55,6 +55,7 @@ common_node_packages:
   - prettier
   - nodemon
   - concurrently
+  - '@anthropic-ai/claude-code'
 
 common_go_packages:
   - github.com/tomnomnom/gron@latest
@@ -95,6 +96,8 @@ eget_packages:
   #   to: z
   - name: terraform-linters/tflint
     to: tflint
+  - name: containers/gvisor-tap-vsock
+    to: gvproxy
 
 debian_go_packages:
 

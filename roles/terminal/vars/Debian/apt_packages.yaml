@@ -58,3 +58,5 @@ apt_packages:
   debian:
     - mysql-community-client
     - rbenv
+    - qemu-system
+    - virtiofsd

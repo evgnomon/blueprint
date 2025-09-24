@@ -93,7 +93,7 @@ pkg_versions:
       debian: linux-glibc2.28
   wasabi:
     version: 2.6.0
-    os_families: ["Darwin", "Debian"]
+    os_families: ["Darwin"]
     wsl: false
   ollama:
     version: 0.11.10

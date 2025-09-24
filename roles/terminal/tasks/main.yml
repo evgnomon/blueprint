@@ -194,6 +194,8 @@
 - name: Install common Node packages
   command: npm install -g {{ item }}
   with_items: "{{ common_node_packages }}"
+  tags:
+    - node
 
 - name: Clone Git repos
   shell: |
