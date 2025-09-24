@@ -34,8 +34,6 @@ apt_packages:
     - unzip
     - apt-transport-https
     - lsb-release
-    - libcanberra-gtk-module
-    - software-properties-common
     - libpam-yubico
     - tree
     - silversearcher-ag

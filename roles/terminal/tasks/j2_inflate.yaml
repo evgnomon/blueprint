@@ -5,9 +5,21 @@
   become: "{{ become | default(false) }}"
   tags:
     - always
+
 - template:
     src: "{{ item.src }}"
     dest: "{{ target }}/{{ item.path | replace('.j2', '') }}"
   become: true
+  when:
+    - item.path[-3:] == '.j2'
+  tags:
+    - always
+
+- copy:
+    src: "{{ item.src }}"
+    dest: "{{ target }}/{{ item.path }}"
+  become: true
+  when:
+    - item.path[-3:] != '.j2'
   tags:
     - always

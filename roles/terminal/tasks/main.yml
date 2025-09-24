@@ -299,13 +299,3 @@
   tags:
     - git
 
-- name: Add the current user to the nordvpn group
-  become: true
-  ansible.builtin.user:
-    name: "{{ ansible_user_id }}"
-    groups: nordvpn
-    append: true
-  when:
-    - ansible_os_family == "Debian"
-  tags:
-    - apt

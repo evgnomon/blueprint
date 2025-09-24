@@ -6,8 +6,8 @@ pkg_versions:
     os_families: ["Darwin", "Debian"]
     wsl: true
   idea:
-    version_full: 252.25557.131
-    version: 2025.2.1
+    version_full: 252.26199.169
+    version: 2025.2.2
     os_families: ["Darwin", "Debian"]
     wsl: false
   localsend:

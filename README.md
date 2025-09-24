@@ -12,7 +12,7 @@ sudo -v
 usermod -aG sudo
 ./bootstrap-Linux.sh
 # Checkout your `.blueprint` settings.
-git clone git@github.com:YOURUSER/.blueprint.git ~/.blueprint
+git clone ssh://git@github.com:YOURUSER/.blueprint.git ~/.blueprint
 sudo -v
 # ssh-add ~/.ssh/YOUR_PRIVATE_KEY
 ansible-playbook -i inventory.py main.yaml
@@ -82,6 +82,7 @@ Run this after installation in vim to setup vim plugins:
 
 ```
 :PlugInstall
+:CocInstall coc-snippets coc-prettier coc-eslint coc-tsserver coc-toml coc-rust-analyzer coc-pyright coc-go @yaegassy/coc-ruff
 ```
 
 # License
@@ -93,6 +94,7 @@ shasum -a 512 -c SHA512SUMS
 Which is the device if of the YubiKey, find the device id using:
 ```
 usbipd list
+
 ```
 
 # YubiKey
@@ -100,6 +102,7 @@ usbipd list
 Use YubiKey for password less `sudo`:
 
 ```
+sudo mkdir /etc/Yubico
 mkdir -p ~/.config/Yubico
 pamu2fcfg > ~/.config/Yubico/u2f_keys
 pamu2fcfg -n >> ~/.config/Yubico/u2f_keys # with the spare key

@@ -2,6 +2,7 @@
   gather_facts: false
   hosts:
     - all
+    - localhost
   roles:
     - alacritty
   tags:

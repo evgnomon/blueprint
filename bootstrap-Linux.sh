@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 sudo apt update && sudo apt install -y git
 
 function install_pyenv(){
@@ -17,13 +19,13 @@ function install_pyenv(){
 [ ! ~/.pyenv ] && install_pyenv
 
 
-sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev curl libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev linux-tools-virtual hwdata yubikey-manager scdaemon scdaemon ykcs11 libpcsclite-dev swig pcscd libpam-u2f pinentry-tty libpam-yubico usbutils unzip
+sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev curl libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev hwdata yubikey-manager scdaemon scdaemon ykcs11 libpcsclite-dev swig pcscd libpam-u2f pinentry-tty libpam-yubico usbutils unzip
 
 sudo update-alternatives --install /usr/local/bin/usbip usbip $(command -v ls /usr/lib/linux-tools/*/usbip | tail -n1) 20
 curl -sSL https://raw.githubusercontent.com/Yubico/libfido2/main/udev/70-u2f.rules | sudo tee /etc/udev/rules.d/70-u2f.rules > /dev/null
 
-PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 3.12.0 2.7.18
-pyenv global 3.12.0 2.7.18
+PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 2.7.18 3.13.7
+pyenv global 3.13.7 2.7.18
 pip install --upgrade pip
 pip install --upgrade ansible pyyaml
 

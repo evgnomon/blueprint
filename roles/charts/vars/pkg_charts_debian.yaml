@@ -39,10 +39,10 @@ pkg_debian:
         url: https://download.jetbrains.com/%(name)s/%(name)sIC-%(version)s{{ pkg_templates_debian.idea.arch }}.{{ pkg_templates_debian.idea.os }}
         ext: &ext_targz tar.gz
         inflate: &inflate_targz tar -C %(dest)s -xzvf %(src)s
-        creates: idea-IC-{{ pkg_versions.idea.version_full }}/bin/idea.sh
+        creates: idea-IC-{{ pkg_versions.idea.version_full }}/bin/idea
       bins:
         - name: idea
-          src: &bins_idea_src idea-IC-{{ pkg_versions.idea.version_full }}/bin/idea.sh
+          src: &bins_idea_src idea-IC-{{ pkg_versions.idea.version_full }}/bin/idea
 
     - name: OpenJDK
       version: "{{ pkg_versions.java.version }}_{{ pkg_versions.java.build }}"

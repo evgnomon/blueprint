@@ -1,40 +1,7 @@
 ---
-- name: Ensure /etc/apt/keyrings directory exists
-  file:
-    path: /etc/apt/keyrings
-    state: directory
-    mode: '0755'
-
-- name: Add Docker's official GPG key
-  become: true
-  apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
-    keyring: /etc/apt/keyrings/docker.gpg
-    state: present
-
-- name: Set file permissions for Docker GPG key
-  become: true
-  file:
-    path: /etc/apt/keyrings/docker.gpg
-    mode: '0644'
-
-- name: Add Docker repository
-  become: true
-  apt_repository:
-    repo: deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable
-    state: present
-
-- name: Install Docker packages using Apt
-  become: true
-  ansible.builtin.apt:
-    update_cache: true
-    cache_valid_time: 3600
-    name: "{{ docker_apt_packages }}"
-    state: present
-  tags:
-    - docker
-
 - name: Create docker group
   group:
     name: docker
     state: present
+  become: true 
+  tags: docker

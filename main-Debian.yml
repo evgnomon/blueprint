@@ -32,8 +32,6 @@
   gather_facts: false
   hosts: localhost
   roles:
-    - mysql_apt_repo
-    - mullvad_apt_repo
     - terminal
     - docker
     - remove-gnome-packages

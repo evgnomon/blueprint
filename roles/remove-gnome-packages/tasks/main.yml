@@ -27,7 +27,6 @@
       - gnome-music
       - shotwell
       - transmission-gtk
-      - gnome-terminal
       - totem
       - gnome-characters
       - gnome-calendar
