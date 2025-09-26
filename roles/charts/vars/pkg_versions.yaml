@@ -107,3 +107,11 @@ pkg_versions:
     version: 1.33.1
     os_families: ["Darwin", "Debian"]
     wsl: true
+  zig:
+    version: 0.16.0-dev.381+bc512648d
+    os_families: ["Debian"]
+    wsl: true
+  zig14:
+    version: 0.14.1
+    os_families: ["Debian"]
+    wsl: true
