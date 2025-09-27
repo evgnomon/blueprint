@@ -59,4 +59,4 @@ apt_packages:
     - mysql-community-client
     - rbenv
     - qemu-system
-    - virtiofsd
+    # - virtiofsd
