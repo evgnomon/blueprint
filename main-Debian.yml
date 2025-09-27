@@ -38,3 +38,26 @@
   environment:
     PATH: "{{ custom_path }}"
     LD_LIBRARY_PATH: "{{ ansible_env.HOME }}/.pyenv/versions/3.12.0/lib/"
+
+- name: Install ZLS language server
+  gather_facts: false
+  hosts: localhost
+  roles:
+    - ensure_zls
+  environment:
+    PATH: "{{ custom_path }}"
+    LD_LIBRARY_PATH: "{{ ansible_env.HOME }}/.pyenv/versions/3.12.0/lib/"
+  tags:
+    - zls
+
+- name: Install Ghostty terminal
+  gather_facts: false
+  hosts: localhost
+  roles:
+    - ensure_ghostty
+  environment:
+    PATH: "{{ custom_path }}"
+    LD_LIBRARY_PATH: "{{ ansible_env.HOME }}/.pyenv/versions/3.12.0/lib/"
+  tags:
+    - ghostty
+    - never

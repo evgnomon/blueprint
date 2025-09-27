@@ -1,0 +1,51 @@
+---
+- name: Ensure ~/.local/bin directory exists
+  file:
+    path: "{{ ansible_env.HOME }}/.local/bin"
+    state: directory
+    mode: '0755'
+
+- name: Install GTK4 and libadwaita dependencies
+  package:
+    name:
+      - libgtk-4-dev
+      - libadwaita-1-dev
+      - pkg-config
+    state: present
+  become: yes
+
+- name: Check if ghostty is already installed
+  stat:
+    path: "{{ ansible_env.HOME }}/.local/bin/ghostty"
+  register: ghostty_binary
+
+- name: Clone ghostty-org/ghostty repository
+  git:
+    repo: git@github.com:ghostty-org/ghostty.git
+    dest: "{{ ghostty_repo }}"
+    version: main
+    force: yes
+  when: not ghostty_binary.stat.exists
+
+- name: Build ghostty
+  command: zig14 build -Doptimize=ReleaseFast
+  args:
+    chdir: "{{ ghostty_repo }}"
+  when: not ghostty_binary.stat.exists
+
+- name: Install ghostty binary to ~/.local/bin
+  copy:
+    src: "{{ ghostty_bin_output }}"
+    dest: "{{ ghostty_bin }}"
+    mode: '0755'
+    remote_src: yes
+  when: not ghostty_binary.stat.exists
+
+- name: Verify ghostty installation
+  command: "{{ ghostty_bin }} --version"
+  register: ghostty_version
+  changed_when: false
+
+- name: Display ghostty version
+  debug:
+    msg: "ghostty version: {{ ghostty_version.stdout }}"

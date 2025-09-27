@@ -1,0 +1,3 @@
+zls_repo: "{{ ansible_env.HOME }}/src/github.com/zigtools/zls"
+zls_bin_output: "{{ zls_repo }}/zig-out/bin/zls"
+zls_bin: "{{ ansible_env.HOME }}/.local/bin/zls"
