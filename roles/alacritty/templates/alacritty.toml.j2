@@ -54,7 +54,7 @@ family = "{{ default_font_family }}"
 style = "Regular"
 {% endif %}
 
-[shell]
+[terminal.shell]
 {% if ansible_os_family == "Debian" %}
 args = ["--login"]
 program = "{{ blueprint_user_home }}/.local/bin/fish"

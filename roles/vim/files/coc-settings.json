@@ -1,7 +1,19 @@
 {
   "snippets.ultisnips.pythonPrompt": false,
-  "python.formatting.provider": "black",
+  "python.formatting.provider": "ruff",
   "python.formatting.blackPath": "${env:HOME}/.pyenv/shims/black",
   "python.pythonPath": "${env:HOME}/.pyenv/shims/python",
-  "solargraph.commandPath": "${env:HOME}/.gem/bin/solargraph"
+  "solargraph.commandPath": "${env:HOME}/.gem/bin/solargraph",
+  "[zig]": {
+    "coc.preferences.formatOnSave": true,
+    "semanticTokens.enable": true
+  },
+
+  "languageserver": {
+    "zls": {
+      "command": "zls",
+      "filetypes": ["zig", "zon"],
+      "settings": {}
+    }
+  }
 }
