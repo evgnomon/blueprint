@@ -37,5 +37,6 @@ export YACHT_REF_NAME=$(git symbolic-ref --short HEAD)
 export ANSIBLE_COLLECTIONS_PATH=$CODE_HOME/github.com/evgnomon/catamaran/ansible_collections:$HOME/.ansible/collections/ansible_collections
 
 ANSIBLE_VAULT_PASSWORD_FILE=<(echo "$INPUT_VAULT_PASS") INPUT_VAULT_FILE=<(echo "$INPUT_VAULT")\
-  ansible-playbook\
+  ansible-playbook \
+  --ask-become-pass \
   "$INPUT_PLAYBOOK" "$@"
