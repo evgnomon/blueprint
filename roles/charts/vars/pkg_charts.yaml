@@ -432,7 +432,7 @@ pkg:
       template:
         os: *pkg_templates_go_os
         arch: *pkg_templates_go_arch
-        url: https://cloud.debian.org/images/cloud/bookworm/{{ pkg_versions.debian.build }}/debian-%(version)s-generic-{{ pkg_templates.go.arch }}-{{ pkg_versions.debian.build }}.qcow2
+        url: https://cloud.debian.org/images/cloud/{{ pkg_versions.debian.release }}/{{ pkg_versions.debian.build }}/debian-%(version)s-generic-{{ pkg_templates.go.arch }}-{{ pkg_versions.debian.build }}.qcow2
         creates: debian_{{ pkg_versions.debian.version }}.bin
         inflate: &inflate_image |
           mv '%(src)s' '%(dest)s'

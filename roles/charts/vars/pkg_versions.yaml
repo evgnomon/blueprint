@@ -79,9 +79,10 @@ pkg_versions:
     os_families: ["Darwin", "Debian"]
     wsl: true
   debian:
-    version: 12
-    build: 20250210-2019
-    os_families: ["Darwin", "Debian"]
+    release: trixie
+    version: 13
+    build: 20250924-2245
+    os_families: ["Debian"]
     wsl: true
   docker:
     version: 184744
