@@ -43,6 +43,7 @@ common_pip_packages:
   - azure-core
   - pydo
   - boto3
+  - artifacts-keyring
 
 common_gem_packages:
   - solargraph
