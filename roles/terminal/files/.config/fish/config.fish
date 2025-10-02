@@ -66,11 +66,10 @@ if status is-interactive
       set -x GPG_AGENT_INFO $HOME/.gnupg/S.gpg-agent:0:1V
     end
 
-    abbr gpu 'git push --set-upstream origin (git branch --show-current)'
-    abbr gpf 'git push -f'
-    abbr gca 'git commit --amend --no-edit'
-    abbr npl 'npm ls -g --depth=0 --link=true'
-    abbr fd  'fd -I --hidden --exclude .git'
+    abbr gpu  'git push --set-upstream origin (git branch --show-current)'
+    abbr pr   'az repos pr create --target-branch master --title'
+    abbr fd   'fd -I --hidden --exclude .git'
+    abbr rg   'rg --hidden -i'
 
 
     set -x INTERACTIVE_INIT true

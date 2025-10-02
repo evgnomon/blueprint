@@ -9,6 +9,7 @@ common_cargo_packages:
   - git-delta
   - bat
   - bottom
+  - just
 
 common_pip_packages:
   - pip
@@ -44,6 +45,7 @@ common_pip_packages:
   - pydo
   - boto3
   - artifacts-keyring
+  - cookiecutter
 
 common_gem_packages:
   - solargraph
