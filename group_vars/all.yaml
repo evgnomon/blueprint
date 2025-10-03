@@ -46,6 +46,8 @@ common_pip_packages:
   - boto3
   - artifacts-keyring
   - cookiecutter
+  - pipx
+  
 
 common_gem_packages:
   - solargraph
