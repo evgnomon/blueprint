@@ -52,6 +52,7 @@ apt_packages:
     - net-tools
     - dmidecode
     - tmux
+    - brave-browser
   ubuntu:
     - mysql-client
     - libpam-u2f
