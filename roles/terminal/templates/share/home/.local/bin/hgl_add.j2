@@ -2,7 +2,7 @@
 
 # Copyright header to add
 COPYRIGHT_HEADER="/*
-Copyright (C) 2025- {{ profiles[default_user_profile].fullname }}. All rights reserved.
+Copyright (C) 2025- {{ profiles[default_user_profile].fullname if profiles is defined else '' }}. All rights reserved.
 License: HGL General License <https://evgnomon.org/docs/hgl>
 */"
 
@@ -11,7 +11,7 @@ find . -name "*.go" -type f | while read -r file; do
     echo "Processing: $file"
 
     # Check if file already has a copyright header
-    if head -n 5 "$file" | grep -q "Copyright (C) 2025- {{ profiles[default_user_profile].fullname }}"; then
+    if head -n 5 "$file" | grep -q "Copyright (C) 2025- {{ profiles[default_user_profile].fullname if profiles is defined else '' }}"; then
         echo "  Already has copyright header, checking URL format..."
         # Check if it has the wrong URL format and fix it
         if head -n 5 "$file" | grep -q "http://evgnomon.org/docs/hgl"; then

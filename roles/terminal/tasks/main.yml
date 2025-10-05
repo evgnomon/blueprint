@@ -214,7 +214,7 @@
     repo_dest: "{{ item.dest | default ( repo_dest_default ) }}"
     repo_dest_dir: "{{ repo_dest | dirname }}"
     user_profile_key: "{{ item.profile | default('main') }}"
-    user_profile: "{{ profiles[user_profile_key] }}"
+    user_profile: "{{ profiles[user_profile_key] if profiles is defined else {} }}"
     bundle_file: '{{ repo_dest_dir }}/{{ repo_name }}.bundle'
     win_owner: "{{ ansible_nodename | upper }}\\{{ ansible_user_id }}"
   with_items: "{{ git_repos + common_git_repos }}"
@@ -223,16 +223,16 @@
   tags:
     - git
 
-- name: Create bundle
-  shell: |
-    git -C '{{ repo_dest }}' bundle create '{{ repo_name }}.bundle' --all
-  vars: *git_repos_vars
-  when:
-    - ansible_os_family != "Windows"
-    - wsl2_kernel
-  with_items: "{{ git_repos + common_git_repos }}"
-  tags:
-    - git
+# - name: Create bundle
+#   shell: |
+#     git -C '{{ repo_dest }}' bundle create '{{ repo_name }}.bundle' --all
+#   vars: *git_repos_vars
+#   when:
+#     - ansible_os_family != "Windows"
+#     - wsl2_kernel
+#   with_items: "{{ git_repos + common_git_repos }}"
+#   tags:
+#     - git
 
 - name: Make directories in Windows
   ansible.windows.win_powershell:
@@ -296,7 +296,9 @@
     git -C '{{ repo_dest }}' config gpg.ssh.allowedSignersFile '{{ user_profile.allowed_signers_file | default (ansible_env.HOME + "/.ssh/allowed_signers") }}'
   vars: *git_repos_vars
   with_items: "{{ git_repos + common_git_repos }}"
-  when: ansible_os_family != "Windows"
+  when: 
+    - ansible_os_family != "Windows"
+    - blueprint_config_file_exists
   ignore_errors: true
   tags:
     - git

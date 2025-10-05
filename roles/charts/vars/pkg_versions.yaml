@@ -4,95 +4,89 @@ pkg_versions:
     version: 21.0.6
     build: 7
     os_families: ["Darwin", "Debian"]
-    wsl: true
   idea:
     version_full: 252.26199.169
     version: 2025.2.2
     os_families: ["Darwin", "Debian"]
     wsl: false
+    dev_container: false
   rider:
     version: 2025.2.2
     os_families: ["Debian"]
     wsl: false
+    dev_container: false
   localsend:
     version: 1.17.0
     os_families: ["Darwin"]
     wsl: false
+    dev_container: false
   yubico_authenticator:
     version: 7.1.2
     os_families: ["Darwin"]
     wsl: false
+    dev_container: false
   fzf:
     version: 0.60.3
     os_families: ["Darwin", "Debian"]
-    wsl: true
   nerdfonts:
     version: 3.4.0
     os_families: ["Darwin", "Debian"]
-    wsl: true
+    wsl: false
+    dev_container: false
   go:
     version: 1.24.0
     os_families: ["Darwin", "Debian"]
-    wsl: true
   node:
     version: 24.7.0
     os_families: ["Darwin", "Debian"]
-    wsl: true
   scala:
     version: 3.5.1
     os_families: ["Darwin", "Debian"]
-    wsl: true
   sbt:
     version: 1.10.10
     os_families: ["Darwin", "Debian"]
-    wsl: true
   maven:
     version: 3.9.11
     os_families: ["Darwin", "Debian"]
-    wsl: true
   gradle:
     version: 8.13
     os_families: ["Darwin", "Debian"]
-    wsl: true
   cmake:
     version: 3.31.6
     os_families: ["Darwin", "Debian"]
-    wsl: true
   bazelisk:
     version: 1.22.0
     os_families: ["Darwin", "Debian"]
-    wsl: true
   tofu:
     version: 1.9.1
     os_families: ["Darwin", "Debian"]
-    wsl: true
   macports:
     version: 2.10.5-15
     os_families: ["Darwin"]
-    wsl: false
   alacritty:
     version: 0.15.1
     os_families: ["Darwin", "Debian"]
     wsl: false
+    dev_container: false
   ruby:
     version: 3.1.2
     os_families: ["Darwin", "Debian"]
-    wsl: true
   debian:
     release: trixie
     version: 13
     build: 20250924-2245
     os_families: ["Debian"]
-    wsl: true
+    wsl: false
+    dev_container: false
   docker:
     version: 184744
     os_families: ["Darwin", "Debian"]
-    wsl: true
+    wsl: false
+    dev_container: false
   mysql:
     version: 8.0.41
     major: 8.0
     os_families: ["Darwin", "Debian"]
-    wsl: true
     os:
       darwin: macos15
       debian: linux-glibc2.28
@@ -100,19 +94,18 @@ pkg_versions:
     version: 2.6.0
     os_families: ["Darwin"]
     wsl: false
+    dev_container: false
   ollama:
     version: 0.11.10
     os_families: ["Darwin", "Debian"]
     wsl: false
+    dev_container: false
   kubectl:
     version: 1.33.1
     os_families: ["Darwin", "Debian"]
-    wsl: true
   zig:
     version: 0.16.0-dev.381+bc512648d
     os_families: ["Debian"]
-    wsl: true
   zig14:
     version: 0.14.1
     os_families: ["Debian"]
-    wsl: true

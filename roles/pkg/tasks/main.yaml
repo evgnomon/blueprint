@@ -3,7 +3,6 @@
   file:
     path: "{{ path }}"
     state: directory
-    owner: "{{ profiles.main.username }}"
   with_items:
     - "{{ package_dest }}"
   loop_control:
@@ -17,7 +16,6 @@
   file:
     path: "{{ path | dirname }}"
     state: directory
-    owner: "{{ profiles.main.username }}"
   with_items:
     - "{{ package_src }}"
   loop_control:
@@ -31,7 +29,6 @@
   file:
     path: "{{ path }}"
     state: directory
-    owner: "{{ profiles.main.username }}"
     group: staff
   with_items:
     - "{{ package_dest }}"
@@ -46,7 +43,6 @@
   file:
     path: "{{ path | dirname }}"
     state: directory
-    owner: "{{ profiles.main.username }}"
     group: staff
   with_items:
     - "{{ package_src }}"

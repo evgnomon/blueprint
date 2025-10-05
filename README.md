@@ -4,23 +4,19 @@ Print your workstation wherever you. The same thing, the same way, every time.
 
 Supports Linux, macOS and Windows native and WSL2 and Docker container.
 
-# Getting Started
+# Install
 ## Linux
-```
-sudo -v
-# In Debian/Ubuntu add your the user to sudo group:
-usermod -aG sudo
-./bootstrap-Linux.sh
-# Checkout your `.blueprint` settings.
-git clone ssh://git@github.com:YOURUSER/.blueprint.git ~/.blueprint
-sudo -v
-# ssh-add ~/.ssh/YOUR_PRIVATE_KEY
-ansible-playbook -i inventory.py main.yaml
-sudo -K
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/evgnomon/blueprint/refs/heads/main/install.sh | sh
 ```
 
-Caution: Don't run ansible process in root!
-And don't forget to close your session if `sudo` is not needed anymore.
+Provide user configs: 
+
+```bash
+# usermod -aG sudo
+# Checkout your `.blueprint` settings.
+git clone ssh://git@github.com:YOURUSER/.blueprint.git ~/.blueprint
+```
 
 ## Windows
 To let ansible configure the windows node,
@@ -38,7 +34,6 @@ Install Ubuntu 24.04 from Microsoft Store:
 ```
 wsl --install -d Ubuntu-24.04
 ```
-
 
 Try `ssh` to the Windows node to verify the bootstrap:
 ```
@@ -105,7 +100,7 @@ Use YubiKey for password less `sudo`:
 sudo mkdir /etc/Yubico
 mkdir -p ~/.config/Yubico
 pamu2fcfg > ~/.config/Yubico/u2f_keys
-pamu2fcfg -n >> ~/.config/Yubico/u2f_keys # with the spare key
+# pamu2fcfg -n >> ~/.config/Yubico/u2f_keys # with the spare key
 sudo mv ~/.config/Yubico/u2f_keys /etc/Yubico
 sudo chown root:root -R /etc/Yubico/u2f_keys
 ```
@@ -122,7 +117,6 @@ ykman openpgp keys set-touch sig on
 ```
 
 # Git signing
-
 Add pubkeys to `allowed_signers` for git verification:
 ```
 echo "$(git config --get user.email) namespaces=\"git\" $(cat ~/.ssh/yourkey.pub)" >> ~/.ssh/allowed_signers

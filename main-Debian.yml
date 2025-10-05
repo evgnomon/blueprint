@@ -13,13 +13,15 @@
         - pkg
       when:
         - ansible_os_family in pkg_versions.get(package.name, {}).get('os_families', [ansible_os_family])
-        - pkg_versions.get(package.name, {}).get('wsl', true) or not wsl2_kernel | default(false)         
+        - pkg_versions.get(package.name, {}).get('wsl', true) or not wsl2_kernel | default(false)      
+        - pkg_versions.get(package.name, {}).get('dev_container', true) or not dev_container | default(false)      
 
     - name: Include pkg role for Debian specific packages
       with_items: "{{ pkg_debian.charts }}"
       when:
         - ansible_os_family in pkg_versions.get(package.name, {}).get('os_families', [ansible_os_family])
         - pkg_versions.get(package.name, {}).get('wsl', true) or not wsl2_kernel | default(false)
+        - pkg_versions.get(package.name, {}).get('dev_container', true) or not dev_container | default(false)
 
       include_role:
         name: pkg

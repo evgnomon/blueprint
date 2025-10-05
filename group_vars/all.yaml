@@ -2,6 +2,9 @@
 go_latest_version: 1.21.6
 local_bin_path: "{{ ansible_env.HOME }}/.local/bin"
 blueprint_config_file: "{{ lookup('env','HOME') }}/.blueprint/config.yaml"
+blueprint_config_file_exists: "{{ lookup('fileglob', blueprint_config_file) | length > 0 }}"
+
+dev_container: true
 
 common_cargo_packages:
   - fd-find

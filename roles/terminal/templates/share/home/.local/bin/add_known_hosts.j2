@@ -5,7 +5,7 @@
 set -e
 
 HOSTS=(
-{% for i in known_hosts -%}
+{% for i in (known_hosts if known_hosts is defined else []) -%}
   "{{ i.name }}"
 {% endfor %}
 )

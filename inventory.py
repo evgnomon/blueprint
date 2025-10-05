@@ -42,19 +42,20 @@ def get_inventory() -> dict[str, dict[str, Any]]:
     user_home = user_home or ""
     if not user_home:
         raise Exception("HOME env variable is not set")
+    inventory = {
+        "local": {
+            "hosts": ["localhost"],
+            "vars": {
+                "ansible_connection": "local",
+            },
+        },
+    }
+
     config_file_path = Path(user_home) / ".blueprint" / "config.yaml"
+    if not config_file_path.exists():
+        return inventory
     with config_file_path.open() as f:
         configs = yaml.safe_load(f)
-
-        inventory = {
-            "local": {
-                "hosts": ["localhost"],
-                "vars": {
-                    "ansible_connection": "local",
-                },
-            },
-        }
-
         if not configs.get("win_user"):
             return inventory
 

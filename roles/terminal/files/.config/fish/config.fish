@@ -28,7 +28,6 @@ if status is-interactive
     set -px PATH        $HOME/go/bin
     set -px PATH        $HOME/bin
     set -xa PATH        $HOME/.yarn/bin
-    set -xa PATH        $HOME/src/github.com/$USER/mybag/bin
 
 
     set -x  LIBVIRT_DEFAULT_URI qemu:///system
@@ -57,7 +56,7 @@ if status is-interactive
     gpg --card-status > /dev/null 2>&1; or true
 
     set -x EDITOR vim
-    set -gx LD_LIBRARY_PATH  $HOME/.pyenv/versions/3.12.0/lib/
+    set -gx LD_LIBRARY_PATH  $HOME/.pyenv/versions/3.13.7/lib/
     set -px PATH        "$HOME/.local/libexec"
     set -px PATH        "$HOME/.local/bin"
 
