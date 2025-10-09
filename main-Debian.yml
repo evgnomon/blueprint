@@ -35,6 +35,7 @@
   hosts: localhost
   roles:
     - terminal
+    - tmux
     - docker
     - remove-gnome-packages
   environment:

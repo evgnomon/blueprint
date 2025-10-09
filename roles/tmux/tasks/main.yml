@@ -1,0 +1,9 @@
+---
+- name: Inflate tmux template configs in user home
+  include_tasks: inflate.yaml
+  vars:
+    target: "{{ blueprint_user_home }}"
+  when: item.state == 'file'
+  with_filetree: ../templates
+  tags:
+    - tmux

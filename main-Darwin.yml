@@ -41,6 +41,7 @@
   roles:
     - macports
     - terminal
+    - tmux
     - python
     - docker
     - dotnet
