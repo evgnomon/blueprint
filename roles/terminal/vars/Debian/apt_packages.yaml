@@ -1,63 +1,62 @@
 ---
 apt_packages:
   share:
-    - build-essential
-    - libssl-dev
-    - libffi-dev
-    - libncurses5-dev
-    - zlib1g
-    - zlib1g-dev
-    - libreadline-dev
-    - libbz2-dev
-    - libsqlite3-dev
-    - make
-    - gcc
-    - tk-dev
-    - liblzma-dev
-    - rsync
-    - cmake
-    - libedit-dev
-    - gettext
-    - libclang-dev
-    - ncurses-dev
-    - libpcre2-dev
-    - libx11-dev
-    - libxtst-dev
-    - libxt-dev
-    - libsm-dev
-    - libxpm-dev
-    - jq
-    - ca-certificates
-    - curl
-    - gnupg2
-    - exuberant-ctags
-    - unzip
-    - apt-transport-https
-    - lsb-release
-    - libpam-yubico
-    - tree
-    - silversearcher-ag
-    - podman
-    - qemu-system-x86
-    - pinentry-tty
-    - libpcsclite-dev
-    - swig
-    - pcscd
-    - ykcs11
-    - yubioath-desktop
-    - azure-cli
-    - heif-gdk-pixbuf
-    - scdaemon
-    - zip
-    - net-tools
-    - dmidecode
-    - tmux
-    - brave-browser
+    - build-essential  # Meta-package for compiling C/C++ programs (gcc, g++, libc-dev, make)
+    - make  # Build automation tool for compiling programs from Makefiles
+    - cmake  # Cross-platform build system generator for modern C/C++ projects
+    - gcc  # GNU C Compiler for compiling C programs
+    - libssl-dev  # OpenSSL development libraries for building programs with SSL/TLS support
+    - libffi-dev  # Foreign Function Interface library for calling C code from high-level languages
+    - libncurses5-dev  # Terminal UI library development files for building text-based interfaces
+    - zlib1g  # Compression library runtime for gzip/deflate operations
+    - zlib1g-dev  # Compression library development files for building programs with compression
+    - libreadline-dev  # Line-editing library for interactive command-line input with history
+    - libbz2-dev  # Bzip2 compression library development files for building compression tools
+    - libsqlite3-dev  # SQLite database library development files for embedded database applications
+    - tk-dev  # Tk GUI toolkit development files for building graphical applications
+    - liblzma-dev  # XZ compression library development files for high-ratio compression
+    - rsync  # Fast incremental file transfer tool for syncing files and backups
+    - libedit-dev  # Alternative line-editing library with BSD license compatibility
+    - gettext  # Internationalization and localization tools for multi-language support
+    - libclang-dev  # Clang compiler libraries for building tools that parse C/C++ code
+    - ncurses-dev  # Terminal handling library development files for text UI applications
+    - libpcre2-dev  # Perl-compatible regex library for pattern matching in applications
+    - libx11-dev  # X Window System client library for building X11 GUI applications
+    - libxtst-dev  # X11 testing extension library for simulating keyboard/mouse input
+    - libxt-dev  # X11 Toolkit Intrinsics library for building X11 widget-based GUIs
+    - libsm-dev  # X11 Session Management library for managing application sessions
+    - libxpm-dev  # X11 pixmap library for handling XPM image format in X applications
+    - jq  # Command-line JSON processor for parsing and manipulating JSON data
+    - ca-certificates  # Common CA certificates for validating SSL/TLS connections
+    - curl  # Command-line HTTP client for downloading files and testing APIs
+    - gnupg2  # GNU Privacy Guard for encryption, signing, and key management
+    - unzip  # Archive extraction utility for decompressing ZIP files
+    - apt-transport-https  # APT HTTPS support for securely downloading packages over TLS
+    - lsb-release  # Linux Standard Base version reporting tool for distribution detection
+    - libpam-yubico  # PAM module for YubiKey OTP authentication at login
+    - tree  # Directory structure visualization tool for recursive file listings
+    - qemu-system-x86  # x86/x86_64 system emulator for running virtual machines
+    - pinentry-tty  # PIN entry dialog for GPG in terminal environments
+    - libpcsclite-dev  # PC/SC smart card library development files for card reader applications
+    - swig  # Interface generator for connecting C/C++ with scripting languages
+    - pcscd  # PC/SC smart card daemon for managing smart card readers
+    - ykcs11  # YubiKey PKCS#11 module for using YubiKey with cryptographic applications
+    - yubioath-desktop  # YubiKey OATH desktop application for managing TOTP/HOTP codes
+    - heif-gdk-pixbuf  # HEIF/HEIC image format support for viewing modern image formats
+    - scdaemon  # Smart card daemon for GPG to communicate with hardware tokens
+    - zip  # Archive compression utility for creating ZIP files
+    - net-tools  # Legacy networking utilities (ifconfig, netstat, route) for network debugging
+    - dmidecode  # DMI/SMBIOS decoder for reading hardware information from BIOS
+    - tmux  # Terminal multiplexer for managing multiple terminal sessions
+    - exuberant-ctags  # Code indexing tool for navigating source code in editors
+    - azure-cli  # Microsoft Azure command-line interface for managing cloud resources
+    - podman  # Daemonless container engine as Docker alternative for running containers
+    - brave-browser  # Privacy-focused web browser with built-in ad blocking
   ubuntu:
-    - mysql-client
-    - libpam-u2f
+    - mysql-client  # MySQL database client tools for connecting to MySQL servers
+    - libpam-u2f  # PAM module for FIDO U2F/FIDO2 hardware authentication keys
   debian:
-    - mysql-community-client
-    - rbenv
-    - qemu-system
+    - mysql-community-client  # MySQL Community Edition client tools for database access
+    # - rbenv
+    - qemu-system  # Generic QEMU system emulator meta-package for all architectures
     # - virtiofsd

@@ -1,5 +1,6 @@
 ---
 go_latest_version: 1.21.6
+home: "{{ lookup('env', 'HOME') }}"
 local_bin_path: "{{ ansible_env.HOME }}/.local/bin"
 blueprint_config_file: "{{ lookup('env','HOME') }}/.blueprint/config.yaml"
 blueprint_config_file_exists: "{{ lookup('fileglob', blueprint_config_file) | length > 0 }}"
@@ -12,7 +13,6 @@ common_cargo_packages:
   - git-delta
   - bat
   - bottom
-  - just
 
 common_pip_packages:
   - pip
@@ -56,6 +56,10 @@ common_gem_packages:
   - solargraph
   - bundler
   - rails
+  - irb
+  - jekyll
+  - rake
+  - thor
 
 common_node_packages:
   - serve

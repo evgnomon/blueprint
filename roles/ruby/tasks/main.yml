@@ -1,12 +1,24 @@
 ---
-- name: Include main tasks
-  include_tasks: tasks/main-all.yaml
+- shell: |
+    git clone https://github.com/rbenv/rbenv.git {{ home }}/.rbenv
+  args:
+    creates: "{{ home }}/.rbenv"
+  tags:
+    - ruby
+
+- shell: |
+    git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+  args:
+    creates: "{{ home }}/.rbenv/plugins/ruby-build"
+  tags:
+    - ruby
+
+- include_tasks: tasks/main-all.yaml
   when: ansible_os_family != "Windows"
   tags:
-    - always
+    - ruby
 
-- name: Include main tasks for Windows
-  include_tasks: tasks/main-{{ ansible_os_family }}.yaml
+- include_tasks: tasks/main-{{ ansible_os_family }}.yaml
   when: ansible_os_family == "Windows"
   tags:
-    - always
+    - ruby

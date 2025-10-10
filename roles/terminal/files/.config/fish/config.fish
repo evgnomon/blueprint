@@ -3,7 +3,6 @@ if status is-interactive
         return
     end
 
-    set     OPT_PATH    $HOME/opt
     set -x  PYENV_SHELL fish
     set -ax PATH        $HOME/.pyenv/bin
     while set pyenv_index (contains -i -- "$HOME/.pyenv/shims" $PATH)
@@ -11,7 +10,6 @@ if status is-interactive
     end
     set -e pyenv_index
     set -gx PATH "$HOME/.pyenv/shims" $PATH
-    set -gx PATH "$HOME/.rbenv/shims" $PATH
     set -gx GEM_HOME "$HOME/.gem"
     set -gx CODE_HOME "$HOME/src"
     set -px PATH     "$GEM_HOME/bin"
@@ -27,14 +25,6 @@ if status is-interactive
     set -px PATH        $HOME/.cargo/bin
     set -px PATH        $HOME/go/bin
     set -px PATH        $HOME/bin
-    set -xa PATH        $HOME/.yarn/bin
-
-
-    set -x  LIBVIRT_DEFAULT_URI qemu:///system
-
-    set -x  NNN_PLUG    "o:fzopen;c:cdpath;y:cbcopy-mac;"
-
-    alias nnn="nnn -e"
 
     set -x  FZF_DEFAULT_COMMAND "fd --type f --strip-cwd-prefix --hidden --exclude .git"
     set -x  FZF_CTRL_T_COMMAND  "$FZF_DEFAULT_COMMAND"
@@ -49,6 +39,7 @@ if status is-interactive
             set -x  PKG_CONFIG_PATH $MACPORTS_HOME/libexec/openssl3/lib/pkgconfig
         case Linux
             set -ax CDPATH /media/$USER
+            set -x  LIBVIRT_DEFAULT_URI qemu:///system
     end
 
     eval (ssh-agent -c) > /dev/null
@@ -70,6 +61,20 @@ if status is-interactive
     abbr fd   'fd -I --hidden --exclude .git'
     abbr rg   'rg --hidden -i'
 
+    set -gx PATH $HOME/.rbenv/bin $PATH
+    set -gx PATH $HOME/.rbenv/shims $PATH
+    set -gx RBENV_SHELL fish
+    function rbenv
+      set command $argv[1]
+      set -e argv[1]
+
+      switch "$command"
+      case rehash shell
+        rbenv "sh-$command" $argv|source
+      case '*'
+        command rbenv "$command" $argv
+      end
+    end
 
     set -x INTERACTIVE_INIT true
 end
