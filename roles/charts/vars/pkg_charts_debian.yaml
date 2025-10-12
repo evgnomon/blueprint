@@ -149,3 +149,16 @@ pkg_debian:
       bins:
         - name: zig14
           src: "zig-{{ pkg_templates_debian.zig.arch }}-{{ pkg_templates_debian.zig.os }}-{{ pkg_versions.zig14.version }}/zig"
+
+    - name: zig15
+      version: "{{ pkg_versions.zig15.version }}"
+      template:
+        os: *pkg_templates_zig_os
+        arch: *pkg_templates_zig_arch
+        url: https://ziglang.org/download/%(version)s/zig-{{ pkg_templates_debian.zig.arch }}-{{ pkg_templates_debian.zig.os }}-{{ pkg_versions.zig15.version }}.tar.xz
+        ext: *ext_tarxz
+        inflate: *inflate_tarxz
+        creates: "zig-{{ pkg_templates_debian.zig.arch }}-{{ pkg_templates_debian.zig.os }}-{{ pkg_versions.zig15.version }}/zig"
+      bins:
+        - name: zig15
+          src: "zig-{{ pkg_templates_debian.zig.arch }}-{{ pkg_templates_debian.zig.os }}-{{ pkg_versions.zig15.version }}/zig"

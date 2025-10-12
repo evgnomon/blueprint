@@ -1,3 +1,4 @@
 ghostty_repo: "{{ ansible_env.HOME }}/src/github.com/ghostty-org/ghostty"
 ghostty_bin_output: "{{ ghostty_repo }}/zig-out/bin/ghostty"
 ghostty_bin: "{{ ansible_env.HOME }}/.local/bin/ghostty"
+zig_compiler: "zig14"

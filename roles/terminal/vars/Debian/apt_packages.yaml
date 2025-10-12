@@ -47,6 +47,7 @@ apt_packages:
     - zip  # Archive compression utility for creating ZIP files
     - net-tools  # Legacy networking utilities (ifconfig, netstat, route) for network debugging
     - dmidecode  # DMI/SMBIOS decoder for reading hardware information from BIOS
+    - htop # Interactive process viewer for monitoring system resources with mouse support
     - tmux  # Terminal multiplexer for managing multiple terminal sessions
     - exuberant-ctags  # Code indexing tool for navigating source code in editors
     - azure-cli  # Microsoft Azure command-line interface for managing cloud resources
@@ -57,6 +58,5 @@ apt_packages:
     - libpam-u2f  # PAM module for FIDO U2F/FIDO2 hardware authentication keys
   debian:
     - mysql-community-client  # MySQL Community Edition client tools for database access
-    # - rbenv
     - qemu-system  # Generic QEMU system emulator meta-package for all architectures
     # - virtiofsd

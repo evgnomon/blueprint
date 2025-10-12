@@ -109,3 +109,11 @@ pkg_versions:
   zig14:
     version: 0.14.1
     os_families: ["Debian"]
+  zig15:
+    version: 0.15.1
+    os_families: ["Debian"]
+  ghostty:
+    version: 1.2.2
+    os_families: ["Darwin", "Debian"]
+    wsl: false
+    dev_container: false

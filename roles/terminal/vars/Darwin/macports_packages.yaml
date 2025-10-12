@@ -7,8 +7,6 @@ macports_packages:
   - libyaml
   - openssh +fido2
   - pinentry-mac
-  - podman
-  # - rbenv
   - rsync
   - ruby-build
   - swig
@@ -17,4 +15,6 @@ macports_packages:
   - tree
   - aria2
   - universal-ctags
+  - htop
   - ImageMagick
+  - podman

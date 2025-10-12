@@ -1,0 +1,26 @@
+[Desktop Entry]
+Version=1.0
+Name=Ghostty
+Type=Application
+Comment=A terminal emulator
+TryExec={{ home }}/src/github.com/ghostty-org/ghostty/zig-out/bin/ghostty
+Exec={{ home }}/src/github.com/ghostty-org/ghostty/zig-out/bin/ghostty --gtk-single-instance=true
+Icon={{ home }}/src/github.com/ghostty-org/ghostty/images/icons/icon_256.png
+Categories=System;TerminalEmulator;
+Keywords=terminal;tty;pty;
+StartupNotify=true
+StartupWMClass=com.mitchellh.ghostty
+Terminal=false
+Actions=new-window;
+X-GNOME-UsesNotifications=true
+X-TerminalArgExec=-e
+X-TerminalArgTitle=--title=
+X-TerminalArgAppId=--class=
+X-TerminalArgDir=--working-directory=
+X-TerminalArgHold=--wait-after-command
+DBusActivatable=true
+X-KDE-Shortcuts=Ctrl+Alt+T
+
+[Desktop Action new-window]
+Name=New Window
+Exec={{ home }}/src/github.com/ghostty-org/ghostty/zig-out/bin/ghostty --gtk-single-instance=true

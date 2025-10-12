@@ -11,6 +11,8 @@
       - libgtk-4-dev
       - libadwaita-1-dev
       - pkg-config
+      - blueprint-compiler # Blueprint UI markup language compiler for building graphical interfaces
+      - libgtk4-layer-shell-dev
     state: present
   become: yes
 
@@ -27,8 +29,14 @@
     force: yes
   when: not ghostty_binary.stat.exists
 
+- shell: |
+    git fetch --tags
+    git checkout v{{ pkg_versions.ghostty.version }}
+  args:
+    chdir: "{{ ghostty_repo }}"
+
 - name: Build ghostty
-  command: zig14 build -Doptimize=ReleaseFast
+  command: "{{ zig_compiler }} build -Doptimize=ReleaseFast"
   args:
     chdir: "{{ ghostty_repo }}"
   when: not ghostty_binary.stat.exists
@@ -49,3 +57,17 @@
 - name: Display ghostty version
   debug:
     msg: "ghostty version: {{ ghostty_version.stdout }}"
+
+- template:
+    src: ghostty.desktop.j2
+    dest: "{{ ansible_env.HOME }}/.local/share/applications/ghostty.desktop"
+    mode: '0644'
+
+- template:
+    src: config.j2
+    dest: "{{ home }}/.config/ghostty/config"
+    mode: '0644'
+
+- copy:
+    src: "{{ ghostty_repo }}/zig-out/share/ghostty/themes/GitHub Dark"
+    dest: "{{ home }}/.config/ghostty/themes/"
