@@ -13,6 +13,7 @@ common_cargo_packages:
   - git-delta
   - bat
   - bottom
+  - rust-script
 
 common_pip_packages:
   - pip
@@ -39,7 +40,6 @@ common_pip_packages:
   - pytest
   - sphinx
   - poethepoet
-  - furo
   - hcloud
   - pandas
   - yt-dlp
@@ -68,6 +68,8 @@ common_node_packages:
   - nodemon
   - concurrently
   - '@anthropic-ai/claude-code'
+  - '@github/copilot'
+  - tsx
 
 common_go_packages:
   - github.com/tomnomnom/gron@latest
@@ -87,19 +89,21 @@ eget_packages:
       windows: -a zip -f **/*.exe
       debian: -a tar.gz
       darwin: -a zip
-
   - name: gohugoio/hugo
     archs:
       windows: -a extended -a zip
       debian: -a extended -a tar.gz -a withdeploy
       darwin: -a extended -a tar.gz -a withdeploy
-
   - name: hetznercloud/cli
     archs:
       windows: -f hcloud
       debian: -f hcloud
       darwin: -f hcloud
-
+  - name: oven-sh/bun
+    archs:
+      windows: -a ^musl -a ^profile -a ^baseline -f bun.exe
+      debian: -a ^musl -a ^profile -a ^baseline -f bun
+      darwin: -a ^musl -a ^profile -a ^baseline -f bun
   # - name: evgnomon/zygote
   #   archs:
   #     windows: -a ^core

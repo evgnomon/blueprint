@@ -220,6 +220,10 @@ pkg:
           src: *bin_src_bin
         - name: claude
           src: *bin_src_bin
+        - name: copilot
+          src: *bin_src_bin
+        - name: tsx
+          src: *bin_src_bin
 
     - name: go
       archs: *archs-node

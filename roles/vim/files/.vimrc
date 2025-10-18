@@ -59,7 +59,7 @@ set completeopt=preview,menuone,popup      " Configure completion options: show 
 " Plugins
 call plug#begin('~/.vim/plugged')
 Plug 'voldikss/vim-floaterm'
-
+Plug 'neoclide/jsonc.vim', {'commit': '6fb92460f9e50505c9b93181a00f27d10c9b383f' }
 Plug 'morhetz/gruvbox', {'commit': '697c00291db857ca0af00ec154e5bd514a79191f' }
 
 " Search
@@ -126,7 +126,7 @@ let g:black_linelength=79
 autocmd BufRead,BufNewFile *.j2 setfiletype jinja2
 
 autocmd FileType python,go,javascript,typescript,
-      \javascriptreact,typescriptreact,rust,sh              nnoremap <C-l> <Plug>(coc-format)
+      \javascriptreact,typescriptreact,rust,sh,cs              nnoremap <C-l> <Plug>(coc-format)
 autocmd FileType proto                                      noremap <C-l> :ClangFormat<CR>
 autocmd FileType json,html,yaml                             noremap <C-l> :Prettier<CR>
 autocmd FileType toml                                       noremap <C-l> <Plug>(coc-format)
@@ -218,3 +218,4 @@ command! -bang -nargs=* Rg
     \ call fzf#vim#grep(
     \   'rg --line-number --no-heading --color=always --hidden -i --glob "!{.git,node_modules}/*" -- '.shellescape(<q-args>), 1,
     \   fzf#vim#with_preview(), <bang>0)
+

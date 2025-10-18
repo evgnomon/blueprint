@@ -49,6 +49,7 @@ apt_packages:
     - dmidecode  # DMI/SMBIOS decoder for reading hardware information from BIOS
     - htop # Interactive process viewer for monitoring system resources with mouse support
     - tmux  # Terminal multiplexer for managing multiple terminal sessions
+    - dotnet-sdk-9.0 # .NET SDK for building and running .NET applications
     - exuberant-ctags  # Code indexing tool for navigating source code in editors
     - azure-cli  # Microsoft Azure command-line interface for managing cloud resources
     - podman  # Daemonless container engine as Docker alternative for running containers

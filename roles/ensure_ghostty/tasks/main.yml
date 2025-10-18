@@ -30,7 +30,6 @@
   when: not ghostty_binary.stat.exists
 
 - shell: |
-    git fetch --tags
     git checkout v{{ pkg_versions.ghostty.version }}
   args:
     chdir: "{{ ghostty_repo }}"

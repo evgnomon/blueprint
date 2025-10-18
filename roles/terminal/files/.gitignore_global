@@ -1,7 +1,7 @@
 configs/mitmproxy
 configs/c.kdbx
-.vimrc
-tags
+/.vimrc
+/tags
 /.vim
 /.ctags
 /.python-version

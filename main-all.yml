@@ -41,6 +41,26 @@
   tags:
     - ruby
 
+- name: Install Rust packages
+  gather_facts: false
+  hosts: 
+    - all
+    - localhost
+  roles:
+    - ensure_rust
+  tags:
+    - rust
+
+- name: Install C# Language Server
+  gather_facts: false
+  hosts: 
+    - all
+    - localhost
+  roles:
+    - ensure_csharp_ls
+  tags:
+    - cs
+
 - name: vim role
   hosts: 
     - all
