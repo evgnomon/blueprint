@@ -57,7 +57,6 @@ alias gpu='git push --set-upstream origin $(git branch --show-current)'
 alias pr='az repos pr create --target-branch master --title'
 alias fd='fd -I --hidden --exclude .git'
 alias rg='rg --hidden -i'
-alias vv="vim \$(fd . / | fzf)"
 alias vvv="vim \$(fd . / | fzf)"
 alias vv="vim \$(fzf)"
 alias v='vim -c ":History"'

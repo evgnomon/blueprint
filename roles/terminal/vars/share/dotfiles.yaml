@@ -9,3 +9,6 @@ dotfiles:
   - .local
   - .eget.toml
   - .ctags.d
+  - .bashrc
+  - .profile
+  - .bash_aliases
