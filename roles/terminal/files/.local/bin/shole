@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 shole() {
-    local file_path=""
+    local bin_name=""
     local flag_help=0
     local flag_shell="sh"
-    
+
     # Function to display help
     help() {
         echo "shole: show the contents of a file"
@@ -35,7 +35,7 @@ shole() {
                 return 1
                 ;;
             *)
-                file_path="$1"
+                bin_name="$1"
                 shift
                 ;;
         esac
@@ -48,10 +48,13 @@ shole() {
     fi
     
     # Check if file path was provided
-    if [[ -z "$file_path" ]]; then
+    if [[ -z "$bin_name" ]]; then
         echo "shole: error: the following arguments are required: path"
         return 1
     fi
+
+
+    local bin_path=~/.local/bin/$bin_name
     
     # Set shell string based on flag
     local shell_str
@@ -59,10 +62,10 @@ shole() {
         fish)
             shell_str="#!/usr/bin/env fish"
             ;;
-        python)
+        py|python)
             shell_str="#!/usr/bin/env python3"
             ;;
-        ruby)
+        rb|ruby)
             shell_str="#!/usr/bin/env ruby"
             ;;
         sh|bash)
@@ -98,10 +101,10 @@ shole() {
     esac
     
     # Create the file with shebang
-    echo "${shell_str}" > "$file_path"
+    echo "${shell_str}" > $bin_path
 
     # Make the file executable
-    chmod +x "$file_path"
+    chmod +x $bin_path
 }
 
 shole "$@"
