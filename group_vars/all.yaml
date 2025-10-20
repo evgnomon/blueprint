@@ -67,9 +67,10 @@ common_node_packages:
   - prettier
   - nodemon
   - concurrently
+  - tsx
+  - bash-language-server
   - '@anthropic-ai/claude-code'
   - '@github/copilot'
-  - tsx
 
 common_go_packages:
   - github.com/tomnomnom/gron@latest

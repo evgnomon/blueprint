@@ -224,6 +224,12 @@ pkg:
           src: *bin_src_bin
         - name: tsx
           src: *bin_src_bin
+        - name: prettier
+          src: *bin_src_bin
+        - name: bash-language-server
+          src: *bin_src_bin
+        - name: concurrently
+          src: *bin_src_bin
 
     - name: go
       archs: *archs-node
