@@ -113,7 +113,7 @@ pkg_versions:
     version: 0.15.2
     os_families: ["Debian"]
   ghostty:
-    version: 1.2.2
+    version: 1.2.3
     os_families: ["Darwin", "Debian"]
     wsl: false
     dev_container: false
