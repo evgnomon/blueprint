@@ -62,6 +62,10 @@
     dest: "{{ ansible_env.HOME }}/.local/share/applications/ghostty.desktop"
     mode: '0644'
 
+- file:
+    path: "{{ home }}/.config/ghostty"
+    state: directory
+
 - template:
     src: config.j2
     dest: "{{ home }}/.config/ghostty/config"

@@ -137,6 +137,11 @@ PROMPT_COMMAND='history -a'       # Save history immediately
 # Modified prompt
 export PS1="${BLUE}\$(prompt_abbrev_path)${GREEN}\$(prompt_git_branch) ❯ ${RESET}"
 
+# Check if ~/.local/bin is in PATH
+if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+  export PATH="$HOME/.local/bin:$PATH"
+fi
+
 FZF_CTRL_R_COMMAND= FZF_ALT_C_COMMAND= eval "$(fzf --bash)"
 
 ######################################ENV######################################
@@ -204,7 +209,6 @@ gpg --card-status > /dev/null 2>&1 || true
 export EDITOR=vim
 export LD_LIBRARY_PATH="$HOME/.pyenv/versions/3.13.7/lib/"
 export PATH="$HOME/.local/libexec:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
 
 if [[ "$(uname -r)" == *"WSL2"* ]]; then
     # Windows WSL2
