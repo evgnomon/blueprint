@@ -61,4 +61,4 @@ alias vvv="vim \$(fd . / | fzf)"
 alias vv="vim \$(fzf)"
 alias v='vim -c ":History"'
 alias g='git'
-
+alias t='tmux'
