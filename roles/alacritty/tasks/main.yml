@@ -19,3 +19,9 @@
     dest: "{{ alacritty_config_file }}"
   vars:
     wsl_user_home: "/home/{{ ansible_env.USER }}"
+
+- shell: |
+    mkdir -p ~/.config/alacritty/themes
+    git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
+  args:
+    creates: ~/.config/alacritty/themes

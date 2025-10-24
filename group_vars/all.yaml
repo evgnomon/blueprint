@@ -50,6 +50,7 @@ common_pip_packages:
   - artifacts-keyring
   - cookiecutter
   - pipx
+  - pytest-cov
   
 
 common_gem_packages:
