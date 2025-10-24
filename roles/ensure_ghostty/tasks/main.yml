@@ -29,6 +29,13 @@
     force: yes
   when: not ghostty_binary.stat.exists
 
+- command: git fetch
+  args:
+    chdir: "{{ ghostty_repo }}"
+  tags:
+    - ghostty-upgrade
+    - never
+
 - shell: |
     git checkout v{{ pkg_versions.ghostty.version }}
   args:
@@ -39,6 +46,9 @@
   args:
     chdir: "{{ ghostty_repo }}"
   when: not ghostty_binary.stat.exists
+  tags:
+    - ghostty-upgrade
+    - never
 
 - name: Install ghostty binary to ~/.local/bin
   copy:
@@ -47,6 +57,9 @@
     mode: '0755'
     remote_src: yes
   when: not ghostty_binary.stat.exists
+  tags:
+    - ghostty-upgrade
+    - never
 
 - name: Verify ghostty installation
   command: "{{ ghostty_bin }} --version"
