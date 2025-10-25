@@ -51,6 +51,8 @@ common_pip_packages:
   - cookiecutter
   - pipx
   - pytest-cov
+  - pydantic
+  - pydantic[email]
   
 
 common_gem_packages:
