@@ -103,11 +103,6 @@ eget_packages:
       windows: -f hcloud
       debian: -f hcloud
       darwin: -f hcloud
-  - name: oven-sh/bun
-    archs:
-      windows: -a ^musl -a ^profile -a ^baseline -f bun.exe
-      debian: -a ^musl -a ^profile -a ^baseline -f bun
-      darwin: -a ^musl -a ^profile -a ^baseline -f bun
   # - name: evgnomon/zygote
   #   archs:
   #     windows: -a ^core
