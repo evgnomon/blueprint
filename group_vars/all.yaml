@@ -13,7 +13,6 @@ common_cargo_packages:
   - git-delta
   - bat
   - bottom
-  - rust-script
 
 common_pip_packages:
   - pip
@@ -32,7 +31,6 @@ common_pip_packages:
   - ruff
   - ruff-lsp
   - poetry
-  - orjson
   - aiohttp
   - typer
   - pyyaml
@@ -43,26 +41,21 @@ common_pip_packages:
   - hcloud
   - pandas
   - yt-dlp
-  - uv
   - azure-core
   - pydo
   - boto3
   - artifacts-keyring
-  - cookiecutter
   - pipx
   - pytest-cov
   - pydantic
   - pydantic[email]
-  
+
+common_pipx_packages:
+  - cookiecutter
+  - azure-cli
 
 common_gem_packages:
-  - solargraph
   - bundler
-  - rails
-  - irb
-  - jekyll
-  - rake
-  - thor
 
 common_node_packages:
   - serve

@@ -18,8 +18,6 @@
   become: "{{ become_flag }}"
   roles:
     - python
-  tags:
-    - pip
 
 - name: Install Eget packages
   gather_facts: false

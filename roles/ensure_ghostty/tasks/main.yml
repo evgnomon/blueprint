@@ -6,6 +6,7 @@
     mode: '0755'
 
 - name: Install GTK4 and libadwaita dependencies
+  become: yes
   package:
     name:
       - libgtk-4-dev
@@ -14,12 +15,6 @@
       - blueprint-compiler # Blueprint UI markup language compiler for building graphical interfaces
       - libgtk4-layer-shell-dev
     state: present
-  become: yes
-
-- name: Check if ghostty is already installed
-  stat:
-    path: "{{ ansible_env.HOME }}/.local/bin/ghostty"
-  register: ghostty_binary
 
 - name: Clone ghostty-org/ghostty repository
   git:
@@ -27,14 +22,9 @@
     dest: "{{ ghostty_repo }}"
     version: main
     force: yes
-  when: not ghostty_binary.stat.exists
-
-- command: git fetch
-  args:
-    chdir: "{{ ghostty_repo }}"
-  tags:
-    - ghostty-upgrade
-    - never
+  when: >
+    (ghostty_repo + '/.git') is not exists or
+    (no_clone | default(false) | bool)
 
 - shell: |
     git checkout v{{ pkg_versions.ghostty.version }}
@@ -45,21 +35,15 @@
   command: "{{ zig_compiler }} build -Doptimize=ReleaseFast"
   args:
     chdir: "{{ ghostty_repo }}"
-  when: not ghostty_binary.stat.exists
-  tags:
-    - ghostty-upgrade
-    - never
+    creates: "{{ ghostty_bin_output }}"
+  when: not (no_build | default(false) | bool)
 
-- name: Install ghostty binary to ~/.local/bin
+- name: Install ghostty binary in ~/.local/bin
   copy:
     src: "{{ ghostty_bin_output }}"
     dest: "{{ ghostty_bin }}"
     mode: '0755'
     remote_src: yes
-  when: not ghostty_binary.stat.exists
-  tags:
-    - ghostty-upgrade
-    - never
 
 - name: Verify ghostty installation
   command: "{{ ghostty_bin }} --version"
