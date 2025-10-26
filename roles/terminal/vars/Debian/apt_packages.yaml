@@ -51,7 +51,6 @@ apt_packages:
     - tmux  # Terminal multiplexer for managing multiple terminal sessions
     - dotnet-sdk-9.0 # .NET SDK for building and running .NET applications
     - exuberant-ctags  # Code indexing tool for navigating source code in editors
-    - azure-cli  # Microsoft Azure command-line interface for managing cloud resources
     - podman  # Daemonless container engine as Docker alternative for running containers
     - brave-browser  # Privacy-focused web browser with built-in ad blocking
   ubuntu:

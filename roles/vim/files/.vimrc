@@ -97,7 +97,6 @@ let g:coc_global_extensions = [
       \ 'coc-prettier',
       \ 'coc-tsserver',
       \ 'coc-go',
-      \ 'coc-pyright',
       \ 'coc-snippets',
       \ '@yaegassy/coc-ruff',
       \ 'coc-toml'
@@ -175,8 +174,8 @@ nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> <leader>3 <Plug>(coc-references)
 
-nmap <silent> <F2> <Plug>(coc-diagnostic-next)
-noremap <silent> <S-F2> <Plug>(coc-diagnostic-prev)
+nmap <silent> <F8> <Plug>(coc-diagnostic-next)
+noremap <silent> <S-F8> <Plug>(coc-diagnostic-prev)
 
 " Use K to show documentation in preview window
 nnoremap <leader>q :call ShowDocumentation()<CR>

@@ -139,7 +139,7 @@ export PS1="${BLUE}\$(prompt_abbrev_path)${GREEN}\$(prompt_git_branch) ❯ ${RES
 
 # Check if ~/.local/bin is in PATH
 if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
-  export PATH="$HOME/.local/bin:$PATH"
+  export PATH="$PATH:$HOME/.local/bin"
 fi
 
 FZF_CTRL_R_COMMAND= FZF_ALT_C_COMMAND= eval "$(fzf --bash)"
@@ -218,3 +218,5 @@ fi
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/shims:$PATH"
 export RBENV_SHELL=bash
+
+export PATH="$HOME/.local/bin:$PATH"

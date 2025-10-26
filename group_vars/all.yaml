@@ -18,32 +18,16 @@ common_pip_packages:
   - pip
   - docker
   - setuptools
-  - git-review # needed by Zuul
-  - ansible-lint # check Ansible changes before commit
-  - yamllint # Yaml issues exposed in Coc vim
-  - pre-commit
-  - pylint
-  - podman-compose
-  - yubikey-manager
-  - black
   - pynacl
-  - coverage
-  - ruff
-  - ruff-lsp
-  - poetry
   - aiohttp
   - typer
   - pyyaml
-  - mypy
   - pytest
-  - sphinx
-  - poethepoet
   - hcloud
-  - pandas
-  - yt-dlp
-  - azure-core
   - pydo
+  - azure-core
   - boto3
+  - pandas
   - artifacts-keyring
   - pipx
   - pytest-cov
@@ -53,6 +37,22 @@ common_pip_packages:
 common_pipx_packages:
   - cookiecutter
   - azure-cli
+  - uv
+  - ruff
+  - pre-commit
+  - mypy
+  - ansible-lint
+  - git-review # needed by Zuul
+  - yamllint
+  - pylint
+  - podman-compose
+  - yubikey-manager
+  - black
+  - coverage
+  - poetry
+  - sphinx
+  - poethepoet
+  - yt-dlp
 
 common_gem_packages:
   - bundler
