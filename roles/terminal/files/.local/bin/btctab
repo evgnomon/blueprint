@@ -1,0 +1,84 @@
+#!/usr/bin/env python3
+
+import typer
+import httpx
+import json
+
+app = typer.Typer()
+
+
+@app.command()
+def price(name="bitcoin"):
+    get_bitcoin_price(name)
+
+
+@app.command()
+def list(limit: int = 100000):
+    """List available cryptocurrencies from CoinGecko"""
+    url = "https://api.coingecko.com/api/v3/coins/list"
+
+    try:
+        response = httpx.get(url)
+        response.raise_for_status()
+
+        coins = response.json()
+
+        for i, coin in enumerate(coins[:limit]):
+            coin_id = coin["id"]
+            symbol = coin["symbol"]
+            name = coin["name"]
+            print(f"{coin_id:<30} {symbol:<10} {name:<40}")
+
+        total = len(coins)
+
+    except httpx.HTTPError as e:
+        print(f"Error fetching coin list: {e}")
+    except KeyError as e:
+        print(f"Error parsing data: {e}")
+
+
+def get_bitcoin_price(name="bitcoin"):
+    """
+    Fetch current Bitcoin price from CoinGecko API
+    """
+    # CoinGecko API endpoint for Bitcoin price
+    url = "https://api.coingecko.com/api/v3/simple/price"
+
+    # Parameters: get bitcoin price in USD with 24h change
+    params = {
+        "ids": name,
+        "vs_currencies": "usd",
+        "include_24hr_change": "true",
+        "include_market_cap": "true",
+        "include_24hr_vol": "true",
+    }
+
+    try:
+        # Make the API request
+        response = httpx.get(url, params=params)
+        response.raise_for_status()  # Raise exception for bad status codes
+
+        # Parse JSON response
+        data = response.json()
+
+        # Extract Bitcoin data
+        btc_data = data[name]
+        price = btc_data["usd"]
+        change_24h = btc_data.get("usd_24h_change", "N/A")
+        market_cap = btc_data.get("usd_market_cap", "N/A")
+        volume_24h = btc_data.get("usd_24h_vol", "N/A")
+
+        print(price)
+
+        return data
+
+    except httpx.HTTPError as e:
+        print(f"Error fetching data: {e}")
+        return None
+    except KeyError as e:
+        print(f"Error parsing data: {e}")
+        return None
+
+
+if __name__ == "__main__":
+    app()

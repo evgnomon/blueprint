@@ -59,41 +59,20 @@ shole() {
     # Set shell string based on flag
     local shell_str
     case "$flag_shell" in
-        fish)
-            shell_str="#!/usr/bin/env fish"
-            ;;
         py|python)
             shell_str="#!/usr/bin/env python3"
             ;;
-        rb|ruby)
-            shell_str="#!/usr/bin/env ruby"
-            ;;
         sh|bash)
             shell_str="#!/usr/bin/env bash"
+            ;;
+        zig)
+            shell_str='//usr/bin/env zig run "$0" -- "$@"; exit "$?"'
             ;;
         js|node)
             shell_str="#!/usr/bin/env node"
             ;;
         go)
             shell_str='//usr/bin/env go run "$0" "$@"; exit "$?"'
-            ;;
-        zig)
-            shell_str='//usr/bin/env zig run "$0" -- "$@"; exit "$?"'
-            ;;
-        cpp)
-            shell_str='//usr/bin/env g++ -std=c++20 -x c++ -o /tmp/"${0##*/}".out "$0" -lm && /tmp/"${0##*/}".out "$@"; rm -f /tmp/"${0##*/}".out; exit "$?"'
-            ;;
-        c)
-            shell_str='//usr/bin/env gcc -o /tmp/"${0##*/}".out "$0" && /tmp/"${0##*/}".out "$@"; exit "$?"'
-            ;;
-        csharp|cs)
-            shell_str='#!/usr/bin/env dotnet-script'
-            ;;
-        powershell|pwsh)
-            shell_str='#!/usr/bin/env pwsh'
-            ;;
-        ts)
-            shell_str='#!/usr/bin/env bun'
             ;;
         *)
             shell_str="/usr/bin/env bash"
