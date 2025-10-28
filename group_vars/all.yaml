@@ -58,7 +58,6 @@ common_gem_packages:
   - bundler
 
 common_node_packages:
-  - serve
   - npm
   - prettier
   - nodemon
@@ -106,6 +105,7 @@ eget_packages:
     to: tflint
   - name: containers/gvisor-tap-vsock
     to: gvproxy
+  - name: block/goose
 
 debian_go_packages:
 

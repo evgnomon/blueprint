@@ -230,6 +230,8 @@ pkg:
           src: *bin_src_bin
         - name: concurrently
           src: *bin_src_bin
+        - name: amp
+          src: *bin_src_bin
 
     - name: go
       archs: *archs-node

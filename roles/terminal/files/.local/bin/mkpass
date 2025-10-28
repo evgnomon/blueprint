@@ -1,0 +1,6 @@
+#!/usr/bin/env python3
+
+from bpkit.vault import generate_password
+
+if __name__ == "__main__":
+    print(generate_password())
