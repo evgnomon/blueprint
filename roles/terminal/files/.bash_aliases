@@ -67,3 +67,4 @@ alias t='tmux'
 alias c='claude'
 alias serve='python3 -m http.server'
 alias i="invoke"
+alias mkpass="bp vault gen pass"
