@@ -59,6 +59,16 @@
   tags:
     - cs
 
+- name: Install Goose CLI
+  gather_facts: false
+  hosts: 
+    - all
+    - localhost
+  roles:
+    - goose
+  tags:
+    - goose
+
 - name: vim role
   hosts: 
     - all
