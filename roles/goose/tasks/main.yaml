@@ -11,3 +11,8 @@
   when: >
     no_update is not defined or
     not (no_update | default(false))
+
+- template:
+    src: config.yaml.j2
+    dest: "{{home}}/.config/goose/config.yaml"
+  name: Generate Goose configuration file
