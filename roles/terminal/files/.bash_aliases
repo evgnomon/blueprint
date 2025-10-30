@@ -73,3 +73,4 @@ alias i="invoke"
 alias e="pwd"
 alias c="clear"
 alias mkpass="bp vault gen pass"
+alias o='open "$(fzf --preview="bat --color=always --style=numbers {}")"'
