@@ -135,7 +135,7 @@ shopt -s cmdhist                  # Save multi-line commands as one
 PROMPT_COMMAND='history -a'       # Save history immediately
 
 # Modified prompt
-export PS1="${BLUE}\$(prompt_abbrev_path)${GREEN}\$(prompt_git_branch) ❯ ${RESET}"
+export PS1="${GREEN}❯ ${RESET}"
 
 # Check if ~/.local/bin is in PATH
 if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
