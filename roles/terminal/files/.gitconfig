@@ -52,8 +52,9 @@
   pp = pull
   i = diff --staged
   c = commit -m 
-  a = git add -p
-  A = git add -A
+  a = add -p
+  l = log --oneline --graph --decorate --all
+  A = add -A
   st = !git diff --stat
   reflog = reflog --date=relative
   ; gone = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D"
