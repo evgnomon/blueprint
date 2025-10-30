@@ -14,8 +14,28 @@
       - baobab
       - simple-scan
       - evolution
+      - evince
+      - file-roller
       - firefox
       - firefox-esr
+      - gnome-calculator
+      - gnome-calendar
+      - gnome-characters
+      - gnome-clocks
+      - gnome-contacts
+      - gnome-disk-utility
+      - gnome-font-viewer
+      - gnome-logs
+      - gnome-maps
+      - gnome-music
+      - gnome-software
+      - gnome-software-plugin-deb
+      - gnome-software-plugin-fwupd
+      - gnome-system-monitor
+      - gnome-text-editor
+      - gnome-tour
+      - gnome-user-docs
+      - gnome-weather
       - libreoffice-common
       - libreoffice-writer
       - libreoffice-calc
@@ -23,15 +43,19 @@
       - libreoffice-base
       - libreoffice-draw
       - libreoffice-math
-      - gnome-maps
-      - gnome-music
-      - shotwell
-      - transmission-gtk
-      - totem
-      - gnome-characters
-      - gnome-calendar
+      - malcontent
+      - malcontent-gui
+      - mate-user-guide
       - rhythmbox
+      - shotwell
+      - totem
+      - transmission-gtk
+      - yelp
     state: absent
     purge: yes
+  become: yes
+  when: ansible_os_family == "Debian"
+
+- command: apt autoremove -y
   become: yes
   when: ansible_os_family == "Debian"
