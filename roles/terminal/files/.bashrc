@@ -14,6 +14,7 @@ esac
 BLUE="\[\e[34m\]"    # Blue for path
 GREEN="\[\e[32m\]"   # Green for Git branch
 RESET="\[\e[0m\]"    # Reset color
+ORANGE="\e[38;2;247;147;26m"
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -139,7 +140,8 @@ shopt -s cmdhist                  # Save multi-line commands as one
 PROMPT_COMMAND='history -a'       # Save history immediately
 
 # Modified prompt
-export PS1="${GREEN}❯ ${RESET}"
+export PS1="${ORANGE}₿ ${RESET}"
+
 
 # Check if ~/.local/bin is in PATH
 if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
