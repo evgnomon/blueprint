@@ -51,7 +51,7 @@ def get_inventory() -> dict[str, dict[str, Any]]:
         },
     }
 
-    config_file_path = Path(user_home) / ".blueprint" / "config.yaml"
+    config_file_path = Path(user_home) / ".config" / "blueprint" / "config.yaml"
     if not config_file_path.exists():
         return inventory
     with config_file_path.open() as f:

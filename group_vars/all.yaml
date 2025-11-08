@@ -1,8 +1,10 @@
 ---
 go_latest_version: 1.21.6
 home: "{{ lookup('env', 'HOME') }}"
-local_bin_path: "{{ ansible_env.HOME }}/.local/bin"
-blueprint_config_file: "{{ lookup('env','HOME') }}/.blueprint/config.yaml"
+target_home: "{{ ansible_env.HOME }}"
+local_bin_path: "{{ target_home }}/.local/bin"
+blueprint_config_dir: "{{ home }}/.config/blueprint"
+blueprint_config_file: "{{ blueprint_config_dir }}/config.yaml"
 blueprint_config_file_exists: "{{ lookup('fileglob', blueprint_config_file) | length > 0 }}"
 
 dev_container: true
@@ -27,6 +29,7 @@ common_pip_packages:
   - pydo
   - azure-core
   - boto3
+  - httpx
   - pandas
   - artifacts-keyring
   - pipx
@@ -66,6 +69,7 @@ common_node_packages:
   - bash-language-server
   - '@anthropic-ai/claude-code'
   - '@github/copilot'
+  - "opencode-ai@latest"
 
 common_go_packages:
   - github.com/tomnomnom/gron@latest

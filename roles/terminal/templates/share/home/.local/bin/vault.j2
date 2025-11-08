@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SECRETS_DIR="$HOME/.blueprint/secrets"
+SECRETS_DIR="{{ blueprint_config_dir }}/secrets"
 GPG_KEY={{ gpg.get('key', '') if gpg is defined else '' }}
 
 export EDITOR=vi

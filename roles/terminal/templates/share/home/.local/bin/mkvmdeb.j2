@@ -17,7 +17,7 @@ sudo virt-install \
   --memory 1024 \
   --vcpus 2 \
   --disk path=$DST_IMAGE,format=qcow2 \
-  --cloud-init user-data=$HOME/.blueprint/configs/kvm/cloud-init-user-data.yaml \
+  --cloud-init user-data={{ blueprint_config_dir }}/configs/kvm/cloud-init-user-data.yaml \
   --import \
   --os-variant debian11 \
   --network network=default \

@@ -23,7 +23,7 @@
     - pip
   name: Upgrade common pip packages
 
-- command: python -m pipx upgrade {{ common_pipx_packages | join(' ') }}
+- command: python -m pipx install {{ common_pipx_packages | join(' ') }}
   when: >
     no_upgrade is not defined or
     (no_upgrade is defined and not (no_upgrade | bool))

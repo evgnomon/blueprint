@@ -52,11 +52,11 @@ apt_packages:
     - dotnet-sdk-9.0 # .NET SDK for building and running .NET applications
     - exuberant-ctags  # Code indexing tool for navigating source code in editors
     - podman  # Daemonless container engine as Docker alternative for running containers
+    - packer
     - brave-browser  # Privacy-focused web browser with built-in ad blocking
   ubuntu:
     - mysql-client  # MySQL database client tools for connecting to MySQL servers
     - libpam-u2f  # PAM module for FIDO U2F/FIDO2 hardware authentication keys
   debian:
-    - mysql-community-client  # MySQL Community Edition client tools for database access
     - qemu-system  # Generic QEMU system emulator meta-package for all architectures
     # - virtiofsd

@@ -46,6 +46,24 @@ status() {
     esac
 }
 
+search_web() { 
+  if pgrep brave > /dev/null; then
+    brave-browser "https://duckduckgo.com/?q=$*&t=brave&ia=web" > /dev/null; 
+  else
+    echo "Brave is not running"
+  fi
+}
+
+
+open_web() { 
+  if pgrep brave > /dev/null; then
+    brave-browser "https://$*" > /dev/null; 
+  else
+    echo "Brave is not running"
+  fi
+}
+
+
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
@@ -55,7 +73,6 @@ alias ll='ls -lAh --color=auto'
 alias ports='netstat -tulanp'
 alias myip='curl -s ifconfig.me; echo'
 alias meminfo='free -m -l -t'
-alias s='status'
 alias gpu='git push --set-upstream origin $(git branch --show-current)'
 alias pr='az repos pr create --target-branch master --title'
 alias fd='fd -I --hidden --exclude .git'
@@ -74,3 +91,5 @@ alias e="pwd"
 alias c="clear"
 alias mkpass="bp vault gen pass"
 alias o='open "$(fzf --preview="bat --color=always --style=numbers {}")"'
+alias s='search_web'
+alias ss='open_web'

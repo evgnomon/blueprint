@@ -1,16 +1,4 @@
 ---
-- command: gh repo clone evgnomon/recipes {{home}}/.config/goose/recipes
-  args:
-    creates: "{{home}}/.config/goose/recipes"
-  name: Clone Goose recipes repository
-
-- command: git pull origin main
-  args:
-    chdir: "{{home}}/.config/goose/recipes"
-  name: Update Goose recipes
-  when: >
-    no_update is not defined or
-    not (no_update | default(false))
 
 - template:
     src: config.yaml.j2

@@ -15,7 +15,7 @@ Provide user configs:
 ```bash
 # usermod -aG sudo
 # Checkout your `.blueprint` settings.
-git clone ssh://git@github.com:YOURUSER/.blueprint.git ~/.blueprint
+git clone ssh://git@github.com:YOURUSER/.blueprint.git ~/.config/blueprint
 ```
 
 ## Windows
