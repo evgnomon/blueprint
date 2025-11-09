@@ -93,3 +93,4 @@ alias mkpass="bp vault gen pass"
 alias o='open "$(fzf --preview="bat --color=always --style=numbers {}")"'
 alias s='search_web'
 alias ss='open_web'
+alias sss='ss "`fzurls`"'
