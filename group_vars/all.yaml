@@ -7,7 +7,7 @@ blueprint_config_dir: "{{ home }}/.config/blueprint"
 blueprint_config_file: "{{ blueprint_config_dir }}/config.yaml"
 blueprint_config_file_exists: "{{ lookup('fileglob', blueprint_config_file) | length > 0 }}"
 
-dev_container: true
+dev_container: false
 
 common_cargo_packages:
   - fd-find
