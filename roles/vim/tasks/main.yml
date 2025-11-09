@@ -48,8 +48,18 @@
   loop: &vim_config_files
     - .vimrc
     - .ideavimrc
-    - coc-settings.json
   tags: &vim_dotfiles_tags
+    - dotfiles
+    - vim
+  when: ansible_os_family != "Windows"
+
+- name: Coc configs
+  synchronize:
+    src: "{{ item }}"
+    dest: "{{ blueprint_user_home }}/.vim"
+  loop:
+    - coc-settings.json
+  tags:
     - dotfiles
     - vim
   when: ansible_os_family != "Windows"
