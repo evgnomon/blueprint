@@ -13,8 +13,8 @@ esac
 
 BLUE="\[\e[34m\]"    # Blue for path
 GREEN="\[\e[32m\]"   # Green for Git branch
-RESET="\[\e[0m\]"    # Reset color
-ORANGE="\e[38;2;247;147;26m"
+RESET="\[\e[0m\]"    # Reset color 
+ORANGE='\[\033[38;5;208m\]'
 
 # append to the history file, don't overwrite it
 shopt -s histappend
