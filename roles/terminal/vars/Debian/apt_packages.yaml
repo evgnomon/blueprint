@@ -45,6 +45,8 @@ apt_packages:
     - heif-gdk-pixbuf  # HEIF/HEIC image format support for viewing modern image formats
     - scdaemon  # Smart card daemon for GPG to communicate with hardware tokens
     - zip  # Archive compression utility for creating ZIP files
+    - flex # Lexical analyzer generator for building compilers and interpreters
+    - bison # Parser generator for building compilers and interpreters
     - net-tools  # Legacy networking utilities (ifconfig, netstat, route) for network debugging
     - dmidecode  # DMI/SMBIOS decoder for reading hardware information from BIOS
     - htop # Interactive process viewer for monitoring system resources with mouse support
@@ -52,7 +54,7 @@ apt_packages:
     - dotnet-sdk-9.0 # .NET SDK for building and running .NET applications
     - exuberant-ctags  # Code indexing tool for navigating source code in editors
     - podman  # Daemonless container engine as Docker alternative for running containers
-    - packer
+    - packer # Tool for creating machine images for multiple platforms from a single source
     - brave-browser  # Privacy-focused web browser with built-in ad blocking
   ubuntu:
     - mysql-client  # MySQL database client tools for connecting to MySQL servers
