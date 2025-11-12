@@ -8,3 +8,4 @@ configs/c.kdbx
 /.secrets.yaml
 /*.bundle
 /.run
+/.claude
