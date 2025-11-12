@@ -50,6 +50,7 @@ apt_packages:
     - net-tools  # Legacy networking utilities (ifconfig, netstat, route) for network debugging
     - dmidecode  # DMI/SMBIOS decoder for reading hardware information from BIOS
     - htop # Interactive process viewer for monitoring system resources with mouse support
+    - mdns-scan  # Multicast DNS scanner for discovering services on local network
     - tmux  # Terminal multiplexer for managing multiple terminal sessions
     - dotnet-sdk-9.0 # .NET SDK for building and running .NET applications
     - exuberant-ctags  # Code indexing tool for navigating source code in editors
