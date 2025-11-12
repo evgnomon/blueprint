@@ -6,6 +6,11 @@
   name: Generate Goose configuration file
 
 - file:
+    state: directory
+    path: "{{ target_home }}/.config/goose/recipes"
+
+- file:
     state: link
     src: "{{ target_home }}/src/github.com/evgnomon/recipes"
     dest: "{{ target_home }}/.config/goose/recipes"
+    force: true
