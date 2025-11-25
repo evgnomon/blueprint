@@ -54,7 +54,6 @@ search_web() {
   fi
 }
 
-
 open_web() { 
   if pgrep brave > /dev/null; then
     brave-browser "https://$*" > /dev/null; 
@@ -63,6 +62,15 @@ open_web() {
   fi
 }
 
+function j {
+    if [ $# -eq 0 ]; then
+        jobs
+    elif [ $# -eq 1 ] && [[ $1 =~ ^[0-9]+$ ]]; then
+        fg $1
+    else
+        "$@" &> /dev/null &
+    fi
+}
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
@@ -95,3 +103,4 @@ alias s='search_web'
 alias ss='open_web'
 alias sss='ss "`fzurls`"'
 alias r='gg run --recipe'
+alias jj='fg'
