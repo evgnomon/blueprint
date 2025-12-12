@@ -22,20 +22,21 @@ common_pip_packages:
   - setuptools
   - pynacl
   - aiohttp
-  - typer
+  - pipx
   - pyyaml
-  - pytest
   - hcloud
   - pydo
   - azure-core
-  - boto3
   - httpx
   - pandas
   - artifacts-keyring
   - pipx
+  - pytest
   - pytest-cov
+  - pytest-asyncio
   - pydantic
   - pydantic[email]
+  - click
 
 common_pipx_packages:
   - cookiecutter
@@ -67,8 +68,8 @@ common_node_packages:
   - concurrently
   - tsx
   - bash-language-server
-  - '@anthropic-ai/claude-code'
-  - '@github/copilot'
+  - "@anthropic-ai/claude-code"
+  - "@github/copilot"
   - "opencode-ai@latest"
 
 common_go_packages:
