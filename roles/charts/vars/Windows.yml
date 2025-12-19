@@ -72,4 +72,3 @@ winget_packages_autoremove:
 
 pacman_packages:
   - mingw-w64-x86_64-gcc
-  - fish

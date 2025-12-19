@@ -123,11 +123,6 @@
     - autoremove
     - upgrade
 
-- name: Build fish shell
-  include_tasks:
-    file: fish-build.yml
-  when: ansible_os_family == "Debian"
-
 - name: Install common Cargo packages
   ansible.builtin.command:
     cmd: "{{ cargo_cmd }} install {{ item }}"

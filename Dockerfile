@@ -28,5 +28,4 @@ RUN sudo chown nouser:nouser /home/nouser/.ssh
 RUN mkdir -p /home/nouser/.local/bin
 RUN ansible-playbook -i /home/nouser/inventory main.yaml
 
-# CMD ["ansible-playbook", "-i", "/home/nouser/inventory", "main.yaml"]
-CMD ["/home/nouser/.local/bin/fish"]
+CMD ["/usr/bin/bash"]

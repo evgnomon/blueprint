@@ -1,8 +1,8 @@
 ---
 macports_packages:
   - coreutils
-  - fish
   - gnupg2
+  - bash
   - jq
   - libyaml
   - openssh +fido2

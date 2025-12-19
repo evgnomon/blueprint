@@ -8,11 +8,11 @@
     - vim
 
 - name: Install vim
-  script: install-{{ ansible_os_family }}.fish
+  script: install-{{ ansible_os_family }}.sh
   when: ansible_os_family != "Windows"
   args:
     chdir: "{{ ansible_env.HOME }}/src/github.com/vim/vim"
-    executable: "fish"
+    executable: "bash"
   tags:
     - vim
 

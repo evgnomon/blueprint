@@ -36,11 +36,11 @@ program = "/bin/bash"
 {% endif %}
 {% if ansible_os_family == "Windows" %}
 program = "wsl"
-args = ["~", "-e", "{{ wsl_user_home }}/.local/bin/fish"]
+args = ["~", "-e", "/usr/bin/bash"]
 {% endif %}
 {% if ansible_os_family == "Darwin" %}
 args = ["--login"]
-program = "{{ blueprint_user_home }}/.macports/bin/fish"
+program = "{{ blueprint_user_home }}/.macports/bin/bash"
 {% endif %}
 
 [window]

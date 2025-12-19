@@ -1,4 +1,2 @@
 ---
-fish_src_dir: "{{ ansible_env.HOME }}/src/github.com/fish-shell/fish-shell"
-fish_build_dir: "{{ fish_src_dir }}/build"
 cargo_cmd: "{{ ansible_env.HOME }}/.cargo/bin/cargo"

@@ -1,2 +1,3 @@
-#!/usr/bin/env fish
-hcloud --config (~/.config/hcloud/cli.sh | psub ) $argv
+#!/bin/bash
+
+hcloud --config <(~/.config/hcloud/cli.sh) "$@"
