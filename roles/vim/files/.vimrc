@@ -99,7 +99,8 @@ let g:coc_global_extensions = [
       \ 'coc-go',
       \ 'coc-snippets',
       \ '@yaegassy/coc-ruff',
-      \ 'coc-toml'
+      \ 'coc-toml',
+      \ 'coc-clangd'
       \]
 
 nmap <silent> <leader>kk ?function<cr>:noh<cr><Plug>(jsdoc)

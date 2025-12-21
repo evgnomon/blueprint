@@ -60,6 +60,7 @@ apt_packages:
     - libisofs-dev # Library for creating ISO 9660 filesystem images
     - libisoburn-dev # Library for burning ISO 9660 filesystem images to optical media
     - libburn-dev # Library for writing data to optical media (CD/DVD/Blu-ray)
+    - clangd # Language server for C/C++ based on Clang for IDE integration
 
   ubuntu:
     - mysql-client  # MySQL database client tools for connecting to MySQL servers
