@@ -63,6 +63,7 @@ apt_packages:
     - clangd # Language server for C/C++ based on Clang for IDE integration
     - reprepro # Tool for managing local APT package repositories
     - clang-format # Code formatting tool for C/C++ based on Clang
+    - ntfs-3g # NTFS filesystem driver for read/write access to NTFS partitions
 
   ubuntu:
     - mysql-client  # MySQL database client tools for connecting to MySQL servers
