@@ -29,15 +29,6 @@
   tags:
     - eget
 
-- name: Install Ruby packages
-  gather_facts: false
-  hosts: 
-    - all
-    - localhost
-  roles:
-    - ruby
-  tags:
-    - ruby
 
 - name: Install Rust packages
   gather_facts: false

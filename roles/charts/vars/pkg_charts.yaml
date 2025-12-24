@@ -232,7 +232,7 @@ pkg:
           src: *bin_src_bin
         - name: amp
           src: *bin_src_bin
-        - name: opencode
+        - name: yarn # Required by gruvbox
           src: *bin_src_bin
 
     - name: go

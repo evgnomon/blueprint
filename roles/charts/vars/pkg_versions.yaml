@@ -46,13 +46,13 @@ pkg_versions:
     version: 1.10.10
     os_families: ["Darwin", "Debian"]
   maven:
-    version: 3.9.11
+    version: 3.9.12
     os_families: ["Darwin", "Debian"]
   gradle:
     version: 8.13
     os_families: ["Darwin", "Debian"]
   cmake:
-    version: 3.31.6
+    version: 4.2.1 
     os_families: ["Darwin", "Debian"]
   bazelisk:
     version: 1.22.0
@@ -104,7 +104,7 @@ pkg_versions:
     version: 1.33.1
     os_families: ["Darwin", "Debian"]
   zig:
-    version: 0.16.0-dev.1484+d0ba6642b
+    version: 0.16.0-dev.1634+b27bdd5af
     os_families: ["Debian"]
   zig14:
     version: 0.14.1
