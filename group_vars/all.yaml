@@ -58,9 +58,6 @@ common_pipx_packages:
   - poethepoet
   - yt-dlp
 
-common_gem_packages:
-  - bundler
-
 common_node_packages:
   - npm
   - prettier

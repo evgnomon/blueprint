@@ -15,7 +15,7 @@ fi
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
-export PATH="$HOME/.local/bin:$HOME/go/bin:$HOME/.rbenv/shims:$PATH"
+export PATH="$HOME/.local/bin:$HOME/go/bin:$PATH"
 
 sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev curl libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev hwdata yubikey-manager scdaemon scdaemon ykcs11 libpcsclite-dev swig pcscd libpam-u2f pinentry-tty libpam-yubico usbutils unzip libyaml-dev
 

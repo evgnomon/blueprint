@@ -8,7 +8,6 @@ macports_packages:
   - openssh +fido2
   - pinentry-mac
   - rsync
-  - ruby-build
   - swig
   - swig-python
   - the_silver_searcher
