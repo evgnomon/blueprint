@@ -112,6 +112,10 @@ eget_packages:
   - name: block/goose
     archs:
       debian: -a amd64
+  - name: telegramdesktop/tdesktop
+    archs:
+      debian: -a tar.xz -f "Telegram/Telegram"
+    to: telegram
 
 debian_go_packages:
 
