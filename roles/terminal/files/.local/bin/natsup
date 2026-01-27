@@ -1,0 +1,197 @@
+#!/usr/bin/env python3
+"""
+Generic script to run one NATS server node (with JetStream) using Podman.
+
+Usage examples:
+
+  # Node 1 - main client port 4222
+  python3 nats-node-podman.py --node-id 1 --client-port 4222 --monitoring-port 8222
+
+  # Node 2
+  python3 nats-node-podman.py --node-id 2 --client-port 4223 --monitoring-port 8223
+
+  # Using env vars
+  NATS_NODE_ID=3 CLIENT_PORT=4224 MONITORING_PORT=8224 python3 nats-node-podman.py
+"""
+
+import argparse
+import os
+import subprocess
+import sys
+from typing import List
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Run a single NATS JetStream node with Podman"
+    )
+
+    parser.add_argument(
+        "--node-id",
+        type=int,
+        default=int(os.getenv("NATS_NODE_ID", "1")),
+        help="Node number 1–9 (used for name and port defaults)",
+    )
+
+    parser.add_argument(
+        "--client-port",
+        type=int,
+        default=int(os.getenv("CLIENT_PORT", "0")),
+        help="Host port for NATS client connections (4222,4223,…)",
+    )
+
+    parser.add_argument(
+        "--monitoring-port",
+        type=int,
+        default=int(os.getenv("MONITORING_PORT", "0")),
+        help="Host port for monitoring / health (8222,8223,…)",
+    )
+
+    parser.add_argument(
+        "--cluster-name",
+        default=os.getenv("CLUSTER_NAME", "c1"),
+        help="NATS cluster name",
+    )
+
+    parser.add_argument(
+        "--image",
+        default=os.getenv("NATS_IMAGE", "nats:2-alpine"),
+        help="Container image to use",
+    )
+
+    parser.add_argument(
+        "--data-dir",
+        default=os.getenv("DATA_DIR", f"{os.getenv('HOME')}/data/nats"),
+        help="Host directory for JetStream persistent storage",
+    )
+
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Print podman command instead of running it",
+    )
+
+    parser.add_argument(
+        "--no-pull", action="store_true", help="Do not run podman pull before starting"
+    )
+
+    parser.add_argument(
+        "--rootless",
+        action="store_true",
+        help="Explicitly mention rootless mode (informational only)",
+    )
+
+    return parser.parse_args()
+
+
+def build_nats_name(node_id: int) -> str:
+    return f"nats{node_id}"
+
+
+def build_routes(node_count: int = 3) -> str:
+    """Builds --routes string assuming nodes are named nats1,nats2,nats3,..."""
+    routes = [f"nats://nats{i}:6222" for i in range(1, node_count + 1)]
+    return ",".join(routes)
+
+
+def main():
+    args = parse_args()
+
+    node_id = args.node_id
+    if not 1 <= node_id <= 9:
+        print("Error: --node-id must be between 1 and 9", file=sys.stderr)
+        sys.exit(1)
+
+    nats_name = build_nats_name(node_id)
+
+    # Ports – fallback logic if not provided
+    client_port = args.client_port or (4222 + node_id - 1)
+    monitoring_port = args.monitoring_port or (8222 + node_id - 1)
+
+    # JetStream data location on host
+    volume_host_path = f"{args.data_dir}/js-{node_id}"
+    volume_mapping = f"{volume_host_path}:/data/js"
+
+    routes = build_routes(3)  # ← change to 5,7,... if using more nodes
+
+    podman_args: List[str] = [
+        "podman",
+        "run",
+        "-d",
+        "--name",
+        nats_name,
+        "--hostname",
+        nats_name,
+        "--restart",
+        "unless-stopped",
+        "-p",
+        f"{client_port}:4222",
+        "-p",
+        f"{monitoring_port}:8222",
+        # cluster port 6222 stays internal — no -p needed
+        "-v",
+        volume_mapping,
+        args.image,
+        # ─── NATS server flags ────────────────────────────────────────
+        "--name",
+        nats_name,
+        "--cluster_name",
+        args.cluster_name,
+        "--jetstream",
+        "--store_dir",
+        "/data/js",
+        "--cluster",
+        "nats://0.0.0.0:6222",
+        "--routes",
+        routes,
+        "--http_port",
+        "8222",
+        # Add more if needed, examples:
+        # "--debug",
+        # "--trace",
+        # "--max_payload", "16MB",
+    ]
+
+    print(f"Starting NATS node {nats_name}  (using Podman)")
+    print(f"  Client port     : {client_port} → 4222")
+    print(f"  Monitoring port : {monitoring_port} → 8222")
+    print(f"  Data directory  : {volume_host_path}")
+    print(f"  Routes          : {routes}")
+    if args.rootless:
+        print("  (running rootless — make sure volume path is owned by your user)")
+    print()
+
+    if args.dry_run:
+        print("DRY RUN — command that would be executed:")
+        print("  " + " \\\n  ".join(podman_args))
+        return
+
+    # Optional: pull fresh image
+    if not args.no_pull:
+        print("Pulling image if needed...")
+        subprocess.run(["podman", "pull", args.image], check=True)
+
+    # Ensure data directory exists + has correct permissions
+    os.makedirs(volume_host_path, exist_ok=True)
+
+    # Important in rootless mode: directory should be owned by the running user
+    # (Podman rootless uses user namespaces → chown may be needed only once)
+    # os.chown(volume_host_path, os.getuid(), os.getgid())  # uncomment if needed
+
+    print("Launching container...")
+    result = subprocess.run(podman_args, check=True, capture_output=True, text=True)
+
+    container_id = result.stdout.strip()
+    print(f"Container started: {container_id[:12]}")
+
+    print("\nQuick checks:")
+    print(f"  Logs        : podman logs -f {nats_name}")
+    print(f"  Health      : curl http://localhost:{monitoring_port}/healthz")
+    print(f"  Server info : curl http://localhost:{monitoring_port}/varz")
+    print(f"  Connections : curl http://localhost:{monitoring_port}/connz?subs=1")
+    print(f"  Stop        : podman stop {nats_name}")
+    print(f"  Remove      : podman rm -f {nats_name}")
+
+
+if __name__ == "__main__":
+    main()
