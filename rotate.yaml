@@ -13,5 +13,3 @@
   hosts: localhost
   roles:
     - name: github_secret
-      vars:
-        secrets: "{{ secrets }}"

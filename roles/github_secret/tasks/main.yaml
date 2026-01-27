@@ -13,5 +13,5 @@
     }}'
     secret_name: '{{ item.secret_name }}'
     state: '{{ item.state | default ("present") }}'
-  with_items: '{{ secrets }}'
+  with_items: '{{ repo_secrets }}'
   no_log: true

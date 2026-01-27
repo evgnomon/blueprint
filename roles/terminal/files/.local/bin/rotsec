@@ -1,9 +1,7 @@
 #!/bin/bash
 export EDITOR=vi
 
-cd "$HOME/src/github.com/$USER/blueprint"
-  VAULT_ADDR=$(repofqn)
-cd - > /dev/null
+VAULT_ADDR=$(repofqn)
 
 SECRET_FILE=$HOME/.config/blueprint/secrets/secrets.yaml
 if [ ! -z "$VAULT_ADDR" ]; then
