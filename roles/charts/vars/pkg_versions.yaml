@@ -104,7 +104,7 @@ pkg_versions:
     version: 1.33.1
     os_families: ["Darwin", "Debian"]
   zig:
-    version: 0.16.0-dev.1634+b27bdd5af
+    version: 0.16.0-dev.2471+e9eadee00
     os_families: ["Debian"]
   zig14:
     version: 0.14.1
