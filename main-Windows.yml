@@ -100,6 +100,7 @@
         - cargo
       environment:
         CARGO_HOME: "{{ blueprint_user_home }}/.cargo"
+      when: common_cargo_packages is defined and common_cargo_packages | length > 0
 
     - name: Install Windows specific Cargo packages
       ansible.windows.win_shell: |
