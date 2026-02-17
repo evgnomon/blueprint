@@ -9,13 +9,6 @@ blueprint_config_file_exists: "{{ lookup('fileglob', blueprint_config_file) | le
 
 dev_container: false
 
-common_cargo_packages:
-  # - fd-find
-  # - ripgrep
-  # - git-delta
-  # - bat
-  # - bottom
-
 common_pip_packages:
   - pip
   - docker
@@ -89,6 +82,22 @@ eget_packages:
       windows: -a zip -f **/*.exe
       debian: -a tar.gz
       darwin: -a zip
+  - name: sharkdp/fd
+    archs:
+      windows: -a gnu
+      debian: -a gnu
+      darwin: -a gnu
+  - name: dandavison/delta
+    archs:
+      windows: -a gnu
+      debian: -a gnu
+      darwin: -a gnu
+  - name: BurntSushi/ripgrep
+  - name: sharkdp/bat
+    archs:
+      windows: -a gnu
+      debian: -a gnu
+      darwin: -a gnu
   - name: gohugoio/hugo
     archs:
       windows: -a extended -a zip
