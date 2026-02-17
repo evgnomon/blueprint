@@ -31,7 +31,7 @@ pip install --upgrade ansible pyyaml
 
 which python
 
-[ ! -f  ~/.cargo/bin/rustc ] && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+[ ! -f  ~/.cargo/bin/rustc ] && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 eval $(cat "$HOME/.cargo/env")
 [ ! -d $HOME/.local/bin ] && mkdir -p $HOME/.local/bin
@@ -42,8 +42,19 @@ polkit.addRule(function(action, subject) {
     if ((action.id == "org.debian.pcsc-lite.access_pcsc" || action.id == "org.debian.pcsc-lite.access_card" ) && subject.isInGroup("plugdev")) {
         return polkit.Result.YES;
     }
-    
+
 });
 ' | sudo tee /etc/polkit-1/rules.d/90-pcscd.rule > /dev/null
 
+if [ ! -d $HOME/src/github.com/evgnomon ]; then
+        mkdir -p $HOME/src/github.com/evgnomon
+fi
+
+cd $HOME/src/github.com/evgnomon
+
+if [ ! -d $HOME/src/github.com/evgnomon/blueprint ]; then
+  git clone https://github.com/evgnomon/blueprint.git
+fi
+
+cd $HOME/src/github.com/evgnomon/blueprint
 ansible-playbook -i inventory.py --ask-become-pass -e ansible_python_interpreter=$HOME/.pyenv/shims/python3 main.yaml
