@@ -6,7 +6,7 @@ dotfiles:
   - .ctags
   - .cargo
   - .gnupg
-  - .local
+  # - .local
   - .eget.toml
   - .ctags.d
   - .bashrc
