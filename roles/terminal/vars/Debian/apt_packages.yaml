@@ -53,6 +53,7 @@ apt_packages:
     - mdns-scan  # Multicast DNS scanner for discovering services on local network
     - tmux  # Terminal multiplexer for managing multiple terminal sessions
     - dotnet-sdk-9.0 # .NET SDK for building and running .NET applications
+    - dotnet-sdk-10.0 # .NET SDK for building and running .NET applications
     - exuberant-ctags  # Code indexing tool for navigating source code in editors
     - podman  # Daemonless container engine as Docker alternative for running containers
     - packer # Tool for creating machine images for multiple platforms from a single source
