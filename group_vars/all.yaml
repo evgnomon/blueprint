@@ -10,10 +10,10 @@ blueprint_config_file_exists: "{{ lookup('fileglob', blueprint_config_file) | le
 dev_container: false
 
 common_cargo_packages:
-  - fd-find
-  - ripgrep
-  - git-delta
-  - bat
+  # - fd-find
+  # - ripgrep
+  # - git-delta
+  # - bat
   # - bottom
 
 common_pip_packages:

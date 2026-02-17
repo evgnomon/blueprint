@@ -125,7 +125,7 @@
 - name: Install common Cargo packages
   ansible.builtin.command:
     cmd: "{{ cargo_cmd }} install {{ item }}"
-  loop: "{{ common_cargo_packages }}"
+  loop: "{{ common_cargo_packages | default ([]) }}"
   when: common_cargo_packages is defined and common_cargo_packages | length > 0
   tags:
     - cargo
