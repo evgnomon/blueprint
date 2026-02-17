@@ -57,4 +57,4 @@ if [ ! -d $HOME/src/github.com/evgnomon/blueprint ]; then
 fi
 
 cd $HOME/src/github.com/evgnomon/blueprint
-ansible-playbook -i inventory.py --ask-become-pass -e ansible_python_interpreter=$HOME/.pyenv/shims/python3 main.yaml
+ansible-playbook -i inventory.py -e ansible_python_interpreter=$HOME/.pyenv/shims/python3 main.yaml
