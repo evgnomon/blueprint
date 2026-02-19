@@ -104,6 +104,11 @@ eget_packages:
       windows: -a extended -a zip
       debian: -a extended -a tar.gz -a withdeploy
       darwin: -a extended -a tar.gz -a withdeploy
+  - name: rclone/rclone
+    archs:
+      windows: -a zip
+      debian: -a zip
+      darwin: -a zip
   - name: hetznercloud/cli
     archs:
       windows: -f hcloud
