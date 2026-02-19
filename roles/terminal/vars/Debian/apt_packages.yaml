@@ -66,6 +66,7 @@ apt_packages:
     - clang-format # Code formatting tool for C/C++ based on Clang
     - ntfs-3g # NTFS filesystem driver for read/write access to NTFS partitions
     - uuid-runtime # Utilities for generating and managing UUIDs
+    - dh-virtualenv # Tool for creating Python virtualenvs as Debian packages
 
   ubuntu:
     - mysql-client  # MySQL database client tools for connecting to MySQL servers
