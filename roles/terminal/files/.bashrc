@@ -140,7 +140,11 @@ shopt -s cmdhist                  # Save multi-line commands as one
 PROMPT_COMMAND='history -a'       # Save history immediately
 
 # Modified prompt
-export PS1="${ORANGE}₿ ${RESET}"
+if [ `hostname` = "shadow" ]; then
+  export PS1="${BLUE}₿ ${RESET}"
+else
+  export PS1="${ORANGE}₿ ${RESET}"
+fi
 
 
 # Check if ~/.local/bin is in PATH
