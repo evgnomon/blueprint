@@ -131,6 +131,10 @@ eget_packages:
     archs:
       debian: -a tar.xz -f "Telegram/Telegram"
     to: telegram
+  - name: kubernetes/kompose
+    archs:
+      debian: -a tar.gz
+    to: kompose
 
 debian_go_packages:
 
