@@ -65,7 +65,6 @@ Plug 'morhetz/gruvbox', {'commit': '697c00291db857ca0af00ec154e5bd514a79191f' }
 " Search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'ptzz/lf.vim'
 
 " Snippet
 Plug 'SirVer/ultisnips'
@@ -204,14 +203,6 @@ if has('patch-8.2.0750')
   vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
   vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 endif
-
-" Lf
-let g:lf_map_keys = 0
-nnoremap <leader>x :Lf<CR>
-let g:floaterm_opener='edit'
-let g:floaterm_height=0.95
-let g:floaterm_width=0.95
-let g:lf_replace_netrw = 1
 
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9, 'yoffset': 0.5, 'xoffset': 0.5, 'border': 'sharp' } }
 command! -bang -nargs=* Rg
