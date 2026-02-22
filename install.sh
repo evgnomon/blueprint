@@ -59,4 +59,15 @@ if [ ! -d $HOME/src/github.com/evgnomon/blueprint ]; then
 fi
 
 cd $HOME/src/github.com/evgnomon/blueprint
-ansible-playbook -i inventory.py -e ansible_python_interpreter=$HOME/.pyenv/shims/python3 main.yaml
+
+PLAYARGS=""
+
+if [ ! -z "$DEV_CONTAINER" ]; then
+  PLAYARGS="$PLAYARGS -e dev_container=true"
+fi
+
+if [ ! -z "$ASK_BECOME_PASS" ]; then
+  PLAYARGS="$PLAYARGS --ask-become-pass"
+fi
+
+ansible-playbook -i inventory.py -e ansible_python_interpreter=$HOME/.pyenv/shims/python3 $PLAYARGS main.yaml
