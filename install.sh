@@ -10,6 +10,8 @@ if [ ! -d ~/.pyenv ]; then
 	echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
 	echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
 	echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+else
+  git -C ~/.pyenv pull
 fi
 
 export PYENV_ROOT="$HOME/.pyenv"
@@ -23,9 +25,9 @@ sudo update-alternatives --install /usr/local/bin/usbip usbip $(command -v ls /u
 curl -sSL https://raw.githubusercontent.com/Yubico/libfido2/main/udev/70-u2f.rules | sudo tee /etc/udev/rules.d/70-u2f.rules > /dev/null
 
 [ ! -d ~/.pyenv/versions/2.7.18 ] && PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 2.7.18
-[ ! -d ~/.pyenv/versions/3.13.7 ] && PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 3.13.7
+[ ! -d ~/.pyenv/versions/3.14.3 ] && PYTHON_CONFIGURE_OPTS="--enable-shared" pyenv install 3.14.3
 
-pyenv global 3.13.7 2.7.18
+pyenv global 3.14.3 2.7.18
 pip install --upgrade pip
 pip install --upgrade ansible pyyaml
 
