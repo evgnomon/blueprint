@@ -30,6 +30,7 @@ common_pip_packages:
   - pydantic
   - pydantic[email]
   - click
+  - psycopg2-binary
 
 common_pipx_packages:
   - cookiecutter
