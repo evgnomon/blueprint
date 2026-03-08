@@ -68,6 +68,7 @@ apt_packages:
     - uuid-runtime # Utilities for generating and managing UUIDs
     - dh-virtualenv # Tool for creating Python virtualenvs as Debian packages
     - gnumeric # Spreadsheet application for data analysis and visualization
+    - foot # Fast and minimal Wayland terminal emulator for modern Linux desktops
 
   ubuntu:
     - mysql-client  # MySQL database client tools for connecting to MySQL servers
