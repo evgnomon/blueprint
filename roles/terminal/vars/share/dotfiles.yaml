@@ -10,5 +10,6 @@ dotfiles:
   - .eget.toml
   - .ctags.d
   - .bashrc
+  - .inputrc
   - .profile
   - .bash_aliases
