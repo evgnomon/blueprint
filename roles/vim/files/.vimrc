@@ -33,6 +33,7 @@ let mapleader=","             " Set the leader key to a comma, allowing custom k
 :let python_highlight_all = 1   " Enable full syntax highlighting for Python, including highlighting of built-in functions and classes.
 :set backspace=indent,eol,start " Allow backspacing over indentation, end of line, and insertion start position in insert mode.
 set background=dark             " Optimize colors for a dark background.
+set belloff=all               " Disable all audible and visual bells, preventing distractions from error notifications.
 
 :augroup numbertoggle
   :  autocmd!
