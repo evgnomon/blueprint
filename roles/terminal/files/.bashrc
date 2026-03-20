@@ -137,7 +137,7 @@ export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
 HISTCONTROL=ignoreboth:erasedups  # Ignore duplicates
 shopt -s histappend               # Append to history, don't overwrite
 shopt -s cmdhist                  # Save multi-line commands as one
-PROMPT_COMMAND='history -a'       # Save history immediately
+PROMPT_COMMAND='history -a; history -c; history -r'
 
 # Modified prompt
 if [ `hostname` = "shadow" ]; then
