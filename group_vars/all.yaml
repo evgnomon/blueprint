@@ -87,10 +87,6 @@ eget_packages:
       debian: -a gnu
       darwin: -a gnu
   - name: dandavison/delta
-    archs:
-      windows: -a gnu
-      debian: -a gnu
-      darwin: -a gnu
   - name: BurntSushi/ripgrep
   - name: sharkdp/bat
     archs:
