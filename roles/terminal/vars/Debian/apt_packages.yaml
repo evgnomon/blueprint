@@ -69,6 +69,7 @@ apt_packages:
     - dh-virtualenv # Tool for creating Python virtualenvs as Debian packages
     - gnumeric # Spreadsheet application for data analysis and visualization
     - foot # Fast and minimal Wayland terminal emulator for modern Linux desktops
+    - mplayer # Command-line media player for playing audio and video files in terminal
 
   ubuntu:
     - mysql-client  # MySQL database client tools for connecting to MySQL servers

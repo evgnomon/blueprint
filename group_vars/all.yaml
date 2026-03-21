@@ -51,6 +51,7 @@ common_pipx_packages:
   - sphinx
   - poethepoet
   - yt-dlp
+  - llm
 
 common_gem_packages:
   - bundler
