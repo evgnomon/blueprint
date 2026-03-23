@@ -88,6 +88,10 @@ eget_packages:
       debian: -a gnu
       darwin: -a gnu
   - name: dandavison/delta
+    archs:
+      debian: -a gnu
+      windows: -a gnu
+      darwin: -a gnu
   - name: BurntSushi/ripgrep
   - name: sharkdp/bat
     archs:
@@ -106,9 +110,9 @@ eget_packages:
       darwin: -a zip
   - name: hetznercloud/cli
     archs:
-      windows: -f hcloud
-      debian: -f hcloud
-      darwin: -f hcloud
+      windows: -f hcloud -a ^sig
+      debian: -f hcloud -a ^sig
+      darwin: -f hcloud -s ^sig
   - name: terraform-linters/tflint
     to: tflint
   - name: containers/gvisor-tap-vsock
