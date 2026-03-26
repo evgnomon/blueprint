@@ -137,7 +137,10 @@ export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
 HISTCONTROL=ignoreboth:erasedups  # Ignore duplicates
 shopt -s histappend               # Append to history, don't overwrite
 shopt -s cmdhist                  # Save multi-line commands as one
-PROMPT_COMMAND='history -a; history -c; history -r'
+function reset_keyboard_protocol() {
+    printf '\e[>0u'
+}
+PROMPT_COMMAND="reset_keyboard_protocol;history -a; history -c; history -r"
 
 # Modified prompt
 if [ `hostname` = "shadow" ]; then
