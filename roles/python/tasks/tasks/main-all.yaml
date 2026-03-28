@@ -30,3 +30,9 @@
   tags:
     - pip
   name: Upgrade common pipx packages
+
+- command: pyenv rehash
+  changed_when: false
+  tags:
+    - pip
+  name: Run pyenv rehash
