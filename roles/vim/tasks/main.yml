@@ -42,9 +42,9 @@
     - vim
 
 - name: Copy Vim config files
-  synchronize: &copy_args
+  copy: &copy_args
     src: "{{ item }}"
-    dest: "{{ blueprint_user_home }}"
+    dest: "{{ blueprint_user_home }}/"
   loop: &vim_config_files
     - .vimrc
     - .ideavimrc
@@ -54,9 +54,11 @@
   when: ansible_facts['os_family'] != "Windows"
 
 - name: Coc configs
-  synchronize:
-    src: "{{ item }}"
-    dest: "{{ blueprint_user_home }}/.vim"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: "{{ blueprint_user_home }}/.vim/{{ item }}"
+    state: link
+    force: true
   loop:
     - coc-settings.json
   tags:
