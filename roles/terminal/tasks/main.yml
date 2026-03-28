@@ -235,7 +235,7 @@
 
 - name: Copy bundles to Windows remote
   win_copy:
-    src: '{{ repo_dest | replace(ansible_facts['env']['HOME'] , lookup("env", "HOME")) }}/{{ repo_name }}.bundle'
+    src: "{{ repo_dest | replace(ansible_facts['env']['HOME'] , lookup('env', 'HOME')) }}/{{ repo_name }}.bundle"
     dest: '{{ repo_dest_dir }}'
   vars: *git_repos_vars
   ignore_errors: true
