@@ -114,3 +114,6 @@ pkg_versions:
     os_families: ["Darwin", "Debian"]
     wsl: false
     dev_container: false
+  kotlin: 
+    version: 2.3.20
+    os_families: ["Darwin", "Debian"]

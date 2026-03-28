@@ -214,3 +214,4 @@ export PATH="$HOME/.rbenv/shims:$PATH"
 export RBENV_SHELL=bash
 
 export PATH="$HOME/.local/bin:$PATH"
+. "$HOME/.cargo/env"

@@ -162,3 +162,26 @@ pkg_debian:
       bins:
         - name: zig15
           src: "zig-{{ pkg_templates_debian.zig.arch }}-{{ pkg_templates_debian.zig.os }}-{{ pkg_versions.zig15.version }}/zig"
+
+    - name: kotlin
+      version: "{{ pkg_versions.kotlin.version }}"
+      template:
+        os: *pkg_templates_java_os
+        arch: *pkg_templates_java_arch
+        url: "https://github.com/JetBrains/kotlin/releases/download/v{{ pkg_versions.kotlin.version }}/kotlin-compiler-{{ pkg_versions.kotlin.version }}.zip"
+        ext: zip
+        inflate: unzip -o %(src)s -d %(dest)s
+        creates: "kotlinc/bin/kotlin"
+      bins:
+        - name: kotlinc
+          src: "kotlinc/bin/kotlinc"
+        - name: kapt
+          src: "kotlinc/bin/kapt" 
+        - name: kotlin-compiler
+          src: "kotlinc/bin/kotlin-compiler"
+        - name: kotlinc-js
+          src: "kotlinc/bin/kotlinc-js"
+        - name: kotlinc-jvm
+          src: "kotlinc/bin/kotlinc-jvm"
+        - name: kotlin
+          src: "kotlinc/bin/kotlin"
