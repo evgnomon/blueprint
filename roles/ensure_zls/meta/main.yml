@@ -26,4 +26,5 @@ galaxy_info:
     - zig
     - language-server
 
-dependencies: []
+dependencies:
+  - local_bin
