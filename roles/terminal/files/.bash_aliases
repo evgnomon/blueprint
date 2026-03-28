@@ -85,23 +85,17 @@ alias gpu='git push --set-upstream origin $(git branch --show-current)'
 alias pr='az repos pr create --target-branch master --title'
 alias fd='fd -I --hidden --exclude .git'
 alias rg='rg --hidden -i --glob "!{.git}/**"'
-alias vvvv="vim \$(fd . / | fzf)"
-alias vvv="vim \$(fd . ~ | fzf)"
-alias vv="vim \$(fzf)"
+alias vr="vim \$(fd . / --type file --type symlink --type executable | fzf --preview='bat --color=always --style=numbers {}')"
+alias vd="vim \$(fd . ~ --type file --type symlink --type executable | fzf --preview='bat --color=always --style=numbers {}')"
+alias vv="vim \$(fd . . --type file --type symlink --type executable | fzf --preview='bat --color=always --style=numbers {}')"
 alias v='vim'
 alias g='git'
 alias gg='goose'
-# alias t='tmux'
 alias a='claude'
-alias serve='python3 -m http.server'
 alias i="invoke"
-alias e="pwd"
 alias c="clear"
 alias mkpass="bp vault gen pass"
-alias o='open "$(fzf --preview="bat --color=always --style=numbers {}")"'
-alias s='search_web'
-alias ss='open_web'
-alias sss='ss "`fzurls`"'
+alias s=fzurls
 alias r='gg run --recipe'
 alias nw='alacritty msg create-window'
 alias d='cd "$(fd --type d | fzf)"'
