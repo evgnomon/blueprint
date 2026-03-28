@@ -138,10 +138,12 @@
   tags:
     - port
 
-- name: Copy configs
-  synchronize:
-    src: "{{ item }}"
-    dest: "{{ ansible_facts['env']['HOME'] }}"
+- name: Link dotfiles
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: "{{ ansible_facts['env']['HOME'] }}/{{ item }}"
+    state: link
+    force: true
   loop: "{{ dotfiles }}"
   tags:
     - dotfiles
