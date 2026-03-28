@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-cat ~/.config/blueprint/config.yaml | yj | jq '.urls[]' | jq -r '.url' | fzf

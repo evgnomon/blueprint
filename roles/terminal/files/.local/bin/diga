@@ -1,2 +1,0 @@
-#!/usr/bin/env bash
-dig +noall +answer -t A "$@"

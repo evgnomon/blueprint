@@ -6,9 +6,10 @@ dotfiles:
   - .ctags
   - .cargo
   - .gnupg
-  - .local
+  # - .local
   - .eget.toml
   - .ctags.d
   - .bashrc
+  - .inputrc
   - .profile
   - .bash_aliases

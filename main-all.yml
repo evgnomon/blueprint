@@ -1,12 +1,12 @@
-- name: Install Alacritty
-  gather_facts: false
-  hosts:
-    - all
-    - localhost
-  roles:
-    - alacritty
-  tags:
-    - alacritty
+# - name: Install Alacritty
+#   gather_facts: false
+#   hosts:
+#     - all
+#     - localhost
+#   roles:
+#     - alacritty
+#   tags:
+#     - alacritty
 
 - name: Install Pip packages
   gather_facts: false
@@ -28,6 +28,7 @@
     - eget
   tags:
     - eget
+
 
 - name: Install Rust packages
   gather_facts: false

@@ -40,27 +40,8 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-#force_color_prompt=yes
-
-# if [ -n "$force_color_prompt" ]; then
-#     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-# 	# We have color support; assume it's compliant with Ecma-48
-# 	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-# 	# a case would tend to support setf rather than setaf.)
-# 	color_prompt=yes
-#     else
-# 	color_prompt=
-#     fi
-# fi
-
-#unset color_prompt force_color_prompt
+export TERM=xterm-256color
+color_prompt=yes
 
 # Alias definitions.
 if [ -f ~/.bash_aliases ]; then
@@ -137,10 +118,17 @@ export LESS_TERMCAP_ue=$'\e[0m'        # reset underline
 HISTCONTROL=ignoreboth:erasedups  # Ignore duplicates
 shopt -s histappend               # Append to history, don't overwrite
 shopt -s cmdhist                  # Save multi-line commands as one
-PROMPT_COMMAND='history -a'       # Save history immediately
+function reset_keyboard_protocol() {
+    printf '\e[>0u'
+}
+PROMPT_COMMAND="reset_keyboard_protocol;history -a; history -c; history -r"
 
 # Modified prompt
-export PS1="${ORANGE}₿ ${RESET}"
+if [ `hostname` = "shadow" ]; then
+  export PS1="${BLUE}₿ ${RESET}"
+else
+  export PS1="${ORANGE}₿ ${RESET}"
+fi
 
 
 # Check if ~/.local/bin is in PATH

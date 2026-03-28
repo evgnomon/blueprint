@@ -1,13 +1,12 @@
 ---
+- file:
+    state: directory
+    path: "{{ target_home }}/.config/goose/recipes"
 
 - template:
     src: config.yaml.j2
     dest: "{{home}}/.config/goose/config.yaml"
   name: Generate Goose configuration file
-
-- file:
-    state: directory
-    path: "{{ target_home }}/.config/goose/recipes"
 
 - file:
     state: link

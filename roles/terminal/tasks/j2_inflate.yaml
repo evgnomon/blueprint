@@ -2,14 +2,14 @@
 - file:
     state: directory
     path: "{{ target }}/{{ item.path | replace('.j2', '') | dirname }}"
-  become: "{{ target == '/etc' }}"
+  become: "{{ (target == '/etc') | bool }}"
   tags:
     - always
 
 - template:
     src: "{{ item.src }}"
     dest: "{{ target }}/{{ item.path | replace('.j2', '') }}"
-  become: "{{ target == '/etc' }}"
+  become: "{{ (target == '/etc') | bool }}"
   when:
     - item.path[-3:] == '.j2'
   tags:
@@ -18,7 +18,7 @@
 - copy:
     src: "{{ item.src }}"
     dest: "{{ target }}/{{ item.path }}"
-  become: "{{ target == '/etc' }}"
+  become: "{{ (target == '/etc') | bool }}"
   when:
     - item.path[-3:] != '.j2'
   tags:

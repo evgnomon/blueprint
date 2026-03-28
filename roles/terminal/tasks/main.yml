@@ -54,7 +54,6 @@
   become: true
   ansible.builtin.apt:
     update_cache: true
-    cache_valid_time: 3600
     name: "{{ apt_packages.share }}"
     state: present
   when: ansible_os_family == "Debian"
@@ -123,19 +122,12 @@
     - autoremove
     - upgrade
 
-- name: Install common Cargo packages
-  ansible.builtin.command:
-    cmd: "{{ cargo_cmd }} install {{ item }}"
-  loop: "{{ common_cargo_packages }}"
-  when: common_cargo_packages is defined and common_cargo_packages | length > 0
-  tags:
-    - cargo
-
 - name: Install OS specific Cargo packages
   ansible.builtin.command:
     cmd: "{{ cargo_cmd }} install {{ item }}"
   loop: "{{ cargo_packages | default ([]) }}"
-  when: cargo_packages is defined
+  when:
+    - cargo_packages is defined and cargo_packages | length > 0
   tags:
     - cargo
 

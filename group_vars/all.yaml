@@ -9,13 +9,6 @@ blueprint_config_file_exists: "{{ lookup('fileglob', blueprint_config_file) | le
 
 dev_container: false
 
-common_cargo_packages:
-  - fd-find
-  - ripgrep
-  - git-delta
-  - bat
-  - bottom
-
 common_pip_packages:
   - pip
   - docker
@@ -37,6 +30,7 @@ common_pip_packages:
   - pydantic
   - pydantic[email]
   - click
+  - psycopg2-binary
 
 common_pipx_packages:
   - cookiecutter
@@ -57,6 +51,7 @@ common_pipx_packages:
   - sphinx
   - poethepoet
   - yt-dlp
+  - llm
 
 common_node_packages:
   - npm
@@ -67,15 +62,12 @@ common_node_packages:
   - bash-language-server
   - "@anthropic-ai/claude-code"
   - "@github/copilot"
-  - "opencode-ai@latest"
+  - '@google/gemini-cli'
 
 common_go_packages:
   - github.com/tomnomnom/gron@latest
   - github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-  # - github.com/junegunn/fzf@latest # Not supported
   - github.com/sclevine/yj@latest
-  # - github.com/opentofu/opentofu/cmd/tofu@latest # Not supported
-  - github.com/gokcehan/lf@latest
   - github.com/zyedidia/eget@latest
   - github.com/digitalocean/doctl/cmd/doctl@latest
   - golang.org/x/tools/cmd/godoc@latest
@@ -87,27 +79,57 @@ eget_packages:
       windows: -a zip -f **/*.exe
       debian: -a tar.gz
       darwin: -a zip
+  - name: sharkdp/fd
+    archs:
+      windows: -a gnu
+      debian: -a gnu
+      darwin: -a gnu
+  - name: dandavison/delta
+    archs:
+      debian: -a gnu
+      windows: -a gnu
+      darwin: -a gnu
+  - name: BurntSushi/ripgrep
+  - name: sharkdp/bat
+    archs:
+      windows: -a gnu
+      debian: -a gnu
+      darwin: -a gnu
   - name: gohugoio/hugo
     archs:
       windows: -a extended -a zip
       debian: -a extended -a tar.gz -a withdeploy
       darwin: -a extended -a tar.gz -a withdeploy
+  - name: rclone/rclone
+    archs:
+      windows: -a zip
+      debian: -a zip
+      darwin: -a zip
   - name: hetznercloud/cli
     archs:
-      windows: -f hcloud
-      debian: -f hcloud
-      darwin: -f hcloud
-  # - name: evgnomon/zygote
-  #   archs:
-  #     windows: -a ^core
-  #     debian: -a ^core
-  #     darwin: -a ^core
-  #   to: z
+      windows: -f hcloud -a ^sig
+      debian: -f hcloud -a ^sig
+      darwin: -f hcloud -s ^sig
   - name: terraform-linters/tflint
     to: tflint
   - name: containers/gvisor-tap-vsock
     to: gvproxy
   - name: block/goose
+    archs:
+      debian: -a amd64
+  - name: telegramdesktop/tdesktop
+    archs:
+      debian: -a tar.xz -f "Telegram/Telegram"
+    to: telegram
+  - name: kubernetes/kompose
+    archs:
+      debian: -a tar.gz
+    to: kompose
+  - name: YS-L/csvlens
+    archs:
+      debian: -a gnu
+      windows: -a gnu
+      darwin: -a gnu
 
 debian_go_packages:
 
@@ -118,5 +140,5 @@ common_git_repos:
     prefix: &prefix_home_src "{{ ansible_env.HOME }}/src"
   - url: ssh://git@github.com/evgnomon/blueprint.git
     prefix: *prefix_home_src
-  - url: ssh://git@github.com/evgnomon/zygote.git
+  - url: ssh://git@github.com/evgnomon/flow.git
     prefix: *prefix_home_src

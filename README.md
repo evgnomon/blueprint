@@ -132,11 +132,17 @@ sudo -K
 
 # Secret Rotation
 
-To rotate secrets, use `ansible-vault`:
-
+To rotate secrets, run `rotsec` in your repo.
+Set `repo_secrets` using `rchain` for your repo. Example:
 ```
-ANSIBLE_VAULT_PASSWORD_FILE=<(vault -d vault) ansible-playbook -i inventory.py rotate.yaml
-
-# or in Fish:
-ANSIBLE_VAULT_PASSWORD_FILE=(vault -d vault | psub) ansible-playbook -i inventory.py rotate.yaml
+repo_secrets:
+  - owner_name: evgnomon
+    repo_name: blueprint
+    secret_name: VAULT_PASS
+    secret_value: yourpass
+  - owner_name: evgnomon
+    repo_name: blueprint
+    secret_name: VAULT_FILE
+    secret_file: ~/.config/blueprint/secrets/evgnomon_blueprint_github.yaml
 ```
+

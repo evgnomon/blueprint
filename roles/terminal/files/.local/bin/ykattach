@@ -1,5 +1,0 @@
-#!/bin/sh
-
-powershell.exe -c "usbipd attach -i 1050:0407 -w"
-lsusb
-ykman info

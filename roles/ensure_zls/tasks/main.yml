@@ -16,7 +16,7 @@
     dest: "{{ zls_repo }}"
     version: master
     force: yes
-  when: not zls_binary.stat.exists
+    update: yes
 
 - name: Build zls
   command: zig build -Doptimize=ReleaseSafe
