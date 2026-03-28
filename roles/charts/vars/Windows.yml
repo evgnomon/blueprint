@@ -29,7 +29,6 @@ path_components:
   - '{{ blueprint_user_home }}\AppData\Local\Programs\Microsoft VS Code\bin'
   - '{{ blueprint_user_home }}\.dotnet\tools'
   - '{{ blueprint_user_home }}\AppData\Roaming\npm'
-  - 'C:\Ruby31-x64\bin'
 
 custom_path: "{{ path_components | unique | join(';') }}"
 
@@ -61,7 +60,6 @@ winget_packages:
   - qBittorrent.qBittorrent
   - Python.Python.3.12
   - JetBrains.IntelliJIDEA.Community
-  - RubyInstallerTeam.Ruby.3.1
   - Rustlang.Rustup
   - MSYS2.MSYS2
 
