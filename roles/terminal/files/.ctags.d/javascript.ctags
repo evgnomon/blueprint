@@ -1,5 +1,1 @@
--R
---exclude=.git
---exclude=node_modules
---exclude=.venv
---exclude=**/static/**
+/home/evgnomon/src/github.com/evgnomon/blueprint/roles/terminal/files/.ctags.d/javascript.ctags

@@ -1,14 +1,16 @@
 ---
 dotfiles:
-  - .config
+  - .config/containers/containers.conf
+  - .config/containers/registries.conf
+  - .config/hcloud/cli.sh
   - .gitignore_global
   - .gitconfig
   - .ctags
-  - .cargo
-  - .gnupg
-  # - .local
+  - .cargo/config.toml
+  - .gnupg/gpg.conf
+  - .gnupg/scdaemon.conf
   - .eget.toml
-  - .ctags.d
+  - .ctags.d/javascript.ctags
   - .bashrc
   - .inputrc
   - .profile
