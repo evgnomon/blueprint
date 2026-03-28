@@ -1,13 +1,13 @@
 ---
 - name: Ensure ~/.local/bin directory exists
   file:
-    path: "{{ ansible_env.HOME }}/.local/bin"
+    path: "{{ ansible_facts['env']['HOME'] }}/.local/bin"
     state: directory
     mode: '0755'
 
 - name: Check if zls is already installed
   stat:
-    path: "{{ ansible_env.HOME }}/.local/bin/zls"
+    path: "{{ ansible_facts['env']['HOME'] }}/.local/bin/zls"
   register: zls_binary
 
 - name: Clone zigtools/zls repository

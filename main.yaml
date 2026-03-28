@@ -11,15 +11,15 @@
 
 - name: import playboook for Debian family
   import_playbook: main-Debian.yml
-  when: ansible_os_family == "Debian"
+  when: ansible_facts['os_family'] == "Debian"
 
 - name: Import playboook for Darwin
   import_playbook: main-Darwin.yml
-  when: ansible_os_family == "Darwin"
+  when: ansible_facts['os_family'] == "Darwin"
 
 - name: Import playboook for Windows
   import_playbook: main-Windows.yml
-  when: ansible_os_family == "Windows"
+  when: ansible_facts['os_family'] == "Windows"
 
 - name: Import playbook for all platforms
   import_playbook: main-all.yml

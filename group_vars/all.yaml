@@ -1,7 +1,7 @@
 ---
 go_latest_version: 1.21.6
 home: "{{ lookup('env', 'HOME') }}"
-target_home: "{{ ansible_env.HOME }}"
+target_home: "{{ ansible_facts['env']['HOME'] }}"
 local_bin_path: "{{ target_home }}/.local/bin"
 blueprint_config_dir: "{{ home }}/.config/blueprint"
 blueprint_config_file: "{{ blueprint_config_dir }}/config.yaml"
@@ -137,7 +137,7 @@ darwin_go_packages:
 
 common_git_repos:
   - url: https://github.com/alacritty/alacritty.git
-    prefix: &prefix_home_src "{{ ansible_env.HOME }}/src"
+    prefix: &prefix_home_src "{{ ansible_facts['env']['HOME'] }}/src"
   - url: ssh://git@github.com/evgnomon/blueprint.git
     prefix: *prefix_home_src
   - url: ssh://git@github.com/evgnomon/flow.git

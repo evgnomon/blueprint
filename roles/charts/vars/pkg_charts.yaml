@@ -7,7 +7,7 @@ pkg_templates:
             'Darwin': 'darwin',
             'Debian': 'linux',
             'Windows': 'win'
-        }[ansible_os_family] | default('')
+        }[ansible_facts['os_family']] | default('')
       }}
     arch: &pkg_templates_node_arch >-
       {{
@@ -15,7 +15,7 @@ pkg_templates:
           'x86_64': 'x64',
           'aarch64': 'arm64',
           'i386': 'x86'
-        }[ansible_architecture] | default('')
+        }[ansible_facts['architecture']] | default('')
       }}
   go:
     os: &pkg_templates_go_os >-
@@ -24,7 +24,7 @@ pkg_templates:
           'Darwin': 'darwin',
           'Debian': 'linux',
           'Windows': 'windows'
-        }[ansible_os_family] | default('')
+        }[ansible_facts['os_family']] | default('')
       }}
     arch: &pkg_templates_go_arch >-
       {{
@@ -32,7 +32,7 @@ pkg_templates:
           'x86_64': 'amd64',
           'aarch64': 'arm64',
           'i386': '386'
-        }[ansible_architecture] | default('')
+        }[ansible_facts['architecture']] | default('')
       }}
   rustup:
     os: &pkg_templates_rustup_os >-
@@ -41,14 +41,14 @@ pkg_templates:
           'Darwin': 'apple-darwin',
           'Debian': 'unknown-linux-gnu',
           'Windows': 'pc-windows-msvc'
-        }[ansible_os_family] | default('')
+        }[ansible_facts['os_family']] | default('')
       }}
     arch: &pkg_templates_rustup_arch >-
       {{
         {
           'x86_64': 'x86_64',
           'aarch64': 'aarch64'
-        }[ansible_architecture] | default('')
+        }[ansible_facts['architecture']] | default('')
       }}
   fzf:
     ext: &pkg_templates_fzf_ext >-
@@ -56,14 +56,14 @@ pkg_templates:
         {
           'Debian': 'tar.gz',
           'Darwin': 'tar.gz'
-        }[ansible_os_family] | default('zip')
+        }[ansible_facts['os_family']] | default('zip')
       }}
     inflate: &pkg_templates_fzf_inflate >-
       {{
         {
           'Debian': 'tar -C %(dest)s -xzvf %(src)s',
           'Darwin': 'tar -C %(dest)s -xzvf %(src)s'
-        }[ansible_os_family] | default('unzip -o -d %(dest)s %(src)s')
+        }[ansible_facts['os_family']] | default('unzip -o -d %(dest)s %(src)s')
       }}
   cmake:
     os: &pkg_templates_cmake_os >-
@@ -72,7 +72,7 @@ pkg_templates:
           'Darwin': 'darwin',
           'Debian': 'linux',
           'Windows': 'windows'
-        }[ansible_os_family] | default('')
+        }[ansible_facts['os_family']] | default('')
       }}
     arch: &pkg_templates_cmake_arch >-
       {{
@@ -80,7 +80,7 @@ pkg_templates:
           'x86_64': 'amd64',
           'aarch64': 'aarch64',
           'i386': 'i386'
-        }[ansible_architecture] | default('')
+        }[ansible_facts['architecture']] | default('')
       }}
     osarch: &pkg_templates_cmake_osarch >-
       {{
@@ -97,7 +97,7 @@ pkg_templates:
             'x86_64': 'windows-x86_64',
             'aarch64': 'windows-arm64'
           }
-        }[ansible_os_family][ansible_architecture] | default('')
+        }[ansible_facts['os_family']][ansible_facts['architecture']] | default('')
       }}
 
     ext: >-
@@ -106,7 +106,7 @@ pkg_templates:
           'Darwin': 'tar.gz',
           'Debian': 'tar.gz',
           'Windows': 'zip'
-        }[ansible_os_family] | default('')
+        }[ansible_facts['os_family']] | default('')
       }}
 
     inflate: >-
@@ -115,7 +115,7 @@ pkg_templates:
           'Darwin': 'tar -C %(dest)s -xzvf %(src)s',
           'Debian': 'tar -C %(dest)s -xzvf %(src)s',
           'Windows': 'unzip -o -d %(dest)s %(src)s'
-        }[ansible_os_family] | default('')
+        }[ansible_facts['os_family']] | default('')
       }}
   bazelisk:
     osarch: &pkg_templates_bazelisk_osarch >-
@@ -132,7 +132,7 @@ pkg_templates:
           'Windows': {
             'x86_64': 'windows-amd64.exe',
           }
-        }[ansible_os_family][ansible_architecture] | default('')
+        }[ansible_facts['os_family']][ansible_facts['architecture']] | default('')
       }}
   mysql:
     ext: &pkg_templates_mysql_ext >-
@@ -140,14 +140,14 @@ pkg_templates:
         {
           'Darwin': 'tar.gz',
           'Debian': 'tar.xz',
-        }[ansible_os_family] | default('')
+        }[ansible_facts['os_family']] | default('')
       }}
     inflate: &pkg_templates_mysql_inflate >-
       {{
         {
           'Darwin': 'tar -C %(dest)s -xzvf %(src)s',
           'Debian': 'tar -C %(dest)s -xJvf %(src)s',
-        }[ansible_os_family] | default('')
+        }[ansible_facts['os_family']] | default('')
       }}
   ollama:
     osarch: >-
@@ -161,7 +161,7 @@ pkg_templates:
             'x86_64': 'linux-amd64',
             'aarch64': 'linux-arm64'
           },
-        }[ansible_os_family][ansible_architecture] | default('')
+        }[ansible_facts['os_family']][ansible_facts['architecture']] | default('')
       }}
 
 
@@ -460,13 +460,13 @@ pkg:
       template:
         os: *pkg_templates_rustup_os
         arch: *pkg_templates_rustup_arch
-        url: https://dev.mysql.com/get/Downloads/MySQL-{{ pkg_versions.mysql.major }}/mysql-%(version)s-{{ pkg_versions.mysql.os[(ansible_os_family | lower )] }}-{{ pkg_templates.rustup.arch }}.{{ pkg_templates.mysql.ext }}
+        url: https://dev.mysql.com/get/Downloads/MySQL-{{ pkg_versions.mysql.major }}/mysql-%(version)s-{{ pkg_versions.mysql.os[(ansible_facts['os_family'] | lower )] }}-{{ pkg_templates.rustup.arch }}.{{ pkg_templates.mysql.ext }}
         ext: "{{ pkg_templates.mysql.ext }}"
         inflate: "{{ pkg_templates.mysql.inflate }}"
-        creates: mysql-{{ pkg_versions.mysql.version }}-{{ pkg_versions.mysql.os[(ansible_os_family | lower )] }}-{{ pkg_templates.rustup.arch }}/bin/mysql
+        creates: mysql-{{ pkg_versions.mysql.version }}-{{ pkg_versions.mysql.os[(ansible_facts['os_family'] | lower )] }}-{{ pkg_templates.rustup.arch }}/bin/mysql
       bins:
         - name: mysql
-          src: mysql-{{ pkg_versions.mysql.version }}-{{ pkg_versions.mysql.os[(ansible_os_family | lower )] }}-{{ pkg_templates.rustup.arch }}/bin/mysql
+          src: mysql-{{ pkg_versions.mysql.version }}-{{ pkg_versions.mysql.os[(ansible_facts['os_family'] | lower )] }}-{{ pkg_templates.rustup.arch }}/bin/mysql
 
     - name: ollama
       version: "{{ pkg_versions.ollama.version }}"

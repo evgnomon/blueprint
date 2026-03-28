@@ -14,7 +14,7 @@
     - all
     - localhost    
   vars:
-    become_flag: "{{ ansible_os_family == 'Windows' }}"
+    become_flag: "{{ ansible_facts['os_family'] == 'Windows' }}"
   become: "{{ become_flag }}"
   roles:
     - python
@@ -72,7 +72,7 @@
     - vim
   environment:
     PATH: "{{ custom_path }}"
-    LD_LIBRARY_PATH: "{{ ansible_env.HOME }}/.pyenv/versions/3.12.0/lib/"
+    LD_LIBRARY_PATH: "{{ ansible_facts['env']['HOME'] }}/.pyenv/versions/3.12.0/lib/"
 
 - name: Install package roles
   gather_facts: false

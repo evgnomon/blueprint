@@ -12,14 +12,14 @@
       tags:
         - pkg
       when:
-        - ansible_os_family in pkg_versions.get(package.name, {}).get('os_families', [ansible_os_family])
+        - ansible_facts['os_family'] in pkg_versions.get(package.name, {}).get('os_families', [ansible_facts['os_family']])
         - pkg_versions.get(package.name, {}).get('wsl', true) or not wsl2_kernel | default(false)      
         - pkg_versions.get(package.name, {}).get('dev_container', true) or not dev_container | default(false)      
 
     - name: Include pkg role for Debian specific packages
       with_items: "{{ pkg_debian.charts }}"
       when:
-        - ansible_os_family in pkg_versions.get(package.name, {}).get('os_families', [ansible_os_family])
+        - ansible_facts['os_family'] in pkg_versions.get(package.name, {}).get('os_families', [ansible_facts['os_family']])
         - pkg_versions.get(package.name, {}).get('wsl', true) or not wsl2_kernel | default(false)
         - pkg_versions.get(package.name, {}).get('dev_container', true) or not dev_container | default(false)
 
@@ -42,7 +42,7 @@
     - packer
   environment:
     PATH: "{{ custom_path }}"
-    LD_LIBRARY_PATH: "{{ ansible_env.HOME }}/.pyenv/versions/3.12.0/lib/"
+    LD_LIBRARY_PATH: "{{ ansible_facts['env']['HOME'] }}/.pyenv/versions/3.12.0/lib/"
 
 - name: Install ZLS language server
   gather_facts: false
@@ -51,7 +51,7 @@
     - ensure_zls
   environment:
     PATH: "{{ custom_path }}"
-    LD_LIBRARY_PATH: "{{ ansible_env.HOME }}/.pyenv/versions/3.12.0/lib/"
+    LD_LIBRARY_PATH: "{{ ansible_facts['env']['HOME'] }}/.pyenv/versions/3.12.0/lib/"
   tags:
     - zls
 
@@ -62,7 +62,7 @@
     - ensure_ghostty
   environment:
     PATH: "{{ custom_path }}"
-    LD_LIBRARY_PATH: "{{ ansible_env.HOME }}/.pyenv/versions/3.12.0/lib/"
+    LD_LIBRARY_PATH: "{{ ansible_facts['env']['HOME'] }}/.pyenv/versions/3.12.0/lib/"
   tags:
     - ghostty
     - never

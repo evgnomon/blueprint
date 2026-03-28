@@ -1,7 +1,7 @@
 ---
 - name: Create directory
   file:
-    path: "{{ ansible_env.HOME }}/cellar/github.com/macports/macports-base/v{{ pkg_versions.macports.version }}/macports"
+    path: "{{ ansible_facts['env']['HOME'] }}/cellar/github.com/macports/macports-base/v{{ pkg_versions.macports.version }}/macports"
     state: directory
     mode: '0755'
 
@@ -20,4 +20,4 @@
     make
     make install
   args:
-    chdir: "{{ ansible_env.HOME }}/cellar/github.com/macports/macports-base/v{{ pkg_versions.macports.version }}/macports/MacPorts-{{ pkg_versions.macports.version }}"
+    chdir: "{{ ansible_facts['env']['HOME'] }}/cellar/github.com/macports/macports-base/v{{ pkg_versions.macports.version }}/macports/MacPorts-{{ pkg_versions.macports.version }}"

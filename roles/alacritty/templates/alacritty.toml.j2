@@ -5,13 +5,13 @@ import = [
 ]
 
 [font]
-{% if ansible_os_family == "Darwin" %}
+{% if ansible_facts['os_family'] == "Darwin" %}
 size = 18
 {% else %}
 size = 14
 {% endif %}
 
-{% if ansible_os_family != "Windows" %}
+{% if ansible_facts['os_family'] != "Windows" %}
 [font.bold]
 family = "{{ default_font_family }}"
 style = "Bold"
@@ -30,15 +30,15 @@ style = "Regular"
 {% endif %}
 
 [terminal.shell]
-{% if ansible_os_family == "Debian" %}
+{% if ansible_facts['os_family'] == "Debian" %}
 args = ["--login"]
 program = "/bin/bash"
 {% endif %}
-{% if ansible_os_family == "Windows" %}
+{% if ansible_facts['os_family'] == "Windows" %}
 program = "wsl"
 args = ["~", "-e", "/usr/bin/bash"]
 {% endif %}
-{% if ansible_os_family == "Darwin" %}
+{% if ansible_facts['os_family'] == "Darwin" %}
 args = ["--login"]
 program = "{{ blueprint_user_home }}/.macports/bin/bash"
 {% endif %}
@@ -52,7 +52,7 @@ columns = 140
 lines = 60
 
 [keyboard]
-{% if ansible_os_family == "Darwin" %}
+{% if ansible_facts['os_family'] == "Darwin" %}
 [[keyboard.bindings]]
 key = "Return"
 mods = "Control"

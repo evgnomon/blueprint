@@ -8,7 +8,7 @@
   loop_control:
     loop_var: path
   when:
-    - ansible_os_family == "Debian"
+    - ansible_facts['os_family'] == "Debian"
   tags:
     - pkg
 
@@ -21,7 +21,7 @@
   loop_control:
     loop_var: path
   when:
-    - ansible_os_family == "Debian"
+    - ansible_facts['os_family'] == "Debian"
   tags:
     - pkg
 
@@ -35,7 +35,7 @@
   loop_control:
     loop_var: path
   when:
-    - ansible_os_family == "Darwin"
+    - ansible_facts['os_family'] == "Darwin"
   tags:
     - pkg
 
@@ -49,7 +49,7 @@
   loop_control:
     loop_var: path
   when:
-    - ansible_os_family == "Darwin"
+    - ansible_facts['os_family'] == "Darwin"
   tags:
     - pkg
 

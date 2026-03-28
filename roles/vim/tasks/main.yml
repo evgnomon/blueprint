@@ -1,17 +1,17 @@
 ---
 - name: Checkout vim repo
   git:
-    dest: "{{ ansible_env.HOME }}/src/github.com/vim/vim"
+    dest: "{{ ansible_facts['env']['HOME'] }}/src/github.com/vim/vim"
     repo: "https://github.com/vim/vim.git"
-  when: ansible_os_family != "Windows"
+  when: ansible_facts['os_family'] != "Windows"
   tags:
     - vim
 
 - name: Install vim
-  script: install-{{ ansible_os_family }}.sh
-  when: ansible_os_family != "Windows"
+  script: install-{{ ansible_facts['os_family'] }}.sh
+  when: ansible_facts['os_family'] != "Windows"
   args:
-    chdir: "{{ ansible_env.HOME }}/src/github.com/vim/vim"
+    chdir: "{{ ansible_facts['env']['HOME'] }}/src/github.com/vim/vim"
     executable: "bash"
   tags:
     - vim
@@ -20,7 +20,7 @@
   shell: |
     curl -fLo {{ vimfiles }}/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  when: ansible_os_family != "Windows"
+  when: ansible_facts['os_family'] != "Windows"
   args:
     creates: "{{ vimfiles }}/autoload/plug.vim"
   vars:
@@ -32,7 +32,7 @@
   win_shell: |
     curl -fLo {{ vimfiles }}/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  when: ansible_os_family == "Windows"
+  when: ansible_facts['os_family'] == "Windows"
   args:
     executable: cmd
     creates: "{{ blueprint_user_home }}/.vim/autoload/plug.vim"
@@ -51,7 +51,7 @@
   tags: &vim_dotfiles_tags
     - dotfiles
     - vim
-  when: ansible_os_family != "Windows"
+  when: ansible_facts['os_family'] != "Windows"
 
 - name: Coc configs
   synchronize:
@@ -62,10 +62,10 @@
   tags:
     - dotfiles
     - vim
-  when: ansible_os_family != "Windows"
+  when: ansible_facts['os_family'] != "Windows"
 
 - name: Copy Vim config files for Windows
   win_copy: *copy_args
   loop: *vim_config_files
   tags: *vim_dotfiles_tags
-  when: ansible_os_family == "Windows"
+  when: ansible_facts['os_family'] == "Windows"

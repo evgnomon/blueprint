@@ -83,5 +83,11 @@ def get_inventory() -> dict[str, dict[str, Any]]:
         return inventory
 
 
+def main() -> None:
+    inventory = get_inventory()
+    inventory["_meta"] = {"hostvars": {}}
+    print(json.dumps(inventory))
+
+
 if __name__ == "__main__":
-    print(json.dumps(get_inventory()))
+    main()
