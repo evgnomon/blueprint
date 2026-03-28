@@ -68,9 +68,6 @@ pkg_versions:
     os_families: ["Darwin", "Debian"]
     wsl: false
     dev_container: false
-  ruby:
-    version: 3.4.7
-    os_families: ["Darwin", "Debian"]
   debian:
     release: trixie
     version: 13
