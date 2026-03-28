@@ -5,7 +5,7 @@ macports_home: "{{ blueprint_user_home }}/.macports"
 path_components:
   - "{{ blueprint_user_home }}/.cargo/bin"
   - "{{ blueprint_user_home }}/go/bin"
-  - "{{ blueprint_user_home }}/.local/bin"
+  - "{{ local_bin_path }}"
   - "{{ blueprint_user_home }}/.pyenv/shims"
   - "{{ blueprint_user_home }}/bin"
   - "{{ blueprint_user_home }}/sbin"

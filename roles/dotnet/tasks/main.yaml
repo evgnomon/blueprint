@@ -13,7 +13,7 @@
 - name: Create symbolic link for dotnet executable
   ansible.builtin.file:
     src: "{{ lookup('env','HOME') }}/.dotnet/dotnet"
-    dest: "{{ lookup('env','HOME') }}/.local/bin/dotnet"
+    dest: "{{ local_bin_path }}/dotnet"
     state: link
     mode: '0755'
     force: true

@@ -11,7 +11,7 @@
 - name: Link flow files to ~/.local/bin
   file:
     src: "{{ item.path }}"
-    dest: "{{ blueprint_user_home }}/.local/bin/{{ item.path | basename }}"
+    dest: "{{ local_bin_path }}/{{ item.path | basename }}"
     state: link
     force: yes
   loop: "{{ flow_files.files | selectattr('path', 'search', '/bin/') | list }}"

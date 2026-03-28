@@ -37,12 +37,6 @@
     chdir: "{{ llama_cpp_build_dir }}"
   changed_when: true
 
-- name: Ensure ~/.local/bin exists
-  file:
-    path: "{{ llama_bin_link_dir }}"
-    state: directory
-    mode: "0755"
-
 - name: Find compiled binaries
   find:
     paths: "{{ llama_cpp_build_dir }}/bin"

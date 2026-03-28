@@ -1,10 +1,4 @@
 ---
-- name: Ensure ~/.local/bin directory exists
-  file:
-    path: "{{ ansible_facts['env']['HOME'] }}/.local/bin"
-    state: directory
-    mode: '0755'
-
 - name: Install GTK4 and libadwaita dependencies
   become: yes
   package:
