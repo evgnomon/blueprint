@@ -5,42 +5,42 @@ pkg_templates_debian:
       {{
         {
           'Debian': 'tar.gz',
-        }[ansible_os_family] | default('')
+        }[ansible_facts['os_family']] | default('')
       }}
     arch: &pkg_templates_idea_arch >-
       {{
         {
           'x86_64': '',
           'aarch64': '-aarch64'
-        }[ansible_architecture] | default('')
+        }[ansible_facts['architecture']] | default('')
       }}
   java:
     os: &pkg_templates_java_os >-
       {{
         {
           'Debian': 'linux',
-        }[ansible_os_family] | default('')
+        }[ansible_facts['os_family']] | default('')
       }}
     arch: &pkg_templates_java_arch >-
       {{
         {
           'x86_64': 'x64',
           'aarch64': 'aarch64'
-        }[ansible_architecture] | default('')
+        }[ansible_facts['architecture']] | default('')
       }}
   zig:
     os: &pkg_templates_zig_os >-
       {{
         {
           'Debian': 'linux',
-        }[ansible_os_family] | default('')
+        }[ansible_facts['os_family']] | default('')
       }}
     arch: &pkg_templates_zig_arch >-
       {{
         {
           'x86_64': 'x86_64',
           'aarch64': 'aarch64'
-        }[ansible_architecture] | default('')
+        }[ansible_facts['architecture']] | default('')
       }}
 
 pkg_debian:

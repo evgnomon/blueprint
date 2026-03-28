@@ -1,2 +1,2 @@
 ---
-cargo_cmd: "{{ ansible_env.HOME }}/.cargo/bin/cargo"
+cargo_cmd: "{{ ansible_facts['env']['HOME'] }}/.cargo/bin/cargo"

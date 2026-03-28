@@ -1,13 +1,13 @@
 ---
 - name: Check running in the server
   set_fact:
-    wsl2_kernel: "{{ ansible_kernel | split('-') | last == 'WSL2' }}"
+    wsl2_kernel: "{{ ansible_facts['kernel'] | split('-') | last == 'WSL2' }}"
 
 - include_vars: "{{ item }}"
   with_first_found:
-    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
-    - "{{ ansible_distribution }}.yml"
-    - "{{ ansible_os_family}}.yml"
+    - "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_major_version'] }}.yml"
+    - "{{ ansible_facts['distribution'] }}.yml"
+    - "{{ ansible_facts['os_family']}}.yml"
 
 - include_vars: "{{ item }}"
   with_first_found:
@@ -20,14 +20,14 @@
 - include_vars: "{{ item }}"
   with_first_found:
     - "pkg_charts_mac.yaml"
-  when: ansible_os_family == 'Darwin'
+  when: ansible_facts['os_family'] == 'Darwin'
 
 - include_vars: "{{ item }}"
   with_first_found:
     - "pkg_charts_debian.yaml"
-  when: ansible_os_family == 'Debian'
+  when: ansible_facts['os_family'] == 'Debian'
 
 - include_vars: "{{ item }}"
   with_first_found:
     - "dmg_charts.yaml"
-  when: ansible_os_family == 'Darwin'
+  when: ansible_facts['os_family'] == 'Darwin'

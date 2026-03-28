@@ -11,7 +11,7 @@
       tags:
         - pkg
       when:
-        - ansible_os_family in pkg_versions.get(package.name, {}).get('os_families', [ansible_os_family])
+        - ansible_facts['os_family'] in pkg_versions.get(package.name, {}).get('os_families', [ansible_facts['os_family']])
 
     - name: Include PKG roles for MacOSX specific packages
       with_items: "{{ pkg_mac.charts }}"
@@ -22,7 +22,7 @@
       tags:
         - pkg
       when:
-        - ansible_os_family in pkg_versions.get(package.name, {}).get('os_families', [ansible_os_family])
+        - ansible_facts['os_family'] in pkg_versions.get(package.name, {}).get('os_families', [ansible_facts['os_family']])
 
 - name: Install DMG packages
   hosts: localhost
@@ -48,4 +48,4 @@
   environment:
     PATH: "{{ custom_path }}"
     MACPORTS_HOME: "{{ macports_home }}"
-    LD_LIBRARY_PATH: "{{ ansible_env.HOME }}/.pyenv/versions/3.12.0/lib/"
+    LD_LIBRARY_PATH: "{{ ansible_facts['env']['HOME'] }}/.pyenv/versions/3.12.0/lib/"

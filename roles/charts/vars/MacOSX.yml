@@ -1,5 +1,5 @@
 ---
-blueprint_user_home: "{{ ansible_env.HOME }}"
+blueprint_user_home: "{{ ansible_facts['env']['HOME'] }}"
 blueprint_home: "{{ blueprint_user_home }}/Library/Caches/blueprint"
 macports_home: "{{ blueprint_user_home }}/.macports"
 path_components:

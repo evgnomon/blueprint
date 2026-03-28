@@ -5,14 +5,14 @@ pkg_templates_mac:
       {{
         {
           'Darwin': 'mac',
-        }[ansible_os_family] | default('')
+        }[ansible_facts['os_family']] | default('')
       }}
     arch: &pkg_templates_java_arch >-
       {{
         {
           'x86_64': 'x64',
           'aarch64': 'aarch64'
-        }[ansible_architecture] | default('')
+        }[ansible_facts['architecture']] | default('')
       }}
 
 pkg_mac:

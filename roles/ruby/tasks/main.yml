@@ -14,11 +14,11 @@
     - ruby
 
 - include_tasks: tasks/main-all.yaml
-  when: ansible_os_family != "Windows"
+  when: ansible_facts['os_family'] != "Windows"
   tags:
     - ruby
 
-- include_tasks: tasks/main-{{ ansible_os_family }}.yaml
-  when: ansible_os_family == "Windows"
+- include_tasks: tasks/main-{{ ansible_facts['os_family'] }}.yaml
+  when: ansible_facts['os_family'] == "Windows"
   tags:
     - ruby

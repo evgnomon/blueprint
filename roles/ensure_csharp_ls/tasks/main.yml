@@ -1,6 +1,6 @@
 ---
 - name: Check if csharp-ls is already installed
-  command: "{{ ansible_env.HOME }}/.dotnet/tools/csharp-ls --version"
+  command: "{{ ansible_facts['env']['HOME'] }}/.dotnet/tools/csharp-ls --version"
   register: csharp_ls_check
   changed_when: false
   failed_when: false
@@ -10,7 +10,7 @@
   when: csharp_ls_check.rc != 0
 
 - name: Verify csharp-ls installation
-  command: "{{ ansible_env.HOME }}/.dotnet/tools/csharp-ls --version"
+  command: "{{ ansible_facts['env']['HOME'] }}/.dotnet/tools/csharp-ls --version"
   register: csharp_ls_version
   changed_when: false
 
