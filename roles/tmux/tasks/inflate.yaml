@@ -1,8 +1,0 @@
----
-- template:
-    src: "{{ item.src }}"
-    dest: "{{ target }}/{{ item.path | replace('.j2', '') }}"
-  when:
-    - item.path[-3:] == '.j2'
-  tags:
-    - tmux

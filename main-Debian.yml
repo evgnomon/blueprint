@@ -36,7 +36,6 @@
   roles:
     - install_flow
     - terminal
-    - tmux
     - docker
     - remove-gnome-packages
     - packer
