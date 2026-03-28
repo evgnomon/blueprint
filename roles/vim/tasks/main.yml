@@ -54,9 +54,11 @@
   when: ansible_facts['os_family'] != "Windows"
 
 - name: Coc configs
-  copy:
-    src: "{{ item }}"
-    dest: "{{ blueprint_user_home }}/.vim/"
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: "{{ blueprint_user_home }}/.vim/{{ item }}"
+    state: link
+    force: true
   loop:
     - coc-settings.json
   tags:
