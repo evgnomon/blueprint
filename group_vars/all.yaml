@@ -81,32 +81,25 @@ eget_packages:
   - name: cli/cli
     archs:
       debian: -a tar.gz
-      darwin: -a zip
   - name: sharkdp/fd
     archs:
       debian: -a gnu
-      darwin: -a gnu
   - name: dandavison/delta
     archs:
       debian: -a gnu
-      darwin: -a gnu
   - name: BurntSushi/ripgrep
   - name: sharkdp/bat
     archs:
       debian: -a gnu
-      darwin: -a gnu
   - name: gohugoio/hugo
     archs:
       debian: -a extended -a tar.gz -a withdeploy
-      darwin: -a extended -a tar.gz -a withdeploy
   - name: rclone/rclone
     archs:
       debian: -a zip
-      darwin: -a zip
   - name: hetznercloud/cli
     archs:
       debian: -f hcloud -a ^sig
-      darwin: -f hcloud -s ^sig
   - name: terraform-linters/tflint
     to: tflint
   - name: containers/gvisor-tap-vsock
@@ -125,11 +118,8 @@ eget_packages:
   - name: YS-L/csvlens
     archs:
       debian: -a gnu
-      darwin: -a gnu
 
 debian_go_packages:
-
-darwin_go_packages:
 
 common_git_repos:
   - url: ssh://git@github.com/evgnomon/blueprint.git

@@ -1,140 +1,85 @@
 # HGL/Blueprint
 
-Print your workstation wherever you. The same thing, the same way, every time.
+Print your workstation wherever you are. The same thing, the same way, every time.
 
-Supports Linux and macOS.
+## Install
 
-# Install
-## Linux
+### Linux (bare metal)
+
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/evgnomon/blueprint/refs/heads/main/install.sh | sh
 ```
 
-Provide user configs: 
+Provide user configs:
 
 ```bash
-# usermod -aG sudo
-# Checkout your `.blueprint` settings.
 git clone ssh://git@github.com:YOURUSER/.blueprint.git ~/.config/blueprint
 ```
 
-## Windows
-To let ansible configure the windows node,
-run this as Administrator in PowerShell on a fresh installed Windows node:
-```
-iex (iwr "https://raw.githubusercontent.com/evgnomon/blueprint/main/bootstrap-Windows.ps1")
-```
-Which restarts the Windows machine after installation.
+### Windows / macOS (Dev Container)
 
-To run WSL inside Hyper-V VM, enable nested virtualization in the host:
-```
-Set-VMProcessor -VMName "Windows 11" -ExposeVirtualizationExtensions $true
-```
-Install Ubuntu 24.04 from Microsoft Store:
-```
-wsl --install -d Ubuntu-24.04
+On Windows or macOS, run Blueprint inside a [Dev Container](https://containers.dev/). Open the repo in VS Code or any Dev Containers-compatible editor and reopen in container — the `.devcontainer/devcontainer.json` is already configured. Then run the install script inside the container:
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/evgnomon/blueprint/refs/heads/main/install.sh | DEV_CONTAINER=1 sh
 ```
 
-Try `ssh` to the Windows node to verify the bootstrap:
-```
-ssh YOUR_USER@WIN_NODE -t powershell.exe
-```
-Which the ip address is printed by the bootstrap script.
+## Vim Plugins
 
-Share the YubiKey with WSL2 for Windows,
-Using an admin shell run this to install your Security,
-```
-# winget install usbipd
-usbipd bind -i your_device_id
-usbipd attach --wsl -i your_device_id
-```
-
-### error: Loading vhci_hcd failed
-Then load  `vhci_hcd` module in WSL2.
-```
-sudo modprobe vhci_hcd
-```
-
-find the device id using `usbipd.exe list`.
-
-## Hyper-V
-Port forwarding should be enabled in host to configure Hyper-V VMs:
-```
-Get-NetIPInterface | where {$_.InterfaceAlias -eq 'vEthernet (WSL (Hyper-v firewall))' -or $_.InterfaceAlias -eq 'vEthernet (Default Switch)'} | Set-NetIPInterface -Forwarding Enabled
-```
-
-
-## MacOS
-Install XCode 15 or higher from App Store. Then open XCode and install macOS SDK.
-
-Docker has to be manually copied from attached disk image.
-
-Make sure the computer doesn't sleep during the installation. We recommend to disable sleep after display off when connected to power.
-
-# Vim Plugins
-
-Run this after installation in vim to setup vim plugins:
+After installation, run in Vim:
 
 ```
 :PlugInstall
 :CocInstall coc-snippets coc-prettier coc-eslint coc-tsserver coc-toml coc-rust-analyzer coc-pyright coc-go @yaegassy/coc-ruff
 ```
 
-# License
-HGL, verified:
-```
-shasum -a 512 -c SHA512SUMS
+## YubiKey
+
+### Passwordless sudo with U2F
+
+```bash
+sudo mkdir -p /etc/Yubico
+pamu2fcfg | sudo tee /etc/Yubico/u2f_keys
 ```
 
-Which is the device if of the YubiKey, find the device id using:
-```
-usbipd list
+Add a spare key:
 
-```
-
-# YubiKey
-
-Use YubiKey for password less `sudo`:
-
-```
-sudo mkdir /etc/Yubico
-mkdir -p ~/.config/Yubico
-pamu2fcfg > ~/.config/Yubico/u2f_keys
-# pamu2fcfg -n >> ~/.config/Yubico/u2f_keys # with the spare key
-sudo mv ~/.config/Yubico/u2f_keys /etc/Yubico
-sudo chown root:root -R /etc/Yubico/u2f_keys
-```
-Add a new key using:
-```
+```bash
 pamu2fcfg -n | sudo tee -a /etc/Yubico/u2f_keys
 ```
 
-Make sure DEC slug requires touch for GPG decryption, signing and authentication:
-```
+### Require touch for GPG operations
+
+```bash
 ykman openpgp keys set-touch dec on
 ykman openpgp keys set-touch aut on
 ykman openpgp keys set-touch sig on
 ```
 
-# Git signing
-Add pubkeys to `allowed_signers` for git verification:
+### USB passthrough (Dev Container on Windows)
+
+Share the YubiKey with the container via WSL2 using an admin PowerShell:
+
+```powershell
+usbipd bind -i <device_id>
+usbipd attach --wsl -i <device_id>
 ```
+
+Find the device ID with `usbipd list`. If you get `Loading vhci_hcd failed`, run `sudo modprobe vhci_hcd` inside the container.
+
+## Git Signing
+
+Add pubkeys to `allowed_signers` for git verification:
+
+```bash
 echo "$(git config --get user.email) namespaces=\"git\" $(cat ~/.ssh/yourkey.pub)" >> ~/.ssh/allowed_signers
 ```
 
-# Windows
-Run ansible in WSL2 for to run ansible on Windows native host:
-```
-sudo -v
-ansible-playbook -i inventory.py main.ymal
-sudo -K
-```
+## Secret Rotation
 
-# Secret Rotation
+Run `rotsec` in your repo. Set `repo_secrets` using `rchain`:
 
-To rotate secrets, run `rotsec` in your repo.
-Set `repo_secrets` using `rchain` for your repo. Example:
-```
+```yaml
 repo_secrets:
   - owner_name: evgnomon
     repo_name: blueprint
@@ -144,5 +89,13 @@ repo_secrets:
     repo_name: blueprint
     secret_name: VAULT_FILE
     secret_file: ~/.config/blueprint/secrets/evgnomon_blueprint_github.yaml
+```
+
+## License
+
+HGL, verified:
+
+```bash
+shasum -a 512 -c SHA512SUMS
 ```
 

@@ -1,2 +1,0 @@
-[build]
-rustflags = ["-L", "/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/lib"]

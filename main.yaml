@@ -13,9 +13,5 @@
   import_playbook: main-Debian.yml
   when: ansible_facts['os_family'] == "Debian"
 
-- name: Import playboook for Darwin
-  import_playbook: main-Darwin.yml
-  when: ansible_facts['os_family'] == "Darwin"
-
 - name: Import playbook for all platforms
   import_playbook: main-all.yml

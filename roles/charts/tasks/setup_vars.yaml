@@ -19,15 +19,5 @@
 
 - include_vars: "{{ item }}"
   with_first_found:
-    - "pkg_charts_mac.yaml"
-  when: ansible_facts['os_family'] == 'Darwin'
-
-- include_vars: "{{ item }}"
-  with_first_found:
     - "pkg_charts_debian.yaml"
   when: ansible_facts['os_family'] == 'Debian'
-
-- include_vars: "{{ item }}"
-  with_first_found:
-    - "dmg_charts.yaml"
-  when: ansible_facts['os_family'] == 'Darwin'

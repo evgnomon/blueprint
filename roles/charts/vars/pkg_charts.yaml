@@ -4,7 +4,6 @@ pkg_templates:
     os: &pkg_templates_node_os >-
       {{
         {
-            'Darwin': 'darwin',
             'Debian': 'linux'
         }[ansible_facts['os_family']] | default('')
       }}
@@ -20,7 +19,6 @@ pkg_templates:
     os: &pkg_templates_go_os >-
       {{
         {
-          'Darwin': 'darwin',
           'Debian': 'linux'
         }[ansible_facts['os_family']] | default('')
       }}
@@ -36,7 +34,6 @@ pkg_templates:
     os: &pkg_templates_rustup_os >-
       {{
         {
-          'Darwin': 'apple-darwin',
           'Debian': 'unknown-linux-gnu'
         }[ansible_facts['os_family']] | default('')
       }}
@@ -51,22 +48,19 @@ pkg_templates:
     ext: &pkg_templates_fzf_ext >-
       {{
         {
-          'Debian': 'tar.gz',
-          'Darwin': 'tar.gz'
+          'Debian': 'tar.gz'
         }[ansible_facts['os_family']] | default('zip')
       }}
     inflate: &pkg_templates_fzf_inflate >-
       {{
         {
-          'Debian': 'tar -C %(dest)s -xzvf %(src)s',
-          'Darwin': 'tar -C %(dest)s -xzvf %(src)s'
+          'Debian': 'tar -C %(dest)s -xzvf %(src)s'
         }[ansible_facts['os_family']] | default('unzip -o -d %(dest)s %(src)s')
       }}
   cmake:
     os: &pkg_templates_cmake_os >-
       {{
         {
-          'Darwin': 'darwin',
           'Debian': 'linux'
         }[ansible_facts['os_family']] | default('')
       }}
@@ -81,10 +75,6 @@ pkg_templates:
     osarch: &pkg_templates_cmake_osarch >-
       {{
         {
-          'Darwin': {
-            'x86_64': 'macos-universal',
-            'aarch64': 'macos-universal'
-          },
           'Debian': {
             'x86_64': 'linux-x86_64',
             'aarch64': 'linux-aarch64'
@@ -95,7 +85,6 @@ pkg_templates:
     ext: >-
       {{
         {
-          'Darwin': 'tar.gz',
           'Debian': 'tar.gz'
         }[ansible_facts['os_family']] | default('')
       }}
@@ -103,7 +92,6 @@ pkg_templates:
     inflate: >-
       {{
         {
-          'Darwin': 'tar -C %(dest)s -xzvf %(src)s',
           'Debian': 'tar -C %(dest)s -xzvf %(src)s'
         }[ansible_facts['os_family']] | default('')
       }}
@@ -111,10 +99,6 @@ pkg_templates:
     osarch: &pkg_templates_bazelisk_osarch >-
       {{
         {
-          'Darwin': {
-            'x86_64': 'darwin-amd64',
-            'aarch64': 'darwin-arm64'
-          },
           'Debian': {
             'x86_64': 'linux-amd64',
             'aarch64': 'linux-arm64'
@@ -125,14 +109,12 @@ pkg_templates:
     ext: &pkg_templates_mysql_ext >-
       {{
         {
-          'Darwin': 'tar.gz',
           'Debian': 'tar.xz',
         }[ansible_facts['os_family']] | default('')
       }}
     inflate: &pkg_templates_mysql_inflate >-
       {{
         {
-          'Darwin': 'tar -C %(dest)s -xzvf %(src)s',
           'Debian': 'tar -C %(dest)s -xJvf %(src)s',
         }[ansible_facts['os_family']] | default('')
       }}
@@ -140,10 +122,6 @@ pkg_templates:
     osarch: >-
       {{
         {
-          'Darwin': {
-            'x86_64': 'darwin',
-            'aarch64': 'darwin'
-          },
           'Debian': {
             'x86_64': 'linux-amd64',
             'aarch64': 'linux-arm64'
@@ -158,12 +136,8 @@ pkg:
       archs: &archs-node
         - architecture: x86_64
           os_family: Debian
-        - architecture: x86_64
-          os_family: Darwin
         - architecture: aarch64
           os_family: Debian
-        - architecture: aarch64
-          os_family: Darwin
       version: 14.1.0
       template: &node_tempalte
         os: *pkg_templates_node_os

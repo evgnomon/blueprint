@@ -147,13 +147,6 @@
   tags:
     - cargo
 
-- name: Install using MacPorts
-  command: port -N install {{ item }}
-  when: ansible_facts['distribution'] == "MacOSX"
-  with_items: "{{ macports_packages }}"
-  tags:
-    - port
-
 - name: Link dotfiles
   ansible.builtin.file:
     src: "{{ role_path }}/files/{{ item }}"

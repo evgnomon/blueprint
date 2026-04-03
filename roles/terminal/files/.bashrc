@@ -199,20 +199,8 @@ export PATH="$HOME/bin:$PATH"
 export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix --hidden --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-case "$(uname)" in
-    Darwin)
-        CDPATH="$CDPATH:/Volumes"
-        # macports
-        export MACPORTS_HOME="$HOME/.macports"
-        export PATH="$HOME/.macports/bin:$PATH"
-        export PATH="$HOME/.macports/sbin:$PATH"
-        export PKG_CONFIG_PATH="$MACPORTS_HOME/libexec/openssl3/lib/pkgconfig"
-        ;;
-    Linux)
-        CDPATH="$CDPATH:/media/$USER"
-        export LIBVIRT_DEFAULT_URI="qemu:///system"
-        ;;
-esac
+CDPATH="$CDPATH:/media/$USER"
+export LIBVIRT_DEFAULT_URI="qemu:///system"
 
 eval "$(ssh-agent -s)" > /dev/null
 export GPG_TTY=$(tty)

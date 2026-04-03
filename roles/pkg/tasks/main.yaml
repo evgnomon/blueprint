@@ -7,8 +7,6 @@
     - "{{ package_dest }}"
   loop_control:
     loop_var: path
-  when:
-    - ansible_facts['os_family'] == "Debian"
   tags:
     - pkg
 
@@ -20,36 +18,6 @@
     - "{{ package_src }}"
   loop_control:
     loop_var: path
-  when:
-    - ansible_facts['os_family'] == "Debian"
-  tags:
-    - pkg
-
-- name: Create destination directory
-  file:
-    path: "{{ path }}"
-    state: directory
-    group: staff
-  with_items:
-    - "{{ package_dest }}"
-  loop_control:
-    loop_var: path
-  when:
-    - ansible_facts['os_family'] == "Darwin"
-  tags:
-    - pkg
-
-- name: Create source directory for package
-  file:
-    path: "{{ path | dirname }}"
-    state: directory
-    group: staff
-  with_items:
-    - "{{ package_src }}"
-  loop_control:
-    loop_var: path
-  when:
-    - ansible_facts['os_family'] == "Darwin"
   tags:
     - pkg
 

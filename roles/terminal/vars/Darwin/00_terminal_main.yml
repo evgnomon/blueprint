@@ -1,4 +1,0 @@
----
-user_fonts_dir: ~/Library/Fonts/
-cargo_cmd: "{{ ansible_facts['env']['HOME'] }}/.cargo/bin/cargo"
-pinentry_bin: "{{ macports_home }}/bin/pinentry-tty"
