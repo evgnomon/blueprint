@@ -2,7 +2,7 @@
 
 Print your workstation wherever you. The same thing, the same way, every time.
 
-Supports Linux, macOS and Windows native and WSL2 and Docker container.
+Supports Linux and macOS.
 
 # Install
 ## Linux

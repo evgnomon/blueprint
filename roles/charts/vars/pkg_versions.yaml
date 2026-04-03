@@ -8,22 +8,22 @@ pkg_versions:
     version_full: 252.26199.169
     version: 2025.2.2
     os_families: ["Darwin", "Debian"]
-    wsl: false
+
     dev_container: false
   rider:
     version: 2025.2.2
     os_families: ["Debian"]
-    wsl: false
+
     dev_container: false
   localsend:
     version: 1.17.0
     os_families: ["Darwin"]
-    wsl: false
+
     dev_container: false
   yubico_authenticator:
     version: 7.1.2
     os_families: ["Darwin"]
-    wsl: false
+
     dev_container: false
   fzf:
     version: 0.60.3
@@ -31,7 +31,7 @@ pkg_versions:
   nerdfonts:
     version: 3.4.0
     os_families: ["Darwin", "Debian"]
-    wsl: false
+
     dev_container: false
   go:
     version: 1.24.0
@@ -68,12 +68,12 @@ pkg_versions:
     version: 13
     build: 20250924-2245
     os_families: ["Debian"]
-    wsl: false
+
     dev_container: false
   docker:
     version: 184744
     os_families: ["Darwin", "Debian"]
-    wsl: false
+
     dev_container: false
   mysql:
     version: 8.0.41
@@ -85,12 +85,12 @@ pkg_versions:
   wasabi:
     version: 2.6.0
     os_families: ["Darwin"]
-    wsl: false
+
     dev_container: false
   ollama:
     version: 0.11.10
     os_families: ["Darwin", "Debian"]
-    wsl: false
+
     dev_container: false
   kubectl:
     version: 1.33.1

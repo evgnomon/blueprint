@@ -17,9 +17,5 @@
   import_playbook: main-Darwin.yml
   when: ansible_facts['os_family'] == "Darwin"
 
-- name: Import playboook for Windows
-  import_playbook: main-Windows.yml
-  when: ansible_facts['os_family'] == "Windows"
-
 - name: Import playbook for all platforms
   import_playbook: main-all.yml

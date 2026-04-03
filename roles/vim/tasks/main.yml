@@ -3,13 +3,11 @@
   git:
     dest: "{{ ansible_facts['env']['HOME'] }}/src/github.com/vim/vim"
     repo: "https://github.com/vim/vim.git"
-  when: ansible_facts['os_family'] != "Windows"
   tags:
     - vim
 
 - name: Install vim
   script: install-{{ ansible_facts['os_family'] }}.sh
-  when: ansible_facts['os_family'] != "Windows"
   args:
     chdir: "{{ ansible_facts['env']['HOME'] }}/src/github.com/vim/vim"
     executable: "bash"
@@ -20,7 +18,6 @@
   shell: |
     curl -fLo {{ vimfiles }}/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  when: ansible_facts['os_family'] != "Windows"
   args:
     creates: "{{ vimfiles }}/autoload/plug.vim"
   vars:
@@ -28,30 +25,16 @@
   tags:
     - vim
 
-- name: Install vim plug for Windows
-  win_shell: |
-    curl -fLo {{ vimfiles }}/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  when: ansible_facts['os_family'] == "Windows"
-  args:
-    executable: cmd
-    creates: "{{ blueprint_user_home }}/.vim/autoload/plug.vim"
-  vars:
-    vimfiles: "{{ blueprint_user_home }}/vimfiles"
-  tags:
-    - vim
-
 - name: Copy Vim config files
-  copy: &copy_args
+  copy:
     src: "{{ item }}"
     dest: "{{ blueprint_user_home }}/"
-  loop: &vim_config_files
+  loop:
     - .vimrc
     - .ideavimrc
-  tags: &vim_dotfiles_tags
+  tags:
     - dotfiles
     - vim
-  when: ansible_facts['os_family'] != "Windows"
 
 - name: Coc configs
   ansible.builtin.file:
@@ -64,10 +47,3 @@
   tags:
     - dotfiles
     - vim
-  when: ansible_facts['os_family'] != "Windows"
-
-- name: Copy Vim config files for Windows
-  win_copy: *copy_args
-  loop: *vim_config_files
-  tags: *vim_dotfiles_tags
-  when: ansible_facts['os_family'] == "Windows"

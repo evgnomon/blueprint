@@ -5,8 +5,7 @@ pkg_templates:
       {{
         {
             'Darwin': 'darwin',
-            'Debian': 'linux',
-            'Windows': 'win'
+            'Debian': 'linux'
         }[ansible_facts['os_family']] | default('')
       }}
     arch: &pkg_templates_node_arch >-
@@ -22,8 +21,7 @@ pkg_templates:
       {{
         {
           'Darwin': 'darwin',
-          'Debian': 'linux',
-          'Windows': 'windows'
+          'Debian': 'linux'
         }[ansible_facts['os_family']] | default('')
       }}
     arch: &pkg_templates_go_arch >-
@@ -39,8 +37,7 @@ pkg_templates:
       {{
         {
           'Darwin': 'apple-darwin',
-          'Debian': 'unknown-linux-gnu',
-          'Windows': 'pc-windows-msvc'
+          'Debian': 'unknown-linux-gnu'
         }[ansible_facts['os_family']] | default('')
       }}
     arch: &pkg_templates_rustup_arch >-
@@ -70,8 +67,7 @@ pkg_templates:
       {{
         {
           'Darwin': 'darwin',
-          'Debian': 'linux',
-          'Windows': 'windows'
+          'Debian': 'linux'
         }[ansible_facts['os_family']] | default('')
       }}
     arch: &pkg_templates_cmake_arch >-
@@ -92,10 +88,6 @@ pkg_templates:
           'Debian': {
             'x86_64': 'linux-x86_64',
             'aarch64': 'linux-aarch64'
-          },
-          'Windows': {
-            'x86_64': 'windows-x86_64',
-            'aarch64': 'windows-arm64'
           }
         }[ansible_facts['os_family']][ansible_facts['architecture']] | default('')
       }}
@@ -104,8 +96,7 @@ pkg_templates:
       {{
         {
           'Darwin': 'tar.gz',
-          'Debian': 'tar.gz',
-          'Windows': 'zip'
+          'Debian': 'tar.gz'
         }[ansible_facts['os_family']] | default('')
       }}
 
@@ -113,8 +104,7 @@ pkg_templates:
       {{
         {
           'Darwin': 'tar -C %(dest)s -xzvf %(src)s',
-          'Debian': 'tar -C %(dest)s -xzvf %(src)s',
-          'Windows': 'unzip -o -d %(dest)s %(src)s'
+          'Debian': 'tar -C %(dest)s -xzvf %(src)s'
         }[ansible_facts['os_family']] | default('')
       }}
   bazelisk:
@@ -128,9 +118,6 @@ pkg_templates:
           'Debian': {
             'x86_64': 'linux-amd64',
             'aarch64': 'linux-arm64'
-          },
-          'Windows': {
-            'x86_64': 'windows-amd64.exe',
           }
         }[ansible_facts['os_family']][ansible_facts['architecture']] | default('')
       }}
@@ -173,16 +160,10 @@ pkg:
           os_family: Debian
         - architecture: x86_64
           os_family: Darwin
-        - architecture: x86_64
-          os_family: Windows
         - architecture: aarch64
           os_family: Debian
         - architecture: aarch64
           os_family: Darwin
-        - architecture: aarch64
-          os_family: Windows
-        - architecture: i386
-          os_family: Windows
       version: 14.1.0
       template: &node_tempalte
         os: *pkg_templates_node_os
