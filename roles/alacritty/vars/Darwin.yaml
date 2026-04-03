@@ -1,1 +1,0 @@
-alacritty_config_dir: "{{ blueprint_user_home }}/.config/alacritty"

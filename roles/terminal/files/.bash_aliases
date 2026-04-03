@@ -81,5 +81,4 @@ alias c="clear"
 alias mkpass="bp vault gen pass"
 alias s=fzurls
 alias r='gg run --recipe'
-alias nw='alacritty msg create-window'
 alias d='cd "$(fd --type d | fzf)"'

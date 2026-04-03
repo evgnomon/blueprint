@@ -10,7 +10,6 @@ path_components:
   - 'C:\Windows\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps'
   - 'C:\Program Files\OpenSSH\'
   - 'C:\Program Files\Vim\vim91'
-  - 'C:\Program Files\Alacritty\'
   - 'C:\Program Files\Git\cmd'
   - '{{ blueprint_user_home }}\.cargo\bin'
   - 'C:\Program Files\Go\bin'
@@ -50,7 +49,6 @@ winget_packages:
   - dorssel.usbipd-win
   - Yubico.YubikeyManager
   - Microsoft.Azure.StorageExplorer
-  - Alacritty.Alacritty
   - Microsoft.OpenSSH.Beta
   - Microsoft.OneDrive
   - Microsoft.DotNet.Runtime.6

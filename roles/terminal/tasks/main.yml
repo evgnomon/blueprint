@@ -31,6 +31,13 @@
   tags:
     - dotfiles
 
+- name: Apply sysctl settings
+  become: true
+  ansible.builtin.command: sysctl -p
+  when: ansible_facts['os_family'] == "Debian"
+  tags:
+    - dotfiles
+
 - name: Check profile picture exists
   stat:
     path: "{{ ansible_facts['env']['HOME'] }}/.ssh/.face"
@@ -121,6 +128,15 @@
     - never
     - autoremove
     - upgrade
+
+- name: Install common Cargo packages
+  ansible.builtin.command:
+    cmd: "{{ cargo_cmd }} install {{ item }}"
+  loop: "{{ common_cargo_packages | default ([]) }}"
+  when:
+    - common_cargo_packages is defined and common_cargo_packages | length > 0
+  tags:
+    - cargo
 
 - name: Install OS specific Cargo packages
   ansible.builtin.command:

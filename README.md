@@ -67,7 +67,7 @@ Get-NetIPInterface | where {$_.InterfaceAlias -eq 'vEthernet (WSL (Hyper-v firew
 ## MacOS
 Install XCode 15 or higher from App Store. Then open XCode and install macOS SDK.
 
-Docker has to be manually copied from attached disk image. This is to keep Alacritty unauthorized to access user `Applications`.
+Docker has to be manually copied from attached disk image.
 
 Make sure the computer doesn't sleep during the installation. We recommend to disable sleep after display off when connected to power.
 

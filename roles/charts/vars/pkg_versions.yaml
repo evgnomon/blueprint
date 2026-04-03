@@ -63,11 +63,6 @@ pkg_versions:
   macports:
     version: 2.10.5-15
     os_families: ["Darwin"]
-  alacritty:
-    version: 0.15.1
-    os_families: ["Darwin", "Debian"]
-    wsl: false
-    dev_container: false
   debian:
     release: trixie
     version: 13
@@ -109,11 +104,6 @@ pkg_versions:
   zig15:
     version: 0.15.2
     os_families: ["Debian"]
-  ghostty:
-    version: 1.2.3
-    os_families: ["Darwin", "Debian"]
-    wsl: false
-    dev_container: false
   kotlin: 
     version: 2.3.20
     os_families: ["Darwin", "Debian"]

@@ -238,6 +238,8 @@ pkg:
           src: *bin_src_bin
         - name: gemini
           src: *bin_src_bin
+        - name: func
+          src: *bin_src_bin
 
     - name: go
       archs: *archs-node

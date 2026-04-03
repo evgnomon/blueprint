@@ -10,5 +10,4 @@ path_components:
   - "/usr/bin"
 custom_path: "{{ path_components | join(':') }}:$PATH"
 
-cargo_packages:
-  - alacritty
+cargo_packages: []
