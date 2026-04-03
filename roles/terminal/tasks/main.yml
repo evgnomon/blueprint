@@ -51,6 +51,13 @@
     - ansible_facts['os_family'] == "Debian"
     - face_file_stat.stat.exists
 
+- name: Set app switcher to current workspace only
+  command: gsettings set org.gnome.shell.app-switcher current-workspace-only true
+  when:
+    - ansible_facts['os_family'] == "Debian"
+  tags:
+    - dotfiles
+
 - name: Include distro tasks
   include_tasks: main-{{ ansible_facts['distribution'] }}.yaml
   when: ansible_facts['os_family'] == "Debian"
