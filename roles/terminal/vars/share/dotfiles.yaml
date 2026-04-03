@@ -15,3 +15,10 @@ dotfiles:
   - .inputrc
   - .profile
   - .bash_aliases
+  - .claude/settings.json
+
+dotdirs:
+  - dest: .claude/skills
+    src: src/github.com/evgnomon/agents/skills
+  - dest: .claude/agents
+    src: src/github.com/evgnomon/agents/agents

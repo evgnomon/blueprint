@@ -148,6 +148,31 @@
   tags:
     - dotfiles
 
+- name: Ensure parent directories exist for dotdirs
+  ansible.builtin.file:
+    path: "{{ _dotdir_dest | dirname }}"
+    state: directory
+  vars:
+    _home: "{{ ansible_facts['env']['HOME'] }}"
+    _dotdir_dest: "{{ item.dest if item.dest.startswith('/') else _home + '/' + item.dest }}"
+  loop: "{{ dotdirs | default([]) }}"
+  tags:
+    - dotfiles
+
+- name: Link dotdirs
+  ansible.builtin.file:
+    src: "{{ _dotdir_src }}"
+    dest: "{{ _dotdir_dest }}"
+    state: link
+    force: true
+  vars:
+    _home: "{{ ansible_facts['env']['HOME'] }}"
+    _dotdir_src: "{{ item.src if item.src.startswith('/') else _home + '/' + item.src }}"
+    _dotdir_dest: "{{ item.dest if item.dest.startswith('/') else _home + '/' + item.dest }}"
+  loop: "{{ dotdirs | default([]) }}"
+  tags:
+    - dotfiles
+
 - name: Change file ownership, group and permissions for gnupg
   ansible.builtin.file:
     path: "{{ ansible_facts['env']['HOME'] }}/.gnupg"
