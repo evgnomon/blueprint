@@ -46,22 +46,6 @@ status() {
     esac
 }
 
-search_web() { 
-  if pgrep brave > /dev/null; then
-    brave-browser "https://duckduckgo.com/?q=$*&t=brave&ia=web" > /dev/null; 
-  else
-    echo "Brave is not running"
-  fi
-}
-
-open_web() { 
-  if pgrep brave > /dev/null; then
-    brave-browser "https://$*" > /dev/null; 
-  else
-    echo "Brave is not running"
-  fi
-}
-
 function j {
     if [ $# -eq 0 ]; then
         jobs
@@ -88,11 +72,11 @@ alias rg='rg --hidden -i --glob "!{.git}/**"'
 alias vr="vim \$(fd . / --type file --type symlink --type executable | fzf --preview='bat --color=always --style=numbers {}')"
 alias vd="vim \$(fd . ~ --type file --type symlink --type executable | fzf --preview='bat --color=always --style=numbers {}')"
 alias vv="vim \$(fd . . --type file --type symlink --type executable | fzf --preview='bat --color=always --style=numbers {}')"
-alias v='vim'
-alias g='git'
-alias gg='goose'
-alias a='claude'
-alias i="invoke"
+alias v=vim
+alias g=git
+alias gg=goose
+alias a=claude
+alias i=invoke
 alias c="clear"
 alias mkpass="bp vault gen pass"
 alias s=fzurls

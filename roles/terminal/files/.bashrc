@@ -138,6 +138,23 @@ fi
 
 FZF_CTRL_R_COMMAND= FZF_ALT_C_COMMAND= eval "$(fzf --bash)"
 
+# CTRL+G - Open URL selector via fzurls
+fzf-url-widget() {
+  fzurls < /dev/tty > /dev/tty 2>&1
+  READLINE_LINE=""
+  READLINE_POINT=0
+}
+
+if (( BASH_VERSINFO[0] >= 4 )); then
+  bind -m emacs-standard -x '"\C-g": fzf-url-widget'
+  bind -m vi-command -x '"\C-g": fzf-url-widget'
+  bind -m vi-insert -x '"\C-g": fzf-url-widget'
+else
+  bind -m emacs-standard '"\C-g": " \C-b\C-k \C-u`fzurls < /dev/tty > /dev/tty 2>&1`\e\C-e\er\C-a\C-y\C-h\C-e\e \C-y\ey\C-x\C-x\C-f"'
+  bind -m vi-command '"\C-g": "\C-z\C-g\C-z"'
+  bind -m vi-insert '"\C-g": "\C-z\C-g\C-z"'
+fi
+
 ######################################ENV######################################
 if [[ ! -z "$INTERACTIVE_INIT" ]]; then
   return
