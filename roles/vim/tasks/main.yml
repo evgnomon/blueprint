@@ -25,10 +25,12 @@
   tags:
     - vim
 
-- name: Copy Vim config files
-  copy:
-    src: "{{ item }}"
-    dest: "{{ blueprint_user_home }}/"
+- name: Symlink Vim config files
+  ansible.builtin.file:
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: "{{ blueprint_user_home }}/{{ item }}"
+    state: link
+    force: true
   loop:
     - .vimrc
     - .ideavimrc

@@ -82,3 +82,4 @@ alias mkpass="bp vault gen pass"
 alias s=fzurls
 alias r='gg run --recipe'
 alias d='cd "$(fd --type d | fzf)"'
+alias gr="gotorepo"

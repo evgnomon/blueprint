@@ -1,4 +1,5 @@
 ---
+blueprint_user: "{{ ansible_facts['user_id'] }}"
 go_latest_version: 1.21.6
 home: "{{ lookup('env', 'HOME') }}"
 target_home: "{{ ansible_facts['env']['HOME'] }}"
