@@ -108,9 +108,9 @@ eget_packages:
   - name: block/goose
     archs:
       debian: -a amd64
-  - name: telegramdesktop/tdesktop
-    archs:
-      debian: -a tar.xz -f "Telegram/Telegram"
+  # - name: telegramdesktop/tdesktop
+  #   archs:
+  #     debian: -a tar.xz -f "Telegram/Telegram"
     to: telegram
   - name: kubernetes/kompose
     archs:
@@ -119,6 +119,10 @@ eget_packages:
   - name: YS-L/csvlens
     archs:
       debian: -a gnu
+  - name: mikefarah/yq
+    archs:
+      debian: -a tar.gz -f yq_linux_amd64
+    to: yq
 
 debian_go_packages:
 

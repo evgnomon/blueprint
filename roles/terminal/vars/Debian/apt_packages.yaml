@@ -70,6 +70,8 @@ apt_packages:
     - foot # Fast and minimal Wayland terminal emulator for modern Linux desktops
     - mplayer # Command-line media player for playing audio and video files in terminal
     - ugrep # Ultra-fast grep alternative with TUI and PCRE support for searching text in files
+    - libnss3-tools # Tools for managing NSS databases and certificates for secure communication
+    - skopeo # Tool for inspecting and copying container images between registries and local storage
 
   ubuntu:
     - mysql-client  # MySQL database client tools for connecting to MySQL servers
